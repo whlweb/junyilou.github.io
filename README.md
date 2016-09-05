@@ -1,10 +1,5 @@
-# junyi5353.github.io
 Junyi_Lou's Github.io Files Intro
-Web Index and Pages
-===========
-Index and other html files are introducing sites of Chongqing Bashu Secondary School
 
-http://bashu.cn http://lnbashu.cn are the official sites of the school.
 Kuaidi.＊
 ===========
 Kuaidi.py - A package tracking python source code. For more visit http://matrix.sspai.com/p/d006b320
