@@ -6,39 +6,11 @@
 	<array>
 		<dict>
 			<key>AutoJoin</key>
-			<false/>
-			<key>EncryptionType</key>
-			<string>WPA</string>
-			<key>HIDDEN_NETWORK</key>
-			<false/>
-			<key>IsHotspot</key>
-			<false/>
-			<key>Password</key>
-			<string>watchOS2.0</string>
-			<key>PayloadDescription</key>
-			<string>配置 Wi-Fi 设置</string>
-			<key>PayloadDisplayName</key>
-			<string>Wi-Fi</string>
-			<key>PayloadIdentifier</key>
-			<string>com.apple.wifi.managed.B2789A94-25B5-4A14-B254-2F360B08C69C</string>
-			<key>PayloadType</key>
-			<string>com.apple.wifi.managed</string>
-			<key>PayloadUUID</key>
-			<string>B2789A94-25B5-4A14-B254-2F360B08C69C</string>
-			<key>PayloadVersion</key>
-			<real>1</real>
-			<key>ProxyType</key>
-			<string>None</string>
-			<key>SSID_STR</key>
-			<string>Xiaomi_942C</string>
-		</dict>
-		<dict>
-			<key>AutoJoin</key>
 			<true/>
 			<key>EncryptionType</key>
 			<string>WPA</string>
 			<key>HIDDEN_NETWORK</key>
-			<true/>
+			<false/>
 			<key>IsHotspot</key>
 			<false/>
 			<key>Password</key>
@@ -52,7 +24,7 @@
 			<key>PayloadType</key>
 			<string>com.apple.wifi.managed</string>
 			<key>PayloadUUID</key>
-			<string>5B4043FB-ACDA-49DA-ADD8-FF133BFE2E2C</string>
+			<string>D0C8010D-40C4-4258-8EDA-196E90CCAAD3</string>
 			<key>PayloadVersion</key>
 			<real>1</real>
 			<key>ProxyType</key>
@@ -66,7 +38,7 @@
 			<key>EncryptionType</key>
 			<string>WPA</string>
 			<key>HIDDEN_NETWORK</key>
-			<true/>
+			<false/>
 			<key>IsHotspot</key>
 			<false/>
 			<key>Password</key>
@@ -80,7 +52,7 @@
 			<key>PayloadType</key>
 			<string>com.apple.wifi.managed</string>
 			<key>PayloadUUID</key>
-			<string>1A244C63-DE74-444E-9730-E95CEF3AEE6F</string>
+			<string>06BDA6A8-5CD5-4E7C-9441-E191A35BAAC7</string>
 			<key>PayloadVersion</key>
 			<real>1</real>
 			<key>ProxyType</key>
@@ -127,7 +99,7 @@
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>Install this mobile config to connect Junyi_Lou's Personal Wi-Fi. Root CA by Sinorail Certification Center will be setup to enable kyfw.12306.cn's HTTPS service. Last Update 2016.9.3</string>
+	<string>Install this mobile config to connect Junyi_Lou's Personal Wi-Fi. Root CA by Sinorail Certification Center will be setup to enable kyfw.12306.cn's HTTPS service. Last Update 2016.9.5</string>
 	<key>PayloadDisplayName</key>
 	<string>Junyi_Lou_Network</string>
 	<key>PayloadIdentifier</key>
@@ -137,7 +109,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>E7B3E75D-5D08-4441-9C9C-0AC301931CB4</string>
+	<string>372B2F53-CB3B-452C-A2CE-A458242B3B0C</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
