@@ -17,7 +17,7 @@ def down():
 			os.system("".join(["mv -n ", sixbynine, rtl, ".png ", rpath, "/Other/R", rtl, ".png"]))
 			os.system("".join(["rm ", fourbythree, rtl, ".png"]))
 			fb = open("".join([rpath, "/List.md"]))
-			newlist = fb.read().replace(("".join([rtl,","])),"")
+			newlist = fb.read().replace(("".join([rtl, ","])), "")
 			fb.close()
 			fc = open("".join([rpath, "/List.md"]),"w")
 			fc.write(newlist)
@@ -29,7 +29,7 @@ def down():
 	if not exic:
 		equa = ["4_3", "16_9"]
 		for k in range(0, 2):
-			os.system("".join(["wget -t 3 -c -P ", rpath, "/", equa[k], "/ ", dieter, equa[k], "/R", rtl, ".png"])) 
+			os.system("".join(["wget -t 2 -c -P ", rpath, "/", equa[k], "/ ", dieter, equa[k], "/R", rtl, ".png"])) 
 			k = k + 1
 arg = 0
 rpath = "/Users/Junyi_Lou/Downloads/Retail"

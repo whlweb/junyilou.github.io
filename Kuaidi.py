@@ -58,17 +58,14 @@ if ansj["status"] == "0":
 		print result[i]["time"], result[i]["status"]
 else:
 	print
-	if ansj["status"] == "101": print "查询失败，Appkey为空"
-	if ansj["status"] == "102": print "查询失败，Appkey过期"
-	if ansj["status"] == "103": print "查询失败，Appkey权限错误"
-	if ansj["status"] == "104": print "查询失败，请求超过此数限制"
-	if ansj["status"] == "105": print "查询失败，IP地址被禁止"
-	if ansj["status"] == "106": print "查询失败，IP地址超过请求限制"
-	if ansj["status"] == "107": print "查询失败，API接口正在维护"
-	if ansj["status"] == "108": print "查询失败，API接口已经停用"
-	if ansj["status"] == "201": print "查询失败，快递单号为空"
-	if ansj["status"] == "202": print "查询失败，快递公司为空"
-	if ansj["status"] == "203": print "查询失败，快递公司不存在"
-	if ansj["status"] == "204": print "查询失败，自动识别快递公司失败"
-	if ansj["status"] == "205": print "查询失败，暂未更新物流信息"
+	erstat = int(ansj["status"])
+	contact = "查询失败，尝试打开Matrix介绍页面查看有无更新新程序"
+	if erstat > 100 and erstat < 105: print contact
+	if erstat > 200 and erstat < 204: print contact
+	if erstat == 105: print "查询失败，IP地址被禁止"
+	if erstat == 106: print "查询失败，IP地址超过请求限制"
+	if erstat == 107: print "查询失败，API接口正在维护"
+	if erstat == 108: print "查询失败，API接口已经停用"
+	if erstat == 204: print "查询失败，自动识别快递公司失败"
+	if erstat == 205: print "查询失败，暂未更新物流信息"
 print
