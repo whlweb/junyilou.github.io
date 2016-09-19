@@ -5,9 +5,8 @@ Kuaidi.£ª
 Kuaidi.py - A package tracking python source code. For more visit http://matrix.sspai.com/p/d006b320
 
 Kuaidi[Date].wflow - A iOS App Workflow program can tracking your package. For more visit http://matrix.sspai.com/p/d384dd60
-.mobileconfig
 
-KuaidiUpdater - Kuaidi.wflow auto update flag file3
+KuaidiUpdater - Kuaidi.wflow auto update flag file
 *.mobileconfig
 ===========
 iOS Mobile Config created by Apple Configurator 2
