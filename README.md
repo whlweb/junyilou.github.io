@@ -1,15 +1,16 @@
 Junyi_Lou's Github.io Files Intro
 
-Kuaidi.ï¼Š
+Kuaidi.£ª
 ===========
 Kuaidi.py - A package tracking python source code. For more visit http://matrix.sspai.com/p/d006b320
 
-Kuaidi.wflow - A iOS App Workflow program can tracking your package. For more visit http://matrix.sspai.com/p/cbf17900
+Kuaidi[Date].wflow - A iOS App Workflow program can tracking your package. For more visit http://matrix.sspai.com/p/d384dd60
 .mobileconfig
 
-KuaidiUpdater - Kuaidi.wflow auto update flag file
+KuaidiUpdater - Kuaidi.wflow auto update flag file3
+*.mobileconfig
 ===========
-*.mobileconfig - iOS Mobile Config created by Apple Configurator 2
+iOS Mobile Config created by Apple Configurator 2
 Pythons
 ===========
 Retail ID.py - Apple Store Photo automatic updater and downloader, base on ~/Downloads/Retail
