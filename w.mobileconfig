@@ -6,7 +6,9 @@
 	<array>
 		<dict>
 			<key>AutoJoin</key>
-			<true/>
+			<false/>
+			<key>CaptiveBypass</key>
+			<false/>
 			<key>EncryptionType</key>
 			<string>WPA</string>
 			<key>HIDDEN_NETWORK</key>
@@ -14,51 +16,23 @@
 			<key>IsHotspot</key>
 			<false/>
 			<key>Password</key>
-			<string>macOS10.12_16A201w</string>
+			<string>watchOS3.0</string>
 			<key>PayloadDescription</key>
-			<string>配置 Wi-Fi 设置</string>
+			<string>Configures Wi-Fi settings</string>
 			<key>PayloadDisplayName</key>
 			<string>Wi-Fi</string>
 			<key>PayloadIdentifier</key>
-			<string>com.apple.wifi.managed.5B4043FB-ACDA-49DA-ADD8-FF133BFE2E2C</string>
+			<string>com.apple.wifi.managed.C4491D4D-5145-46CD-93D7-9BE56461D7B9</string>
 			<key>PayloadType</key>
 			<string>com.apple.wifi.managed</string>
 			<key>PayloadUUID</key>
-			<string>D0C8010D-40C4-4258-8EDA-196E90CCAAD3</string>
+			<string>20E16CB6-1EE9-43A5-9A67-16E6B97901E2</string>
 			<key>PayloadVersion</key>
-			<real>1</real>
+			<integer>1</integer>
 			<key>ProxyType</key>
 			<string>None</string>
 			<key>SSID_STR</key>
-			<string>Junyi_Lou 20162603</string>
-		</dict>
-		<dict>
-			<key>AutoJoin</key>
-			<true/>
-			<key>EncryptionType</key>
-			<string>WPA</string>
-			<key>HIDDEN_NETWORK</key>
-			<false/>
-			<key>IsHotspot</key>
-			<false/>
-			<key>Password</key>
-			<string>macOS10.12_16A201w</string>
-			<key>PayloadDescription</key>
-			<string>配置 Wi-Fi 设置</string>
-			<key>PayloadDisplayName</key>
-			<string>Wi-Fi</string>
-			<key>PayloadIdentifier</key>
-			<string>com.apple.wifi.managed.1A244C63-DE74-444E-9730-E95CEF3AEE6F</string>
-			<key>PayloadType</key>
-			<string>com.apple.wifi.managed</string>
-			<key>PayloadUUID</key>
-			<string>06BDA6A8-5CD5-4E7C-9441-E191A35BAAC7</string>
-			<key>PayloadVersion</key>
-			<real>1</real>
-			<key>ProxyType</key>
-			<string>None</string>
-			<key>SSID_STR</key>
-			<string>Junyi_Lou 20162703</string>
+			<string>Xiaomi_942C</string>
 		</dict>
 		<dict>
 			<key>PayloadCertificateFileName</key>
@@ -97,9 +71,65 @@
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>AutoJoin</key>
+			<true/>
+			<key>EncryptionType</key>
+			<string>WPA</string>
+			<key>HIDDEN_NETWORK</key>
+			<false/>
+			<key>IsHotspot</key>
+			<false/>
+			<key>Password</key>
+			<string>macOS10.12_16A201w</string>
+			<key>PayloadDescription</key>
+			<string>配置 Wi-Fi 设置</string>
+			<key>PayloadDisplayName</key>
+			<string>Wi-Fi</string>
+			<key>PayloadIdentifier</key>
+			<string>com.apple.wifi.managed.D0C8010D-40C4-4258-8EDA-196E90CCAAD3</string>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadUUID</key>
+			<string>D0C8010D-40C4-4258-8EDA-196E90CCAAD3</string>
+			<key>PayloadVersion</key>
+			<real>1</real>
+			<key>ProxyType</key>
+			<string>None</string>
+			<key>SSID_STR</key>
+			<string>Junyi_Lou 20162603</string>
+		</dict>
+		<dict>
+			<key>AutoJoin</key>
+			<true/>
+			<key>EncryptionType</key>
+			<string>WPA</string>
+			<key>HIDDEN_NETWORK</key>
+			<false/>
+			<key>IsHotspot</key>
+			<false/>
+			<key>Password</key>
+			<string>macOS10.12_16A201w</string>
+			<key>PayloadDescription</key>
+			<string>配置 Wi-Fi 设置</string>
+			<key>PayloadDisplayName</key>
+			<string>Wi-Fi</string>
+			<key>PayloadIdentifier</key>
+			<string>com.apple.wifi.managed.06BDA6A8-5CD5-4E7C-9441-E191A35BAAC7</string>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadUUID</key>
+			<string>06BDA6A8-5CD5-4E7C-9441-E191A35BAAC7</string>
+			<key>PayloadVersion</key>
+			<real>1</real>
+			<key>ProxyType</key>
+			<string>None</string>
+			<key>SSID_STR</key>
+			<string>Junyi_Lou 20162703</string>
+		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>Install this mobile config to connect Junyi_Lou's Personal Wi-Fi. Root CA by Sinorail Certification Center will be setup to enable kyfw.12306.cn's HTTPS service. Last Update 2016.9.5</string>
+	<string>Install this mobile config to connect Junyi_Lou's Personal Wi-Fi. Root CA by Sinorail Certification Center will be setup to enable kyfw.12306.cn's HTTPS service. Last Update 2016.10.8</string>
 	<key>PayloadDisplayName</key>
 	<string>Junyi_Lou_Network</string>
 	<key>PayloadIdentifier</key>
@@ -109,7 +139,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>372B2F53-CB3B-452C-A2CE-A458242B3B0C</string>
+	<string>AF1A24E6-4741-4E9B-AE87-7DC22861ACB9</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
