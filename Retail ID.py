@@ -9,15 +9,15 @@ def down():
 	if exia and exib : exic = True
 	else: exic = False
 	if exic:
-		print "".join(["\nPhotos of R",rtl," already found, checking..."])
+		print "".join(["\nPhotos of R", rtl, " already found, checking..."])
 		os.system("".join(["wget -q -t 3 -c ", dieter, "16_9", spr]))
-		prefix = "".join(["/Users/Junyi_Lou",spr])
+		prefix = "".join(["/Users/Junyi_Lou", spr])
 		newsize = os.path.getsize(prefix); oldsize = os.path.getsize(sx)
 		if newsize != oldsize and newsize > 81920:
-			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "/Other", spr," && rm ", fbt, rtl, ".png"]))
+			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "/Other", spr, " && rm ", fbt, rtl, ".png"]))
 			fb = open("".join([rpath, "/List.md"]))
-			newlist = fb.read().replace(("".join([rtl, ","])), ""); fb.close()
-			fc = open("".join([rpath, "/List.md"]),"w")
+			newlist = fb.read().replace(("".join([rtl, ", "])), ""); fb.close()
+			fc = open("".join([rpath, "/List.md"]), "w")
 			fc.write(newlist); fc.close()
 			exic = False
 		else: print "Photos may already downloaded or new photos not yet ready."
@@ -35,13 +35,10 @@ fbt = "".join([rpath, "/4_3/R"]) #four by three
 dieter = "http://rtlimages.apple.com/cmc/dieter/store/"
 for m in sys.argv[1:]: arg += 1
 if arg == 0:
-	fl = 0
 	for line in fileinput.input("".join([rpath, "/List.md"])):
-		fl += 1
-		if fl < 2:
-			for j in range (0, line.count(",")):
-				rtl = (line.split(","))[j]
-				down()
+		for j in range (0, line.count(", ")):
+			rtl = (line.split(", "))[j]
+			down()
 else:
 	for j in range(1, arg + 1):
 		rtl = sys.argv[j]
