@@ -13,10 +13,10 @@ def down():
 		os.system("".join(["wget -q -t 3 -c ", dieter, "16_9", spr]))
 		prefix = "".join(["/Users/Junyi_Lou", spr])
 		newsize = os.path.getsize(prefix); oldsize = os.path.getsize(sx)
-		if newsize != oldsize and newsize > 81920:
+		if newsize != oldsize and newsize > 409600:
 			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "/Other", spr, " && rm ", fbt, rtl, ".png"]))
 			fb = open("".join([rpath, "/List.md"]))
-			newlist = fb.read().replace(("".join([rtl, ", "])), ""); fb.close()
+			newlist = fb.read().replace(("".join([rtl, ","])), ""); fb.close() #注意,不能空格替换
 			fc = open("".join([rpath, "/List.md"]), "w")
 			fc.write(newlist); fc.close()
 			exic = False
@@ -36,8 +36,8 @@ dieter = "http://rtlimages.apple.com/cmc/dieter/store/"
 for m in sys.argv[1:]: arg += 1
 if arg == 0:
 	for line in fileinput.input("".join([rpath, "/List.md"])):
-		for j in range (0, line.count(", ")):
-			rtl = (line.split(", "))[j]
+		for j in range (0, line.count(",")): #注意,不能空格替换
+			rtl = (line.split(","))[j] #注意,不能空格替换
 			down()
 else:
 	for j in range(1, arg + 1):
