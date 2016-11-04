@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-#rtl = "%03d" % j 对于任何数字的三位化
+#Srtl = "%03d" % rtl
 import os, sys, fileinput, urllib2
 def filesize(url): #通过HEAD分析远程文件大小
     opener = urllib2.build_opener()
@@ -11,7 +11,7 @@ def filesize(url): #通过HEAD分析远程文件大小
     except Exception, e:
         print '%s %s' % (url, e)
     else:
-        return dict(response.headers).get('content-length', 0)
+        return int(dict(response.headers).get('content-length', 0))
 def down(): #rtl样例 092
 	spr = "".join(["/R", rtl, ".png"]) #spr样例 /R092.png
 	exia = os.path.isfile("".join([fbt, rtl, ".png"])) #请求样例 /Users/Junyi_Lou/Downloads/Retail/4_3/R092.png
@@ -30,13 +30,12 @@ def down(): #rtl样例 092
 			fc = open("".join([rpath, "List.md"]), "w")
 			fc.write(newlist); fc.close()
 			exic = False
-		else: print "\nPhotos of R", rtl, " may already downloaded or new photos not yet ready."
-		os.remove(prefix)
+		else: print "".join(["Photos of R", rtl, " had been already downloaded or not ready yet."])
 	if not exic:
 		equa = ["/4_3/", "/16_9/"]
 		for k in range(0, 2):
-			os.system("".join(["wget -t 2 -c -P ", rpath, equa[k], dieter, equa[k], spr])) 
-			#请求样例 wget -t(尝试次数) 2 -c(断点续传) -P(指定位置) /Users/Junyi_Lou/Downloads/Retail//16_9/ http://rtlimages.apple.com/cmc/dieter/store/16_9/R092.png
+			os.system("".join(["wget -t 2 -e \"http_proxy=http://127.0.0.1:6152\" -c -P ", rpath, equa[k], " ", dieter, equa[k], spr]))
+			#请求样例 wget -t(尝试次数) 2 -e(代理设置) "http_proxy=http://127.0.0.1:6152" -c(断点续传) -P(指定位置) /Users/Junyi_Lou/Downloads/Retail//16_9/ http://rtlimages.apple.com/cmc/dieter/store/16_9//R092.png
 			k += 1
 		os.system("".join(["open ", sx]))
 arg = 0
