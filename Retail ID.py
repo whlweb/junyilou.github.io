@@ -25,16 +25,16 @@ def down(): #rtl样例 092
 			newlist = fb.read().replace(("".join([rtl, ","])), ""); fb.close() #注意,不能空格替换
 			fc = open("".join([rpath, "List.md"]), "w")
 			fc.write(newlist); fc.close()
-			exic = False
+			exi = False
 		else: print "".join(["Photos of R", rtl, " had been already downloaded or not ready yet."])
-	if not exic:
+	if not exi:
 		os.system("".join(["wget -t 2 -e \"http_proxy=http://127.0.0.1:6152\" -c -P ", rpath, "Pictures/ ", dieter, "/16_9", spr]))
 		#请求样例 wget -t(尝试次数) 2 -e(代理设置) -c(断点续传) -P(指定位置) ~/Downloads/Retail/Pictures/ http://.../R092.png
 		os.system("".join(["open ", sx]))
 def nc():
 	ncount = 0; flag = 0; nans = list(range(750)) 
-	for rtl in range(1, 750): #样例 92
-		Srtl = "%03d" % rtl #样例 092
+	for rtl in range(1, 750):
+		Srtl = "%03d" % rtl
 		locbool = os.path.isfile("".join([sbn, Srtl, ".png"]))
 		nurl = "".join([dieter, "/16_9/R", Srtl, ".png"])
 		if locbool: #这家店已经开业了 比较大小
@@ -58,6 +58,7 @@ arg = 0
 rpath = "/Users/Junyi_Lou/Downloads/Retail/"
 sbn = "".join([rpath, "Pictures/R"]) #~/Downloads/Retail/Pictures/R
 dieter = "http://rtlimages.apple.com/cmc/dieter/store"
+print
 for m in sys.argv[1:]: arg += 1
 if arg == 0:
 	for line in fileinput.input("".join([rpath, "List.md"])):
