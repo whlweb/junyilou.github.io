@@ -33,21 +33,24 @@ def down(): #rtl样例 092
 		os.system("".join(["open ", sx]))
 def nc():
 	ncount = 0; flag = 0; nans = list(range(750)) 
-	for rtl in range(1, 750):
-		Srtl = "%03d" % rtl
+	for rtl in range(1, 715):
+		Srtl = "%03d" % rtl;
 		locbool = os.path.isfile("".join([sbn, Srtl, ".png"]))
 		nurl = "".join([dieter, "/16_9/R", Srtl, ".png"])
-		if locbool: #这家店已经开业了 比较大小
+		if locbool: 
 			localsize = os.path.getsize("".join([sbn, Srtl, ".png"]))
-			remotesize = filesize(nurl)
+			if rtl < 400: remotesize = filesize(nurl)
+			else: remotesize = localsize
 			print "".join(["Processing R", Srtl, "... ", str(localsize), " ", str(remotesize)]),
-			if localsize == remotesize: print "Negative."
+			if localsize == remotesize: print "Negative.",
 			else: flag = 1
-		else: #这家店没有记录
-			nsosize = filesize(nurl)
+		else: 
+			if rtl > 500: nsosize = filesize(nurl)
+			else: nsosize = 0
 			print "".join(["Processing R", Srtl, "... ", str(nsosize)]),
-			if nsosize == 0: print "Negative."
+			if nsosize == 0: print "Negative.",
 			else: flag = 1
+		print format(float(rtl) / 715, '.0%')
 		if flag:
 			print; nans[ncount] = Srtl
 			ncount += 1; flag = 0
