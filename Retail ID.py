@@ -11,7 +11,7 @@ def filesize(url): #通过HEAD分析远程文件大小
         return 0
     else:
         return int(dict(response.headers).get('content-length', 0))
-def down(): #rtl样例 092
+def down(rtl): #rtl样例 092
 	spr = "".join(["/R", rtl, ".png"]) #spr样例 /R092.png
 	sx = "".join([sbn, rtl, ".png"]) #sx样例 ~/Downloads/Retail/16_9/R092.png
 	exi = os.path.isfile(sx) #exia为4:3存在bool, exib为16_9
@@ -19,8 +19,8 @@ def down(): #rtl样例 092
 		newsize = filesize("".join([dieter, "/16_9", spr]))
 		oldsize = os.path.getsize(sx)
 		if newsize != oldsize and newsize > 409600:
-			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "Other", spr]))
-			#请求样例 mv -n ~/Downloads/Retail/Pictures/R092.png ~/Downloads/Retail/Other/R092.png
+			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "Other/previous", spr]))
+			#请求样例 mv -n ~/Downloads/Retail/Pictures/R092.png ~/Downloads/Retail/Other/previous/R092.png
 			fb = open("".join([rpath, "List.md"]))
 			newlist = fb.read().replace(("".join([rtl, ","])), ""); fb.close() #注意,不能空格替换
 			fc = open("".join([rpath, "List.md"]), "w")
@@ -34,7 +34,7 @@ def down(): #rtl样例 092
 def nc():
 	ncount = 0; flag = 0; nans = list(range(750)) 
 	for rtl in range(1, 715):
-		Srtl = "%03d" % rtl;
+		Srtl = "%03d" % rtl
 		locbool = os.path.isfile("".join([sbn, Srtl, ".png"]))
 		nurl = "".join([dieter, "/16_9/R", Srtl, ".png"])
 		if locbool: 
@@ -54,6 +54,10 @@ def nc():
 		if flag:
 			print; nans[ncount] = Srtl
 			ncount += 1; flag = 0
+			print "".join(["Photos of R", Srtl, " was checked to be new. Ready for updating? "]),
+			ncupd = input()
+			if ncupd: down(Srtl)
+			else: print
 	print
 	for ncout in range (0, ncount + 1):
 		print "".join(str([nans[ncout]]))
@@ -67,11 +71,11 @@ if arg == 0:
 	for line in fileinput.input("".join([rpath, "List.md"])):
 		for j in range (0, line.count(",")): #注意,不能空格替换
 			rtl = (line.split(","))[j] #注意,不能空格替换
-			down()
+			down(rtl)
 else:
 	if sys.argv[1] == "nc": nc()
 	else:
 		for j in range(1, arg + 1):
 			rtl = sys.argv[j]
-			down()
+			down(rtl)
 print
