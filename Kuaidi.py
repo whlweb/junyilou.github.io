@@ -1,39 +1,14 @@
 # -*- coding:utf-8 -*-
 from __future__ import division
-import os, sys, json, urllib2, datetime, fileinput
+import sys, json, urllib2, datetime
 arg = 0
 apikey = "2fb76bff2aa440eb" # Expired API key 7c97c766f5dccc09
 for m in sys.argv[1:]: arg = arg + 1
 if arg > 0 :
     parts = ["http://api.jisuapi.com/express/query?appkey=", apikey, "&type=auto&number=", sys.argv[1]]
 else:
-	exi = os.path.isfile("packages.txt")
-	forloop = 1
-	if not exi:
-		fb = open("packages.txt", 'w')
-		fb.close()
-		exi = 1
-	order = list(range(10))
-	print
-	for line in fileinput.input("packages.txt"):
-		order[forloop] = int(line)
-		forloop = forloop + 1
-		pass
-	if order[1] == 1 or order[1] == "":
-		input("没有保存的运单, 将打开文本文档, 输入后按任意键继续...")
-		print
-		os.system("open ~/packages.txt")
-		exit(0)
-	if order[1] != "":
-		print "已保存以下运单:"
-		for j in range(1, forloop):
-			print "[", j, "]", order[j]
-		print "输入要查询的单号编号，输入0打开单号存储文件", 
-		odinput = input()
-		if not odinput:
-			os.system("open ~/packages.txt")
-			exit(0)
-	parts = ["http://api.jisuapi.com/express/query?appkey=", apikey, "&type=auto&number=", str(order[odinput])]
+	print "请在 .../Kuaidi.py 后空格并填写快递单号重新运行"
+	exit()
 url = ''.join(parts)
 responce = urllib2.urlopen(url)
 anst = responce.read()
