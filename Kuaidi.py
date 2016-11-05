@@ -1,46 +1,28 @@
 # -*- coding:utf-8 -*-
 from __future__ import division
-import sys, json, urllib2, datetime
+import sys, json, urllib2
 arg = 0
-apikey = "2fb76bff2aa440eb" # Expired API key 7c97c766f5dccc09
 for m in sys.argv[1:]: arg = arg + 1
-if arg > 0 :
-    parts = ["http://api.jisuapi.com/express/query?appkey=", apikey, "&type=auto&number=", sys.argv[1]]
-else:
+if arg < 1:
 	print "请在 .../Kuaidi.py 后空格并填写快递单号重新运行"
 	exit()
-url = ''.join(parts)
-responce = urllib2.urlopen(url)
-anst = responce.read()
-ansj = json.loads(anst)
-if ansj["status"] == "0":
-	maxnum = anst.count("time")
-	result = ansj["result"]["list"]
-	newesttime = datetime.datetime.strptime(result[0]["time"], '%Y-%m-%d %H:%M:%S')
-	lasttime = datetime.datetime.strptime(result[maxnum-1]["time"], '%Y-%m-%d %H:%M:%S')
-	deliverystatus = ansj["result"]["deliverystatus"]
-	deliverytitle = ["在途中", "派件中", "已签收", "派送失败"]
-	if deliverystatus != "3":
-		deltat = round((((datetime.datetime.now() - lasttime).seconds)/60/60)+24*((datetime.datetime.now() - lasttime).days), 1)
+for dovision in range(1, arg + 1):
+	url = ''.join(["http://api.jisuapi.com/express/query?appkey=2fb76bff2aa440eb&type=auto&number=", sys.argv[dovision]])
+	responce = urllib2.urlopen(url)
+	anst = responce.read(); ansj = json.loads(anst)
+	if ansj["status"] == "0":
+		maxnum = anst.count("time")
+		result = ansj["result"]["list"]
+		deliverystatus = ansj["result"]["deliverystatus"]
+		deliverytitle = ["在途中", "派件中", "已签收", "派送失败"]
+		print "\n快递单号:", ansj["result"]["number"], " 公司代号:", ansj["result"]["type"], "状态:", deliverytitle[int(deliverystatus)-1]
+		for i in range(0, maxnum): print result[i]["time"], result[i]["status"]
 	else:
-		deltat = round((((newesttime - lasttime).seconds)/60/60)+24*((newesttime - lasttime).days), 1)
-	if deltat > 24:
-		deltat = round(deltat / 24, 1)
-		print "\n快递单号:", ansj["result"]["number"], " 公司代号:", ansj["result"]["type"], "用时约", deltat, "天 状态:", deliverytitle[int(deliverystatus)-1]
-	else:
-		print "\n快递单号:", ansj["result"]["number"], " 公司代号:", ansj["result"]["type"], "用时约", deltat, "小时 状态:", deliverytitle[int(deliverystatus)-1]
-	for i in range(0, maxnum):
-		print result[i]["time"], result[i]["status"]
-else:
-	print
-	erstat = int(ansj["status"])
-	contact = "查询失败，尝试打开Matrix介绍页面查看有无更新新程序"
-	if erstat > 100 and erstat < 105: print contact
-	if erstat > 200 and erstat < 204: print contact
-	if erstat == 105: print "查询失败，IP地址被禁止"
-	if erstat == 106: print "查询失败，IP地址超过请求限制"
-	if erstat == 107: print "查询失败，API接口正在维护"
-	if erstat == 108: print "查询失败，API接口已经停用"
-	if erstat == 204: print "查询失败，自动识别快递公司失败"
-	if erstat == 205: print "查询失败，暂未更新物流信息"
+		erstat = int(ansj["status"])
+		print sys.argv[dovision], " ",
+		contact = "API错误"
+		if erstat > 100 and erstat < 105: print contact
+		else: if erstat > 200 and erstat < 204: print contact
+		else: print "快件错误"
+	dovision += 1
 print
