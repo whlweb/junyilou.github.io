@@ -22,7 +22,9 @@ for dovision in range(1, arg + 1):
 		print sys.argv[dovision], " ",
 		contact = "API错误"
 		if erstat > 100 and erstat < 105: print contact
-		else: if erstat > 200 and erstat < 204: print contact
-		else: print "快件错误"
+		else: 
+			if erstat > 200 and erstat < 204: print contact
+			else: 
+				print "快件错误"
 	dovision += 1
 print
