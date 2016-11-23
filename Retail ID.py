@@ -15,10 +15,12 @@ def down(rtl): #rtl样例 092
 	spr = "".join(["/R", rtl, ".png"]) #spr样例 /R092.png
 	sx = "".join([sbn, rtl, ".png"]) #sx样例 ~/Downloads/Retail/16_9/R092.png
 	exi = os.path.isfile(sx) #exia为4:3存在bool, exib为16_9
-	if exi:
-		newsize = filesize("".join([dieter, "/16_9", spr]))
+	newsize = filesize("".join([dieter, "/16_9", spr]))
+	if exi: 
 		oldsize = os.path.getsize(sx)
-		if newsize != oldsize and newsize > 409600:
+	else: oldsize = 0
+	if newsize != oldsize and newsize > 409600:
+		if exi:
 			os.system("".join(["mv -n ", sbn, rtl, ".png ", rpath, "Other/previous", spr]))
 			#请求样例 mv -n ~/Downloads/Retail/Pictures/R092.png ~/Downloads/Retail/Other/previous/R092.png
 			fb = open("".join([rpath, "List.md"]))
@@ -26,41 +28,11 @@ def down(rtl): #rtl样例 092
 			fc = open("".join([rpath, "List.md"]), "w")
 			fc.write(newlist); fc.close()
 			exi = False
-		else: print "".join(["Photos of R", rtl, " had been already downloaded or not ready yet."])
-	if not exi:
-		os.system("".join(["wget -t 2 -e \"http_proxy=http://127.0.0.1:6152\" -c -P ", rpath, "Pictures/ ", dieter, "/16_9", spr]))
-		#请求样例 wget -t(尝试次数) 2 -e(代理设置) -c(断点续传) -P(指定位置) ~/Downloads/Retail/Pictures/ http://.../R092.png
-		os.system("".join(["open ", sx]))
-def nc():
-	ncount = 0; flag = 0; nans = list(range(750)) 
-	for rtl in range(1, 715):
-		Srtl = "%03d" % rtl
-		locbool = os.path.isfile("".join([sbn, Srtl, ".png"]))
-		nurl = "".join([dieter, "/16_9/R", Srtl, ".png"])
-		if locbool: 
-			localsize = os.path.getsize("".join([sbn, Srtl, ".png"]))
-			if rtl < 400: remotesize = filesize(nurl)
-			else: remotesize = localsize
-			print "".join(["Processing R", Srtl, "... ", str(localsize), " ", str(remotesize)]),
-			if localsize == remotesize: print "Negative.",
-			else: flag = 1
-		else: 
-			if rtl > 500: nsosize = filesize(nurl)
-			else: nsosize = 0
-			print "".join(["Processing R", Srtl, "... ", str(nsosize)]),
-			if nsosize == 0: print "Negative.",
-			else: flag = 1
-		print format(float(rtl) / 715, '.0%')
-		if flag:
-			print; nans[ncount] = Srtl
-			ncount += 1; flag = 0
-			print "".join(["Photos of R", Srtl, " was checked to be new. Ready for updating? "]),
-			ncupd = input()
-			if ncupd: down(Srtl)
-			else: print
-	print
-	for ncout in range (0, ncount + 1):
-		print "".join(str([nans[ncout]]))
+		if not exi:
+			os.system("".join(["wget -t 2 -e \"http_proxy=http://127.0.0.1:6152\" -c -P ", rpath, "Pictures/ ", dieter, "/16_9", spr]))
+			#请求样例 wget -t(尝试次数) 2 -e(代理设置) -c(断点续传) -P(指定位置) ~/Downloads/Retail/Pictures/ http://.../R092.png
+			os.system("".join(["open ", sx]))
+	else: print "".join(["Photos of R", rtl, " had been already downloaded or not ready yet."])		
 arg = 0
 rpath = "/Users/Junyi_Lou/Downloads/Retail/"
 sbn = "".join([rpath, "Pictures/R"]) #~/Downloads/Retail/Pictures/R
@@ -73,9 +45,7 @@ if arg == 0:
 			rtl = (line.split(","))[j] #注意,不能空格替换
 			down(rtl)
 else:
-	if sys.argv[1] == "nc": nc()
-	else:
-		for j in range(1, arg + 1):
-			rtl = sys.argv[j]
-			down(rtl)
+	for j in range(1, arg + 1):
+		rtl = sys.argv[j]
+		down(rtl)
 print
