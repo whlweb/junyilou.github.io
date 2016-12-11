@@ -1,6 +1,6 @@
 #coding=utf-8
 from flask import Flask, jsonify, request
-import sys, json, urllib2, time, datetime
+import sys, json, urllib2, time, datetime, PyRSS2Gen
 app = Flask(__name__)
 @app.route('/', methods=['GET'])  
 def home():
@@ -22,7 +22,7 @@ def home():
                 maxnum = min(anst.count("location"),readmax)
                 result = ansj["data"]
                 tasks = list(range(maxnum+1))
-                tasks [0] = {'signature': erstat, 'postid': ansj["nu"],'comp': ''.join([comtext.get(ansj["com"],"其他"),"快递"]),'timestamp': int(time.time())} 
+#                tasks [0] = {'signature': erstat, 'postid': ansj["nu"],'comp': ''.join([comtext.get(ansj["com"],"其他"),"快递"]),'timestamp': int(time.time())} 
                 for i in range (1, maxnum+1):
                     ResultTime = result[i-1]["time"]
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
@@ -30,14 +30,27 @@ def home():
                 for j in range (1, maxnum+1): 
                     tasks [j] = {'time': result[j-1]["time"],'content':result[j-1]["context"]}
             else:
-                tasks = list(range(1))
-                tasks [0] = {'signature': 0, 'content': ansj["message"]}
+            	a = 1
         else:
-            tasks = list(range(1))
-            tasks [0] = {'signature': 0, 'content': r"找不到单号对应公司"}
+        	a = 1
     else:
-        tasks = list(range(1))
-        tasks [0] = {'signature': 0, 'content': r"URL没有指定单号"}
-    return jsonify(tasks)
+    	a = 1
+    rss = PyRSS2Gen.RSS2(
+    	title = "".join(["Package Tracking ID",readid]),
+    	link = "http://hk2.yuuki.moe:6555",
+    	description = "".join([str(erstat), " ",comtext.get(ansj["com"],"其他")]),
+    	lastBuildDate = datetime.datetime.now(),
+    	items = [
+    		PyRSS2Gen.RSSItem(
+    			title = result[0]["time"],
+    			link = "http://hk2.yuuki.moe:6555",
+    			description = result[0]["context"],
+    			pubDate = datetime.datetime.now()
+    		)
+    	]
+    )
+    rss.write_xml(open("".join([readid,".txt"]), "w"))
+    f = open("".join([readid,".txt"]),'rb') 
+    return f.read()
 if __name__ == '__main__':  
     app.run(host='0.0.0.0',port=6555,debug=True)
