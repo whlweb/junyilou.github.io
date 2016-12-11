@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])  
 def home():
     readid = request.args.get('id').__str__()
-    readmax = int(request.args.get('max').__str__())
+    readmax = 20
     if readid != "None":
         urla = ''.join(["https://www.kuaidi100.com/autonumber/autoComNum?text=", readid])
         countp = urllib2.urlopen(urla).read().count("comCode")
@@ -21,33 +21,28 @@ def home():
                 erstat = 1
                 maxnum = min(anst.count("location"),readmax)
                 result = ansj["data"]
-                tasks = list(range(maxnum+1))
-#                tasks [0] = {'signature': erstat, 'postid': ansj["nu"],'comp': ''.join([comtext.get(ansj["com"],"其他"),"快递"]),'timestamp': int(time.time())} 
                 for i in range (1, maxnum+1):
                     ResultTime = result[i-1]["time"]
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
                     result[i-1]["time"] = StrfTime.replace(yesterday,"昨天").replace(fronteday,"前天")
-                for j in range (1, maxnum+1): 
-                    tasks [j] = {'time': result[j-1]["time"],'content':result[j-1]["context"]}
             else:
-            	a = 1
+                a = 1
         else:
-        	a = 1
+            a = 1
     else:
-    	a = 1
+        a = 1
     rss = PyRSS2Gen.RSS2(
-    	title = "".join(["Package Tracking ID",readid]),
-    	link = "http://hk2.yuuki.moe:6555",
-    	description = "".join([str(erstat), " ",comtext.get(ansj["com"],"其他")]),
-    	lastBuildDate = datetime.datetime.now(),
-    	items = [
-    		PyRSS2Gen.RSSItem(
-    			title = result[0]["time"],
-    			link = "http://hk2.yuuki.moe:6555",
-    			description = result[0]["context"],
-    			pubDate = datetime.datetime.now()
-    		)
-    	]
+        title = "".join(["Package Tracking ID",readid]),
+        link = "http://hk2.yuuki.moe:6555",
+        description = "".join([str(erstat), " ",comtext.get(ansj["com"],"其他")]),
+        items = [
+            PyRSS2Gen.RSSItem(
+                title = result[0]["time"],
+                link = "http://hk2.yuuki.moe:6555",
+                description = result[0]["context"],
+                pubDate = ResultTime
+            )
+        ]
     )
     rss.write_xml(open("".join([readid,".txt"]), "w"))
     f = open("".join([readid,".txt"]),'rb') 
