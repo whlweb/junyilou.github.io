@@ -1,9 +1,8 @@
 #coding=utf-8
 from flask import Flask, jsonify, request
 import sys, json, urllib2, time, datetime
-import sys
 app = Flask(__name__)
-@app.route('/', methods=['GET'])  
+@app.route('/', methods=['GET'])
 def home():
     readid = request.args.get('id').__str__()
     if readid != "None":
