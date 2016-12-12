@@ -24,7 +24,7 @@ def home():
                 maxnum = anst.count("location")
                 result = ansj["data"]
                 realComp = ''.join([comtext.get(ansj["com"],"其他"),"快递"])
-                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>',realComp,' ',readid,'/title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description>'])
+                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>',realComp,' ',readid,'</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description>'])
                 for i in range (1, maxnum+1):
                     ResultTime = result[i-1]["time"]
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
