@@ -3,9 +3,8 @@ from flask import Flask, jsonify, request
 import sys, json, urllib2, time, datetime
 import sys
 app = Flask(__name__)
-@app.route('/', methods=['GET'])  
-def home():
-    readid = request.args.get('id').__str__()
+@app.route('/id/<readid>', methods=['GET'])  
+def home(readid):
     if readid != "None":
         urla = ''.join(["https://www.kuaidi100.com/autonumber/autoComNum?text=", readid])
         countp = urllib2.urlopen(urla).read().count("comCode")
@@ -39,8 +38,6 @@ def home():
                 output = blankOutput
         else:
             output = blankOutput
-    else:
-        output = blankOutput
     return output
 if __name__ == '__main__':  
     app.run(host='0.0.0.0',port=6555,debug=False)
