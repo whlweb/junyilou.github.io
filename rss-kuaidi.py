@@ -1,11 +1,15 @@
 #coding=utf-8
 from flask import Flask, jsonify, request
 import sys, json, urllib2, time, datetime
+def relpy():
+    reload(sys) 
+    sys.setdefaultencoding('utf-8')
+def blanker(bid,reason):
+    return "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ',bid,"</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item><title>",reason,"</title><link>http://t.cn/RI2gPuN</link><description>查询错误</description></item></channel></rss>"])
 app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     readid = request.args.get('id').__str__()
-    blankOutput = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ',readid,"</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item></item><</channel></rss>"])
     if readid != "None":
         urla = ''.join(["https://www.kuaidi100.com/autonumber/autoComNum?text=", readid])
         countp = urllib2.urlopen(urla).read().count("comCode")
@@ -30,17 +34,23 @@ def home():
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
                     result[i-1]["time"] = StrfTime.replace(today,"今天").replace(yesterday,"昨天").replace(fronteday,"前天")
                     fTime = result[i-1]["time"]; fContent = result[i-1]["context"]
-                    reload(sys) 
-                    sys.setdefaultencoding('utf-8')
+                    relpy()
                     fContent = fContent.replace(" 【","【").replace("】 ","】")
                     output = "".join([output, '<item><title>',fTime,' ',fContent,'</title><link>',url,'</link><description>',fContent,'</description></item>'])
                 output = "".join([output,"</channel></rss>"])
-            else:
-                output = blankOutput
-        else:
-            output = blankOutput
+            else: #快递单号本身有误
+                if ansj["status"] == "201":
+                    passer = " 如果刚刚发出请不要取消定语直接等待更新"
+                else:
+                    passer = ""
+                relpy()
+                output = blanker(readid,"".join([ansj["status"]," ",ansj["message"],passer]))
+        else: #无法识别公司
+            relpy()
+            output = blanker(readid,"无法识别单号对应快递公司")
     else:
-        output = blankOutput
+        relpy()
+        output = blanker("N/A","快递单号输入错误")
     return output
 if __name__ == '__main__':  
-    app.run(host='0.0.0.0',port=6555,debug=False)
+    app.run(host='0.0.0.0',port=8080,debug=False)
