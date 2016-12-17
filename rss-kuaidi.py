@@ -5,6 +5,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     readid = request.args.get('id').__str__()
+    blankOutput = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ',readid,"</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item></item><</channel></rss>"])
     if readid != "None":
         urla = ''.join(["https://www.kuaidi100.com/autonumber/autoComNum?text=", readid])
         countp = urllib2.urlopen(urla).read().count("comCode")
@@ -17,13 +18,13 @@ def home():
             yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%m月%d日")
             fronteday = (datetime.datetime.now() - datetime.timedelta(days=2)).strftime("%m月%d日")
             comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通'}
-            blankOutput = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ',readid,"</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item></item><</channel></rss>"])
             if ansj["status"] == "200":
                 erstat = 1
                 maxnum = anst.count("location")
                 result = ansj["data"]
+                url = "".join(['https://m.kuaidi100.com/result.jsp?nu=',readid])
                 realComp = ''.join([comtext.get(ansj["com"],"其他"),"快递"])
-                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>',realComp,' ',readid,'</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description>'])
+                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>',realComp,' ',readid,'</title><link>',url,'</link><description>一个快件跟踪RSS</description>'])
                 for i in range (1, maxnum+1):
                     ResultTime = result[i-1]["time"]
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
@@ -32,14 +33,13 @@ def home():
                     reload(sys) 
                     sys.setdefaultencoding('utf-8')
                     fContent = fContent.replace(" 【","【").replace("】 ","】")
-                    output = "".join([output, '<item><title>',fTime,'</title><link>http://t.cn/RI2gPuN</link><description>',fContent,'</description></item>'])
+                    output = "".join([output, '<item><title>',fTime,' ',fContent,'</title><link>',url,'</link><description>',fContent,'</description></item>'])
                 output = "".join([output,"</channel></rss>"])
             else:
                 output = blankOutput
         else:
             output = blankOutput
     else:
-        readid = "N/A"
         output = blankOutput
     return output
 if __name__ == '__main__':  
