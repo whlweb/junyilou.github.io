@@ -1,11 +1,11 @@
 #coding=utf-8
-from flask import Flask, jsonify, request
+from flask import Flask, request
 import sys, json, urllib2, time, datetime
 def relpy():
     reload(sys) 
     sys.setdefaultencoding('utf-8')
-def blanker(bid,reason):
-    return "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ',bid,"</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item><title>",reason,"</title><link>http://t.cn/RI2gPuN</link><description>查询错误</description></item></channel></rss>"])
+def blanker(bid, reason):
+    return "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>快递单号 ', bid, "</title><link>http://t.cn/RI2gPuN</link><description>一个快件跟踪RSS</description><item><title>", reason, "</title><link>http://t.cn/RI2gPuN</link><description>查询错误</description></item></channel></rss>"])
 app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
@@ -26,31 +26,31 @@ def home():
                 erstat = 1
                 maxnum = anst.count("location")
                 result = ansj["data"]
-                url = "".join(['https://m.kuaidi100.com/result.jsp?nu=',readid])
-                realComp = ''.join([comtext.get(ansj["com"],"其他"),"快递"])
-                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>',realComp,' ',readid,'</title><link>',url,'</link><description>一个快件跟踪RSS</description>'])
+                url = "".join(['https://m.kuaidi100.com/result.jsp?nu=', readid])
+                realComp = ''.join([comtext.get(ansj["com"], "其他"), "快递"])
+                output = "".join(['<?xml version="1.0"?><rss version="2.0"><channel><title>', realComp, ' ', readid, '</title><link>', url, '</link><description>一个快件跟踪RSS</description>'])
                 for i in range (1, maxnum+1):
                     ResultTime = result[i-1]["time"]
                     StrfTime = time.strftime("%m月%d日 %H:%M", time.strptime(ResultTime, "%Y-%m-%d %H:%M:%S"))
-                    result[i-1]["time"] = StrfTime.replace(today,"今天").replace(yesterday,"昨天").replace(fronteday,"前天")
+                    result[i-1]["time"] = StrfTime.replace(today, "今天").replace(yesterday, "昨天").replace(fronteday, "前天")
                     fTime = result[i-1]["time"]; fContent = result[i-1]["context"]
                     relpy()
-                    fContent = fContent.replace(" 【","【").replace("】 ","】")
-                    output = "".join([output, '<item><title>',fTime,' ',fContent,'</title><link>',url,'</link><description>',fContent,'</description></item>'])
-                output = "".join([output,"</channel></rss>"])
+                    fContent = fContent.replace(" 【", "【").replace("】 ", "】")
+                    output = "".join([output, '<item><title>', fTime, ' ', fContent, '</title><link>', url, '</link><description>', fContent, '</description></item>'])
+                output = "".join([output, "</channel></rss>"])
             else: #快递单号本身有误
                 if ansj["status"] == "201":
-                    passer = " 如果刚刚发出请不要取消定语直接等待更新"
+                    passer = " 如果刚刚发出请不要取消并直接等待更新"
                 else:
                     passer = ""
                 relpy()
-                output = blanker(readid,"".join([ansj["status"]," ",ansj["message"],passer]))
+                output = blanker(readid, "".join([ansj["status"], " ", ansj["message"], passer]))
         else: #无法识别公司
             relpy()
-            output = blanker(readid,"无法识别单号对应快递公司")
+            output = blanker(readid, "无法识别单号对应快递公司")
     else:
         relpy()
-        output = blanker("N/A","快递单号输入错误")
+        output = blanker("N/A", "快递单号输入错误")
     return output
 if __name__ == '__main__':  
-    app.run(host='0.0.0.0',port=8080,debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=False)
