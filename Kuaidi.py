@@ -4,7 +4,7 @@ import sys, json, urllib2
 arg = 0
 for m in sys.argv[1:]: arg = arg + 1
 if arg < 1:
-	print "请在 .../Kuaidi.py 后空格并填写快递单号重新运行"
+	print "需要参数"
 	exit()
 for dovision in range(1, arg + 1):
 	url = ''.join(["http://api.jisuapi.com/express/query?appkey=2fb76bff2aa440eb&type=auto&number=", sys.argv[dovision]])
