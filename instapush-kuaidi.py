@@ -42,18 +42,21 @@ def home(readid):
                     g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
                     l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
                     finalOut = "".join([a,AppID,b,AppSecret,c,d,e,f,g,h,i,j,k,l,m,n,o,p])
+                    os.system(finalOut)
+                    print
                 else:
                     print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " has no update, ignore."])
-AppID = input("Input AppID ")
-AppSecret = input("Input AppSecret ")
-readid = input("Input the Package No. ")
-TimeInterval = int(input("Input time interval in minutes.\nSuggest to be more than 30. "))*60
-if TimeInterval < 300: TimeInterval = 300
-
-AppID = "585e4e62a4c48a05d607b545"
-AppSecret = "a32883f25245516940ea6b9f9b80fa54"
-TimeInterval = 30*60
-readid = "035293855900"
+            else:
+            	print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned error code ", ansj["status"], ", ignore."])
+        else:
+        	print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned no auto-company, ignore."])
+arg = 0
+for m in sys.argv[1:]: arg += 1
+AppID = sys.argv[1]
+AppSecret = sys.argv[2]
+TimeInterval = int(sys.argv[3])*60
+readid = sys.argv[4]
+if TimeInterval < 30: TimeInterval = 30
 while True:
     home(readid)
     time.sleep(TimeInterval)
