@@ -4,8 +4,9 @@ def relpy():
     reload(sys) 
     sys.setdefaultencoding('utf-8')
 def home(readid):
+    exsc = False; es = ""
     if readid != "":
-        idt = "".join([readid, ".txt"]); exi = os.path.isfile(idt)
+        idt = readid + ".txt"; exi = os.path.isfile(idt)
         if exi:
             for line in fileinput.input(idt):
                 orgCounter = int(line)
@@ -15,11 +16,11 @@ def home(readid):
             createFile.write("0")
             createFile.close()
             orgCounter = 0
-        urla = ''.join(["https://www.kuaidi100.com/autonumber/autoComNum?text=", readid])
+        urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid
         countp = urllib2.urlopen(urla).read().count("comCode")
         if (countp - 1):
             comp = json.loads(urllib2.urlopen(urla).read())["auto"][0]["comCode"]
-            urlb = ''.join(["https://www.kuaidi100.com/query?type=", comp, "&postid=", readid])
+            urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid
             responce = urllib2.urlopen(urlb)
             anst = responce.read(); ansj = json.loads(anst)
             today = datetime.datetime.now().strftime("%m月%d日")
@@ -29,10 +30,14 @@ def home(readid):
                 maxnum = anst.count("location")
                 if maxnum != orgCounter:
                     result = ansj["data"]
-                    realComp = ''.join([comtext.get(ansj["com"], "其他"), "快递"])
+                    realComp = comtext.get(ansj["com"], "其他") + "快递"
                     fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
                     relpy()
                     fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
+                    signCheck = fContent.count("签收") + fContent.count("感谢")
+                    if signCheck:
+                        es = "[快件签收 停止推送] "
+                        exsc = True
                     fileRefresh = open(idt, 'w')
                     fileRefresh.write(str(maxnum))
                     fileRefresh.close()
@@ -41,16 +46,17 @@ def home(readid):
                     e='{"event":"kuaidi","trackers":{"rc":"'; f=realComp
                     g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
                     l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-                    finalOut = "".join([a,AppID,b,AppSecret,c,d,e,f,g,h,i,j,k,l,m,n,o,p])
+                    finalOut = "".join([a,AppID,b,AppSecret,c,d,e,es,f,g,h,i,j,k,l,m,n,o,p])
                     os.system(finalOut)
                     print
                 else:
                     print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " has no update, ignore."])
             else:
-            	print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned error code ", ansj["status"], ", ignore."])
+                print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned error code ", ansj["status"], ", ignore."])
         else:
-        	print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned no auto-company, ignore."])
-arg = 0
+            print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned no auto-company, ignore."])
+    return exsc
+arg = signCheck = 0
 for m in sys.argv[1:]: arg += 1
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
@@ -58,5 +64,5 @@ TimeInterval = int(sys.argv[3])*60
 readid = sys.argv[4]
 if TimeInterval < 30: TimeInterval = 30
 while True:
-    home(readid)
+    if home(readid) : break
     time.sleep(TimeInterval)
