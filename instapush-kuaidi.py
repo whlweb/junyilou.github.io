@@ -1,8 +1,7 @@
 #coding=utf-8
 import sys, json, urllib2, time, datetime, os, fileinput
-def relpy():
-    reload(sys) 
-    sys.setdefaultencoding('utf-8')
+def blanker(bid):
+	return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " "
 def home(readid):
     exsc = False; es = ""
     if readid != "":
@@ -32,7 +31,7 @@ def home(readid):
                     result = ansj["data"]
                     realComp = comtext.get(ansj["com"], "其他") + "快递"
                     fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
-                    relpy()
+                    reload(sys); sys.setdefaultencoding('utf-8')
                     fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
                     signCheck = fContent.count("签收") + fContent.count("感谢")
                     if signCheck:
@@ -47,14 +46,13 @@ def home(readid):
                     g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
                     l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
                     finalOut = "".join([a,AppID,b,AppSecret,c,d,e,es,f,g,h,i,j,k,l,m,n,o,p])
-                    os.system(finalOut)
-                    print
+                    os.system(finalOut); print
                 else:
-                    print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " has no update, ignore."])
+                    print blanker(readid) + "has no update, ignore."
             else:
-                print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned error code ", ansj["status"], ", ignore."])
+                print blanker(readid) + "returned error code " + ansj["status"] + ", ignore."
         else:
-            print "".join([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")," Checked ", readid, " returned no auto-company, ignore."])
+            print blanker(readid) + "returned no auto-company, ignore."
     return exsc
 arg = signCheck = 0
 for m in sys.argv[1:]: arg += 1
