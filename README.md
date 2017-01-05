@@ -2,11 +2,11 @@ Junyi_Lou's Github.io 文件介绍
 
 Workflow
 ===========
-kuaidi-clip-[%版本].wflow -  iOS App Workflow 快递查询工具，支持剪切板，尚未公布。
+kuaidi[%2017日期].wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问[这里](http://matrix.sspai.com/p/dbbb86a0 "Workflow + 快递 100 原来快递既能这么查，还能这么显示")了解。 
 
-./kuaidi-wflow/kuaidi[%日期].wflow - 旧版本。请访问[这里](http://matrix.sspai.com/p/d384dd60 "Workflow 通知中心查快递 4")了解。 
+./kuaidi-wflow/kuaidi[%2016日期].wflow - 旧版本。请访问[这里](http://matrix.sspai.com/p/d384dd60 "Workflow 通知中心查快递 4")了解。 
 
-KuaidiUpdater - kuaidi[%日期].wflow 自动更新旗标文件。
+KuaidiUpdater - kuaidi[%2016日期].wflow 自动更新旗标文件。
 
 Python 源代码
 ===========
