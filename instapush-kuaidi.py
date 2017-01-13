@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput
-def blanker(bid):
-	return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " "
+def blanker(bid, notice):
+	return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
 def home(readid):
 	exsc = False; es = ""
 	if readid != "":
@@ -45,14 +45,14 @@ def home(readid):
 					e='{"event":"kuaidi","trackers":{"rc":"'; f=realComp
 					g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
 					l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-					finalOut = "".join([a,AppID,b,AppSecret,c,d,e,es,f,g,h,i,j,k,l,m,n,o,p])
+					finalOut = a+AppID+b+AppSecret+c+d+e+es+f+g+h+i+j+k+l+m+n+o+p
 					os.system(finalOut); print
 				else:
-					print blanker(readid) + "has no update, ignore."
+					print blanker(readid,"has no update")
 			else:
-				print blanker(readid) + "returned error code " + ansj["status"] + ", ignore."
+				print blanker(readid, "returned error code " + ansj["status"])
 		else:
-			print blanker(readid) + "returned no auto-company, ignore."
+			print blanker(readid, "returned no auto-company")
 	return exsc
 arg = signCheck = 0
 for m in sys.argv[1:]: arg += 1
