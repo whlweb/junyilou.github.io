@@ -1,7 +1,14 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput
 def blanker(bid, notice):
-	return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
+	print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
+def pytry(tryurl):
+	try:
+		response = urllib2.urlopen(tryurl)
+	except urllib2.URLError as err:
+		if hasattr(err, 'reason') or hasattr(err, 'code'): return False
+	else:
+		return True
 def home(readid):
 	exsc = False; es = ""
 	if readid != "":
@@ -16,43 +23,51 @@ def home(readid):
 			createFile.close()
 			orgCounter = 0
 		urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid
-		countp = urllib2.urlopen(urla).read().count("comCode")
+		if pytry(urla):
+			countp = urllib2.urlopen(urla).read().count("comCode")
+		else:
+			countp = 1
 		if (countp - 1):
 			comp = json.loads(urllib2.urlopen(urla).read())["auto"][0]["comCode"]
 			urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid
-			responce = urllib2.urlopen(urlb)
-			anst = responce.read(); ansj = json.loads(anst)
-			today = datetime.datetime.now().strftime("%m月%d日")
-			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通'}
-			if ansj["status"] == "200":
-				erstat = 1
-				maxnum = anst.count("location")
-				if maxnum != orgCounter:
-					result = ansj["data"]
-					realComp = comtext.get(ansj["com"], "其他") + "快递"
-					fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
-					reload(sys); sys.setdefaultencoding('utf-8')
-					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
-					signCheck = fContent.count("签收") + fContent.count("感谢")
-					if signCheck:
-						es = "[快件签收 停止推送] "
-						exsc = True
-					fileRefresh = open(idt, 'w')
-					fileRefresh.write(str(maxnum))
-					fileRefresh.close()
-					a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
-					c='" -H "Content-Type: application/json" -d '; d="'"
-					e='{"event":"kuaidi","trackers":{"rc":"'; f=realComp
-					g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
-					l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-					finalOut = a+AppID+b+AppSecret+c+d+e+es+f+g+h+i+j+k+l+m+n+o+p
-					os.system(finalOut); print
+			if pytry(urlb):
+				responce = urllib2.urlopen(urlb) #truly response
+				anst = responce.read(); ansj = json.loads(anst)
+				today = datetime.datetime.now().strftime("%m月%d日")
+				comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通'}
+				if ansj["status"] == "200":
+					erstat = 1
+					maxnum = anst.count("location")
+					if maxnum != orgCounter:
+						result = ansj["data"]
+						realComp = comtext.get(ansj["com"], "其他") + "快递"
+						fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
+						reload(sys); sys.setdefaultencoding('utf-8')
+						fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
+						signCheck = fContent.count("签收") + fContent.count("感谢")
+						if signCheck:
+							es = "[签收] "
+							exsc = True
+						fileRefresh = open(idt, 'w')
+						fileRefresh.write(str(maxnum))
+						fileRefresh.close()
+						a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
+						c='" -H "Content-Type: application/json" -d '; d="'"
+						e='{"event":"kuaidi","trackers":{"rc":"'; f=realComp
+						g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
+						l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
+						finalOut = a+AppID+b+AppSecret+c+d+e+es+f+g+h+i+j+k+l+m+n+o+p
+						os.system(finalOut); print
+					else:
+						blanker(readid,"has no update")
 				else:
-					print blanker(readid,"has no update")
+					blanker(readid, "returned error code " + ansj["status"])
 			else:
-				print blanker(readid, "returned error code " + ansj["status"])
+				blanker(readid, "returned HTTP Connection error")
 		else:
-			print blanker(readid, "returned no auto-company")
+			blanker(readid, "returned no auto-company")
+	else:
+		blanker("-", "readid is signed or empty")
 	return exsc
 arg = signCheck = 0
 for m in sys.argv[1:]: arg += 1
@@ -63,6 +78,6 @@ if TimeInterval < 30: TimeInterval = 30
 while True:
 	for n in range(4, arg + 1):
 		readid = sys.argv[n]
-		rtn = home(readid)
+		if home(readid):
+			sys.argv[n] = ""
 	time.sleep(TimeInterval)
-	if n : break
