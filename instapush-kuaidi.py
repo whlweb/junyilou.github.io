@@ -6,13 +6,13 @@ def pytry(tryurl):
 	try:
 		response = urllib2.urlopen(tryurl)
 	except urllib2.URLError as err:
-		if hasattr(err, 'reason') or hasattr(err, 'code'): return False
+		if hasattr(err, 'reason') or hasattr(err, 'code'): return "False"
 	else:
-		return True
+		return response.read()
 def home(readid):
 	exsc = False; es = ""
 	if readid != "":
-		idt = readid + ".txt"; exi = os.path.isfile(idt)
+		idt = FileLocation + '/' + readid + ".txt"; exi = os.path.isfile(idt)
 		if exi:
 			for line in fileinput.input(idt):
 				orgCounter = int(line)
@@ -22,17 +22,16 @@ def home(readid):
 			createFile.write("0")
 			createFile.close()
 			orgCounter = 0
-		urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid
-		if pytry(urla):
-			countp = urllib2.urlopen(urla).read().count("comCode")
+		urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
+		if trya != "False":
+			countp = trya.count("comCode")
 		else:
 			countp = 1
 		if (countp - 1):
 			comp = json.loads(urllib2.urlopen(urla).read())["auto"][0]["comCode"]
-			urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid
-			if pytry(urlb):
-				responce = urllib2.urlopen(urlb) #truly response
-				anst = responce.read(); ansj = json.loads(anst)
+			urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = pytry(urlb)
+			if tryb != "False":
+				anst = tryb; ansj = json.loads(anst)
 				today = datetime.datetime.now().strftime("%m月%d日")
 				comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通'}
 				if ansj["status"] == "200":
@@ -75,8 +74,9 @@ AppID = sys.argv[1]
 AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
 if TimeInterval < 30: TimeInterval = 30
+FileLocation = sys.argv[4]
 while True:
-	for n in range(4, arg + 1):
+	for n in range(5, arg + 1):
 		readid = sys.argv[n]
 		if home(readid):
 			sys.argv[n] = ""
