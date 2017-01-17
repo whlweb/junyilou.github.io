@@ -59,8 +59,10 @@ for m in sys.argv[1:]: arg += 1
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
-readid = sys.argv[4]
 if TimeInterval < 30: TimeInterval = 30
 while True:
-	if home(readid) : break
+	for n in range(4, arg + 1):
+		readid = sys.argv[n]
+		rtn = home(readid)
 	time.sleep(TimeInterval)
+	if n : break
