@@ -16,9 +16,11 @@ flask-kuaidi.py - rss-kuaidi.py 的前身，通过 Pip Flask 将物流输出为�
 
 rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请访问 [利用 Flask 和 VPS 搭建物流更新自动推送 RSS](http://matrix.sspai.com/p/da505de0 "点击访问") 了解
 
-instapush-kuaidi.py 通过 Instapush 在任何 VPS 乃至本地开发板上直接实现 rss-kuaidi.py 的功能，尚未公布。
+kuaidi_instapush.py 通过 Instapush 在任何 VPS 乃至本地开发板上直接实现 rss-kuaidi.py 的功能，尚未公布。
 
-Retail ID.py - Apple 零售店图片快速下载和整理工具。
+RetailID.py - Apple 零售店图片快速下载和整理工具。
+
+RetailID-Instapush.py - RetailID.py 的 Instapush 版本。
 
 联系作者
 =======
