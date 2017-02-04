@@ -25,10 +25,10 @@ def down(rtl):
 		fc = open(rpath + "List.md", "w")
 		fc.write(newlist); fc.close()
 		if exi:
-			os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous", spr)
+			os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous" + spr)
 			exi = False
 		if not exi:
-			os.system("wget -t 2 -e \"http_proxy=http://127.0.0.1:6152\" -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
+			os.system("wget -t 2 -e http_proxy=127.0.0.1:6152 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
 			os.system("open " + sx)
 	else: print "Photos of R" + rtl + " had been already downloaded or not ready yet."		
 arg = 0

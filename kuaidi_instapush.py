@@ -80,4 +80,5 @@ while True:
 		readid = sys.argv[n]
 		if home(readid):
 			sys.argv[n] = ""
+	print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Sleeping. Time interval will be " + str(TimeInterval) + " minutes."
 	time.sleep(TimeInterval)
