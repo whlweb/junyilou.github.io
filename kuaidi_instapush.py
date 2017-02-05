@@ -62,7 +62,7 @@ def home(readid):
 				else:
 					blanker(readid, "returned error code " + ansj["status"])
 			else:
-				blanker(readid, "returned HTTP Connection error")
+				blanker(readid, "has HTTP-Connection error")
 		else:
 			blanker(readid, "returned no auto-company")
 	else:
@@ -75,10 +75,10 @@ AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
 if TimeInterval < 30: TimeInterval = 30
 FileLocation = sys.argv[4]
+print "Start. Time interval will be " + str(TimeInterval) + " minutes."
 while True:
 	for n in range(5, arg + 1):
 		readid = sys.argv[n]
 		if home(readid):
 			sys.argv[n] = ""
-	print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Sleeping. Time interval will be " + str(TimeInterval) + " minutes."
 	time.sleep(TimeInterval)
