@@ -43,10 +43,11 @@ def home(readid):
 						fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 						reload(sys); sys.setdefaultencoding('utf-8')
 						fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
-						signCheck = fContent.count("签收") + fContent.count("感谢")
-						if signCheck:
+						signCount = fContent.count("签收") + fContent.count("感谢")
+						sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备")
+						if signCheck > 0 and sendCount < 1:
 							es = "[签收] "
-							exsc = True
+							exsc = maxnum
 						fileRefresh = open(idt, 'w')
 						fileRefresh.write(str(maxnum))
 						fileRefresh.close()
@@ -58,7 +59,7 @@ def home(readid):
 						finalOut = a+AppID+b+AppSecret+c+d+e+es+f+g+h+i+j+k+l+m+n+o+p
 						os.system(finalOut); print
 					else:
-						blanker(readid,"has no update")
+						blanker(readid, "has no update")
 				else:
 					blanker(readid, "returned error code " + ansj["status"])
 			else:
@@ -79,6 +80,9 @@ print "Start. Time interval will be " + sys.argv[3] + " minutes."
 while True:
 	for n in range(5, arg + 1):
 		readid = sys.argv[n]
-		if home(readid):
+		stat = home(readid)
+		if stat:
 			sys.argv[n] = ""
+			blanker(readid, "signed, readid emptied, " + stat + " updates in total recorded.")
+			os.system("rm " + idt)
 	time.sleep(TimeInterval)
