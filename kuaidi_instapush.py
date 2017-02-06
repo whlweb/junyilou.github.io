@@ -33,7 +33,7 @@ def home(readid):
 			if tryb != "False":
 				anst = tryb; ansj = json.loads(anst)
 				today = datetime.datetime.now().strftime("%m月%d日")
-				comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通'}
+				comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
 				if ansj["status"] == "200":
 					erstat = 1
 					maxnum = anst.count("location")
@@ -75,7 +75,7 @@ AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
 if TimeInterval < 30: TimeInterval = 30
 FileLocation = sys.argv[4]
-print "Start. Time interval will be " + str(TimeInterval) + " minutes."
+print "Start. Time interval will be " + sys.argv[3] + " minutes."
 while True:
 	for n in range(5, arg + 1):
 		readid = sys.argv[n]
