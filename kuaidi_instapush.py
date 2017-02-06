@@ -45,7 +45,7 @@ def home(readid):
 						fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
 						signCount = fContent.count("签收") + fContent.count("感谢")
 						sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备")
-						if signCheck > 0 and sendCount < 1:
+						if signCount > 0 and sendCount < 1:
 							es = "[签收] "
 							exsc = maxnum
 						fileRefresh = open(idt, 'w')
@@ -83,6 +83,6 @@ while True:
 		stat = home(readid)
 		if stat:
 			sys.argv[n] = ""
-			blanker(readid, "signed, readid emptied, " + stat + " updates in total recorded.")
-			os.system("rm " + idt)
+			print "Checked " + str(readid) + " signed and emptied, " + str(stat) + " updates in total recorded."
+			os.system("rm " + FileLocation + '/' + readid + ".txt")
 	time.sleep(TimeInterval)
