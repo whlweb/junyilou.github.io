@@ -69,7 +69,7 @@ def home(readid):
 	else:
 		blanker("-", "readid is signed or empty")
 	return exsc
-arg = signCheck = 0
+arg = signCheck = 0; brew = 4; sm = ""
 for m in sys.argv[1:]: arg += 1
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
@@ -80,9 +80,15 @@ print "Start. Time interval will be " + sys.argv[3] + " minutes."
 while True:
 	for n in range(5, arg + 1):
 		readid = sys.argv[n]
+		sm = sm + "[" + str(n-4) + "] " + readid + " "
 		stat = home(readid)
 		if stat:
 			sys.argv[n] = ""
 			print "Checked " + str(readid) + " signed and emptied, " + str(stat) + " updates in total recorded."
 			os.system("rm " + FileLocation + '/' + readid + ".txt")
+			brew += 1
+	if brew == arg: break
 	time.sleep(TimeInterval)
+nt = "============================================="
+st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+print "\nSummary:\n" + nt + "\n" + "readid List: " + sm + "\n" + st + " All " + str(brew-4) + " packages signed, exit.\n" + nt
