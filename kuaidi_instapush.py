@@ -1,7 +1,29 @@
 # -*- coding:utf-8 -*-
-import sys, json, urllib2, time, datetime, os, fileinput
+import sys, json, urllib2, time, datetime, os, fileinput, signal
+arg = signCheck = siging = 0; brew = 4; sm = ""; argv = list(range(15))
+
+binvar = "" # Signal Part
+def user1(a,b):
+	global binvar; binvar += "0"
+signal.signal(signal.SIGUSR1,user1)
+def user2(a,b):
+	global binvar; binvar += "1"
+signal.signal(signal.SIGUSR2,user2)
+def sig_start(a,b):
+	global siging; siging = 1
+	print 'Received Linux siganal, analyzing.'
+	global binvar; binvar = ""
+signal.signal(signal.SIGCONT,sig_start)
+def sig_end(a,b): 
+	sigans = int(binvar,2)
+	print "Received new readid:", sigans
+	global siging, arg; siging = 0
+	arg += 1; argv[arg] = str(sigans)
+signal.signal(signal.SIGTERM,sig_end)
+
 def blanker(bid, notice):
-	print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
+	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	print os.getpid() + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
 def pytry(tryurl):
 	try:
 		response = urllib2.urlopen(tryurl)
@@ -61,34 +83,36 @@ def home(readid):
 					else:
 						blanker(readid, "has no update")
 				else:
-					blanker(readid, "returned error code " + ansj["status"])
+					blanker(readid, "returned code " + ansj["status"])
 			else:
-				blanker(readid, "has HTTP-Connection error")
+				blanker(readid, "has HTTP-Connect error")
 		else:
 			blanker(readid, "returned no auto-company")
 	else:
-		blanker("-", "readid is signed or empty")
+		blanker("this package", "probably signed")
 	return exsc
-arg = signCheck = 0; brew = 4; sm = ""
 for m in sys.argv[1:]: arg += 1
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
-TimeInterval = int(sys.argv[3])*60
+TimeInterval = int(sys.argv[3])#*60
 if TimeInterval < 30: TimeInterval = 30
 FileLocation = sys.argv[4]
-print "Start. Time interval will be " + sys.argv[3] + " minutes."
+for n in range (1,arg + 1):
+	argv[n] = sys.argv[n]
+print "Start with PID " + str(os.getpid()) + ". Time interval will be " + sys.argv[3] + " minutes."
 while True:
-	for n in range(5, arg + 1):
-		readid = sys.argv[n]
-		sm = sm + "[" + str(n-4) + "] " + readid + " "
-		stat = home(readid)
-		if stat:
-			sys.argv[n] = ""
-			print "Checked " + str(readid) + " signed and emptied, " + str(stat) + " updates in total recorded."
-			os.system("rm " + FileLocation + '/' + readid + ".txt")
-			brew += 1
+	if not siging:
+		for n in range(5, arg + 1):
+			readid = argv[n]
+			sm = sm + "[" + str(n-4) + "] " + readid + " "
+			stat = home(readid)
+			if stat:
+				argv[n] = ""
+				print "Checked " + str(readid) + " signed and emptied, " + str(stat) + " updates in total recorded."
+				os.system("rm " + FileLocation + '/' + readid + ".txt")
+				brew += 1
+		time.sleep(TimeInterval)
 	if brew == arg: break
-	time.sleep(TimeInterval)
 nt = "============================================="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print "\nSummary:\n" + nt + "\n" + "readid List: " + sm + "\n" + st + " All " + str(brew-4) + " packages signed, exit.\n" + nt
