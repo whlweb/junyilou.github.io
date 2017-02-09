@@ -97,8 +97,8 @@ AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
 if TimeInterval < 30: TimeInterval = 30
 FileLocation = sys.argv[4]
-for n in range (1,arg + 1):
-	argv[n] = sys.argv[n]
+for r in range (1,arg + 1):
+	argv[r] = sys.argv[r]
 print "Start with PID " + str(os.getpid()) + ". Time interval will be " + sys.argv[3] + " minutes."
 while True:
 	if not siging:

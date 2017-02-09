@@ -18,9 +18,11 @@ rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请�
 
 kuaidi_instapush.py 通过 Instapush 在任何 VPS 乃至本地开发板上直接实现 rss-kuaidi.py 的功能，尚未公布。
 
+instapush_signal.py 通过信号 SIGUSR1, SIGUSR2, SIGCONT, SIGTERM 来实现在 kuaidi_instapush.py 运行途中直接增加新快递单，无需退出 Python 重新运行的源代码。
+
 RetailID-Instapush.py - Apple 零售店图片快速下载和整理工具的 Instapush 版本。
 
-联系作者
+联系
 =======
 专注于 Workflow 和 Python 开发
 
