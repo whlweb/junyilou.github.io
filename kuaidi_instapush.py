@@ -23,7 +23,7 @@ signal.signal(signal.SIGTERM,sig_end)
 
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-	print os.getpid() + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
+	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
 def pytry(tryurl):
 	try:
 		response = urllib2.urlopen(tryurl)
@@ -94,7 +94,7 @@ def home(readid):
 for m in sys.argv[1:]: arg += 1
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
-TimeInterval = int(sys.argv[3])#*60
+TimeInterval = int(sys.argv[3])*60
 if TimeInterval < 30: TimeInterval = 30
 FileLocation = sys.argv[4]
 for n in range (1,arg + 1):
