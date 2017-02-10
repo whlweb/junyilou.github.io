@@ -427,6 +427,7 @@
     "523": "Broadway", 
     "527": "Watford", 
     "530": "Fountain Gate", 
+    "531": "Jinmao Place"
     "532": "MixC Hangzhou", 
     "534": "Zhongjie Joy City", 
     "536": "Rosny 2", 
