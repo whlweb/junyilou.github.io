@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput, signal
-arg = signCheck = siging = 0; brew = 4; sm = ""; argv = list(range(15))
+arg = signCheck = siging = 0; sm = ""; argv = list(range(15))
 
 binvar = "" # Signal Part
 def user1(a,b):
@@ -26,7 +26,8 @@ def blanker(bid, notice):
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
 def pytry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
-	except urllib2.URLError as err: if hasattr(err, 'reason') or hasattr(err, 'code'): return "False"
+	except urllib2.URLError as err: 
+		if hasattr(err, 'reason') or hasattr(err, 'code'): return "False"
 	else: return response.read()
 def home(readid):
 	exsc = False; es = ""
@@ -73,7 +74,7 @@ def home(readid):
 		else: blanker(readid, "has HTTP-Connect error")
 	else: blanker(readid, "returned no auto-company")
 	return exsc
-for m in sys.argv[1:]: arg += 1
+for m in sys.argv[1:]: arg += 1; brew = arg;
 AppID = sys.argv[1]
 AppSecret = sys.argv[2]
 TimeInterval = int(sys.argv[3])*60
@@ -85,16 +86,14 @@ while True:
 	if not siging:
 		for n in range(5, arg + 1):
 			readid = argv[n]
-			sm = sm + "[" + str(n-4) + "] " + readid + " "
 			stat = home(readid)
 			if stat:
 				arg -= 1
 				if n != arg: argv[n] = argv[arg]
-				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded.\n"
+				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded."
 				os.system("rm " + FileLocation + '/' + readid + ".txt")
-				brew += 1
 		time.sleep(TimeInterval)
-	if brew == arg: break
+	if arg == 4: break
 nt = "============================================="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print "\nSummary:\n" + nt + "\n" + "readid List: " + sm + "\n" + st + " All " + str(brew-4) + " packages signed, exit.\n" + nt
+print "\nSummary:\n" + nt + "\n" + st + " All " + str(brew-4) + " packages signed, exit.\n" + nt
