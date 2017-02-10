@@ -16,9 +16,9 @@ def sig_start(a,b):
 signal.signal(signal.SIGCONT,sig_start)
 def sig_end(a,b): 
 	sigans = int(binvar,2)
-	print "Received new readid:", sigans
-	global siging, arg; siging = 0
-	arg += 1; argv[arg] = str(sigans)
+	print "Binary: " + binvar + "\nReceived new readid:", sigans
+	global siging, arg, binvar; siging = 0
+	arg += 1; argv[arg] = str(sigans); binvar = ""
 signal.signal(signal.SIGTERM,sig_end)
 
 def blanker(bid, notice):
