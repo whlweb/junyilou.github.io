@@ -6,6 +6,7 @@ bint = bin(input("Input a number. ")).replace("0b","")
 lbn = len(bint)
 os.kill(pid,signal.SIGCONT)
 print "Binary:", bint
+sleep(0.7)
 for l in range (0, lbn):
 	if bint[l] == "0":
 		os.kill(pid,signal.SIGUSR1)
