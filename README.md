@@ -1,4 +1,4 @@
-Junyi_Lou's Github.io 文件介绍
+文件介绍
 
 Workflow
 ===========
@@ -8,7 +8,7 @@ kuaidi[%2017日期].wflow -  iOS App Workflow 快递查询工具，支持剪切�
 
 KuaidiUpdater - kuaidi[%2016日期].wflow 自动更新旗标文件。
 
-Python 源代码
+Python
 ===========
 kuaidi.py - Python 快递查询源代码 请访问 [可能是最小的跨平台查快递工具](http://matrix.sspai.com/p/d006b320 "点击访问") 了解。
 
@@ -21,6 +21,12 @@ kuaidi_instapush.py 通过 Instapush 在任何 VPS 乃至本地开发板上直�
 instapush_signal.py 通过信号 SIGUSR1, SIGUSR2, SIGCONT, SIGTERM 来实现在 kuaidi_instapush.py 运行途中直接增加新快递单，无需退出 Python 重新运行的源代码。
 
 RetailID-Instapush.py - Apple 零售店图片快速下载和整理工具的 Instapush 版本。
+
+Markdown
+===========
+README.md - 本文件; name.md - Apple 零售店编号和对应名称
+
+因习惯喜欢将纯文本保存为 Markdown 格式，可能实际上没有特别用途。
 
 联系
 =======
