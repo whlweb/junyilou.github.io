@@ -1,23 +1,20 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput, signal
-arg = signCheck = siging = 0; sm = ""; argv = list(range(15))
+arg = signCheck = siging = brew = 0; sm = binvar = ""; argv = list(range(10))
 
-binvar = "" # Signal Part
-def user1(a,b):
-	global binvar; binvar += "0"
+def user1(a,b): global binvar; binvar += "0"
+def user2(a,b): global binvar; binvar += "1"
 signal.signal(signal.SIGUSR1,user1)
-def user2(a,b):
-	global binvar; binvar += "1"
 signal.signal(signal.SIGUSR2,user2)
 def sig_start(a,b):
 	global siging; siging = 1
 	print 'Received Linux siganal, analyzing.'
 	global binvar; binvar = ""
-signal.signal(signal.SIGCONT,sig_start)
 def sig_end(a,b): 
-	global siging, arg, binvar; sigans = int(binvar,2); siging = 0
+	global siging, arg, binvar, brew; sigans = int(binvar,2); siging = 0
 	print "Binary: " + binvar + "\nReceived new readid:", sigans
-	arg += 1; argv[arg] = str(sigans); binvar = ""
+	arg += 1; brew += 1; argv[arg] = str(sigans); binvar = ""
+signal.signal(signal.SIGCONT,sig_start)
 signal.signal(signal.SIGTERM,sig_end)
 
 def blanker(bid, notice):
@@ -74,16 +71,15 @@ def home(readid):
 	else: blanker(readid, "returned no auto-company")
 	return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-AppID = sys.argv[1]
-AppSecret = sys.argv[2]
-TimeInterval = int(sys.argv[3])*60
-if TimeInterval < 30: TimeInterval = 30
-FileLocation = sys.argv[4]
+AppID = "585e4e62a4c48a05d607b545"
+AppSecret = "a32883f25245516940ea6b9f9b80fa54"
+TimeInterval = int(sys.argv[1])*60
+FileLocation = sys.argv[2]
 for r in range (1,arg + 1): argv[r] = sys.argv[r]
-print "Start with PID " + str(os.getpid()) + ". Time interval will be " + sys.argv[3] + " minutes."
+print "Start with PID " + str(os.getpid()) + ". Time interval will be " + sys.argv[1] + " minutes."
 while True:
 	if not siging:
-		for n in range(5, arg + 1):
+		for n in range(3, arg + 1):
 			readid = argv[n]
 			stat = home(readid)
 			if stat:
@@ -91,8 +87,9 @@ while True:
 				if n != arg: argv[n] = argv[arg]
 				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded."
 				os.system("rm " + FileLocation + '/' + readid + ".txt")
+		if arg == 2: break
 		time.sleep(TimeInterval)
-	if arg == 4: break
+	if arg == 2: break
 nt = "============================================="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print "\nSummary:\n" + nt + "\n" + st + " All " + str(brew-4) + " packages signed, exit.\n" + nt
+print "\nSummary:\n" + nt + "\n" + st + " All " + str(brew-2) + " packages signed, exit.\n" + nt
