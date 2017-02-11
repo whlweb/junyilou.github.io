@@ -76,7 +76,8 @@ AppSecret = "a32883f25245516940ea6b9f9b80fa54"
 TimeInterval = int(sys.argv[1])*60
 FileLocation = sys.argv[2]
 for r in range (1,arg + 1): argv[r] = sys.argv[r]
-print "Start with PID " + str(os.getpid()) + ". Time interval will be " + sys.argv[1] + " minutes."
+print "\nStart with PID " + str(os.getpid()) + "."
+print "Time interval will be " + sys.argv[1] + " minutes.\n"
 while True:
 	if not siging:
 		for n in range(3, arg + 1):

@@ -3,7 +3,7 @@ from time import sleep
 pid = input("Input PID. ")
 bint = bin(input("Input a number. ")).replace("0b",""); lbn = len(bint)
 os.kill(pid,signal.SIGCONT)
-print "Binary:", bint; sleep(0.7)
+print "Sending binary: " +  bint + " to PID " + str(pid); sleep(0.7)
 for l in range (0, lbn):
 	if bint[l] == "0": os.kill(pid,signal.SIGUSR1)
 	if bint[l] == "1": os.kill(pid,signal.SIGUSR2)
