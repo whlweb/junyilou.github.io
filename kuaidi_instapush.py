@@ -73,24 +73,25 @@ def home(readid):
 for m in sys.argv[1:]: arg += 1; brew = arg;
 AppID = "585e4e62a4c48a05d607b545"
 AppSecret = "a32883f25245516940ea6b9f9b80fa54"
-TimeInterval = int(sys.argv[1])*60
+TimeInterval = int(sys.argv[1])#*60
 FileLocation = sys.argv[2]
 for r in range (1,arg + 1): argv[r] = sys.argv[r]
 print "\nStart with PID " + str(os.getpid()) + "."
 print "Time interval will be " + sys.argv[1] + " minutes.\n"
 while True:
 	if not siging:
+		checkbrew = str(argv).count("-")
+		print checkbrew,brew
 		for n in range(3, arg + 1):
 			readid = argv[n]
-			stat = home(readid)
+			if readid != "-": stat = home(readid)
+			else: stat = 0
 			if stat:
-				arg -= 1
-				if n != arg: argv[n] = argv[arg]
 				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded."
-				os.system("rm " + FileLocation + '/' + readid + ".txt")
-		if arg == 2: break
+				argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
+		if checkbrew == (brew-2): break
 		time.sleep(TimeInterval)
-	if arg == 2: break
+	if checkbrew == (brew-2): break
 nt = "============================================="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print "\nSummary:\n" + nt + "\n" + st + " All " + str(brew-2) + " packages signed, exit.\n" + nt
