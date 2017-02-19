@@ -73,11 +73,11 @@ def home(readid):
 for m in sys.argv[1:]: arg += 1; brew = arg;
 AppID = "585e4e62a4c48a05d607b545"
 AppSecret = "a32883f25245516940ea6b9f9b80fa54"
-TimeInterval = int(sys.argv[1])
+TimeInterval = int(sys.argv[1])*60
 FileLocation = sys.argv[2]
 for r in range (1,arg + 1): argv[r] = sys.argv[r]
 print "\nStart with PID " + str(os.getpid()) + "."
-print "Time interval will be " + sys.argv[1] + " minutes.\n"
+print "Time interval will be " + sys.argv[1] + "minute.\n"
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
