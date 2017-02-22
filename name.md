@@ -486,6 +486,7 @@
     "648": "Parc 66 Jinan", 
     "650": "Summerlin", 
     "654": "World Trade Center", 
+    "669": "Orchard Road",
     "670": "Kunming", 
     "672": "Galaxy Macau", 
     "673": "apm Hong Kong", 

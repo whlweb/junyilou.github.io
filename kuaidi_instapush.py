@@ -7,9 +7,8 @@ def user2(a,b): global binvar; binvar += "1"
 signal.signal(signal.SIGUSR1,user1)
 signal.signal(signal.SIGUSR2,user2)
 def sig_start(a,b):
-	global siging; siging = 1
+	global siging, binvar; siging = 1; binvar = ""
 	print 'Received Linux siganal, analyzing.'
-	global binvar; binvar = ""
 def sig_end(a,b): 
 	global siging, arg, binvar, brew; sigans = int(binvar,2); siging = 0
 	print "Binary: " + binvar + "\nReceived new readid:", sigans
@@ -53,7 +52,7 @@ def home(readid):
 					fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 					reload(sys); sys.setdefaultencoding('utf-8')
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】")
-					signCount = fContent.count("签收") + fContent.count("感谢")
+					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收")
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备")
 					if signCount > 0 and sendCount < 1:
 						es = "[签收] "; exsc = maxnum
@@ -77,7 +76,7 @@ TimeInterval = int(sys.argv[1])*60
 FileLocation = sys.argv[2]
 for r in range (1,arg + 1): argv[r] = sys.argv[r]
 print "\nStart with PID " + str(os.getpid()) + "."
-print "Time interval will be " + sys.argv[1] + "minute.\n"
+print "Time interval will be " + sys.argv[1] + "min.\n"
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
