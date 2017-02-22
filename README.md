@@ -10,7 +10,7 @@ KuaidiUpdater - kuaidi[%2016日期].wflow 自动更新旗标文件。
 
 Python
 ===========
-kuaidi.py - Python 快递查询源代码 请访问 [可能是最小的跨平台查快递工具](http://matrix.sspai.com/p/d006b320 "点击访问") 了解。
+kuaidi.py - Python 快递查询源代码 请访问 [可能是最小的跨平台查快递工具](http://matrix.sspai.com/p/d006b320 "点击访问") 了解，现在已经删除。
 
 flask-kuaidi.py - rss-kuaidi.py 的前身，通过 Pip Flask 将物流输出为更美观的 JSON 形式。
 
@@ -19,6 +19,8 @@ rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请�
 kuaidi_instapush.py 通过 Instapush 在任何 VPS 乃至本地开发板上直接实现 rss-kuaidi.py 的功能，尚未公布。
 
 instapush_signal.py 通过信号 SIGUSR1, SIGUSR2, SIGCONT, SIGTERM 来实现在 kuaidi_instapush.py 运行途中直接增加新快递单，无需退出 Python 重新运行的源代码。
+
+RetailID.py - 本地执行的 Apple 零售店图片快速下载和整理工具
 
 RetailID-Instapush.py - Apple 零售店图片快速下载和整理工具的 Instapush 版本。
 
