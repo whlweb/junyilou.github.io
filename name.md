@@ -427,7 +427,6 @@
     "523": "Broadway", 
     "527": "Watford", 
     "530": "Fountain Gate", 
-    "531": "Jinmao Place"
     "532": "MixC Hangzhou", 
     "534": "Zhongjie Joy City", 
     "536": "Rosny 2", 
@@ -491,6 +490,7 @@
     "672": "Galaxy Macau", 
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
+    "703": "Jinmao Place"
     "705": "Qibao", 
     "708": "Vía Santa Fe", 
   }
