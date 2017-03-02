@@ -438,6 +438,7 @@
     "549": "Quaker Bridge", 
     "550": "Valley Plaza", 
     "557": "MixC Qingdao", 
+    "559": "Schildergasse",
     "562": "Euroma2", 
     "564": "Le Befane", 
     "566": "Marché Saint-Germain", 
