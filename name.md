@@ -491,7 +491,7 @@
     "672": "Galaxy Macau", 
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
-    "703": "Jinmao Place"
+    "703": "Jinmao Place",
     "705": "Qibao", 
     "708": "Vía Santa Fe", 
   }
