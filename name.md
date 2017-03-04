@@ -96,7 +96,7 @@
     "095": "Fifth Avenue", 
     "096": "Shadyside", 
     "097": "Country Club Plaza", 
-    "099": "Stanford"
+    "099": "Stanford",
     "100": "Alderwood Mall", 
     "101": "Stoneridge Mall", 
     "102": "Christiana Mall", 
@@ -493,6 +493,6 @@
     "683": "Global Harbor", 
     "703": "Jinmao Place",
     "705": "Qibao", 
-    "708": "Vía Santa Fe", 
+    "708": "Vía Santa Fe"
   }
 ]
