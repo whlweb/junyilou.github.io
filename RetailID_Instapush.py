@@ -46,5 +46,5 @@ while True:
 			rtl = (line.split(","))[j]
 			down(rtl)
 	for t in range(1,7):
-		print "Sleeping. " + str(7 - t) + " hours out of 12 hours left."
+		print "Sleeping. " + str(7 - t) + " hours out of 6 hours left."
 		time.sleep(3600)
