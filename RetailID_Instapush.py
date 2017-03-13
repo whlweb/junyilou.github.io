@@ -20,7 +20,7 @@ def down(rtl):
 	nameopen.close()
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize and newsize > 409600:
+	if newsize != oldsize and newsize > 819200:
 		fb = open(rpath + "List.md")
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
@@ -46,5 +46,5 @@ while True:
 			rtl = (line.split(","))[j]
 			down(rtl)
 	for t in range(1,7):
-		print "Sleeping. " + str(7 - t) + " hours out of 6 hours left."
+		print "Sleeping. " + str(7 - t) + " hours out of 12 hours left."
 		time.sleep(3600)
