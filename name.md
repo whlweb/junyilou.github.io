@@ -473,6 +473,7 @@
     "615": "University Town Center", 
     "616": "Eastwood Towne Center", 
     "622": "Solomon Pond Mall", 
+    "623": "Brickell City Centre",
     "625": "Nave de Vero", 
     "629": "Trumbull", 
     "631": "The Mall of New Hampshire", 
@@ -491,7 +492,7 @@
     "672": "Galaxy Macau", 
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
-    "703": "Jinmao Place",
+    "703": "Nanjing Jinmao Place",
     "705": "Qibao", 
     "708": "Vía Santa Fe"
   }
