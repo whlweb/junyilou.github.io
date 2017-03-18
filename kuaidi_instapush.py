@@ -42,7 +42,7 @@ def home(readid):
 			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%m月%d日")
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
 			if ansj["status"] == "200":
-				erstat = 1; maxnum = anst.count("location")
+				erstat = 1; maxnum = tryb.count("location")
 				if maxnum != orgCounter:
 					result = ansj["data"]
 					realComp = comtext.get(ansj["com"], "其他") + "快递"
