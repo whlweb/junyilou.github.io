@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput, signal
-arg = signCheck = siging = brew = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
+arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a,b): global binvar; binvar += "0"
 def user2(a,b): global binvar; binvar += "1"
@@ -64,7 +64,7 @@ def home(readid):
 			else: blanker(readid, "returned code " + ansj["status"])
 		else: blanker(readid, "has web connect error")
 	else: blanker(readid, "returned no auto-company")
-	return exsc
+	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
 AppID = "585e4e62a4c48a05d607b545" # GitHub users please notice:
 AppSecret = "a32883f25245516940ea6b9f9b80fa54" # AppSecret only uses for private.
@@ -80,11 +80,11 @@ while True:
 			if readid != "-": stat = home(readid)
 			else: stat = 0
 			if stat:
-				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded."
+				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " times."
 				argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
 		if checkbrew == (brew - 2): break
 		time.sleep(TimeInterval)
 	if checkbrew == (brew - 2): break
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew-2) + " packages signed, exit." + endl + nt
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew-2) + " packages signed with " + str(tti) + " times, exit." + endl + nt
