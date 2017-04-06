@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput, signal
+from instapush import Instapush, App
 arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a,b): global binvar; binvar += "0"
@@ -53,13 +54,8 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and sendCount < 1: es = "[签收] "; exsc = maxnum
 					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum)); fileRefresh.close()
-					a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
-					c='" -H "Content-Type: application/json" -d '; d="'"
-					e='{"event":"kuaidi","trackers":{"rc":"'; f=realComp
-					g='","ri":"'; h=readid; i='","ft":"'; j=fTime; k='","fc":"'
-					l=fContent; m='"}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-					finalOut = a + AppID + b + AppSecret + c + d + e + es + f + g + h + i + j + k + l + m + n + o + p
-					os.system(finalOut); print
+					app = App(appid = AppID, secret = AppSecret)
+					app.notify(event_name = 'kuaidi', trackers = {'rc': realComp, 'ri': readid, 'ft': fTime, 'fc': fContent})
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])
 		else: blanker(readid, "has web connect error")

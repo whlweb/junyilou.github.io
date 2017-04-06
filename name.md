@@ -459,6 +459,7 @@
     "594": "Williamsburg", 
     "595": "Yas Mall", 
     "596": "Mall of the Emirates", 
+    "597": "Dubai Mall",
     "598": "Potomac Town Center", 
     "599": "Station Park", 
     "601": "Guildford Town Centre", 

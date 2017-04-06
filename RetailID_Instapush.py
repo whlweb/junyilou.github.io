@@ -1,4 +1,5 @@
 import os, sys, fileinput, urllib2, datetime, json, time
+from instapush import Instapush, App
 def filesize(url):
     opener = urllib2.build_opener()
     request = urllib2.Request(url)
@@ -25,15 +26,10 @@ def down(rtl):
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
 		fc.write(newlist); fc.close()
-		a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
-		c='" -H "Content-Type: application/json" -d '; d="'"
-		e='{"event":"retail","trackers":{"rtl":"'; f=rtl
-		g='","size":"'; h=str(newsize / 1024)+"KB"; i='","name":"';
-		j=storejson[0][rtl]; m='"}'; n='}'; o="'"; 
-		p=' https://api.instapush.im/v1/post'
-		AppID = "585e4e62a4c48a05d607b545"; AppSecret = "a32883f25245516940ea6b9f9b80fa54"
-		finalOut = a+AppID+b+AppSecret+c+d+e+f+g+h+i+j+m+n+o+p
-		os.system(finalOut)
+		app = App(appid = "585e4e62a4c48a05d607b545", secret = "a32883f25245516940ea6b9f9b80fa54")
+		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
+		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
+		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
 		os.system("sudo rm " + sbn + rtl + ".png")
 		os.system("sudo wget -t 2 -c -P " + rpath + " " + dieter + "/16_9/" + spr)
 	else: print tmnow + " Checked R" + rtl +" has no update, ignore."
@@ -45,6 +41,6 @@ while True:
 		for j in range (0, line.count(",")):
 			rtl = (line.split(","))[j]
 			down(rtl)
-	for t in range(1,7):
-		print "Sleeping. " + str(7 - t) + " hours out of 12 hours left."
+	for t in range(1,2):
+		print "Sleeping for an hour..."
 		time.sleep(3600)
