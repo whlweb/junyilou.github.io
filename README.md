@@ -20,9 +20,11 @@ kuaidi_instapush.py 通过 Instapush 在任何 VPS 乃至本地开发板上直�
 
 instapush_signal.py 通过信号 SIGUSR1, SIGUSR2, SIGCONT, SIGTERM 来实现在 kuaidi_instapush.py 运行途中直接增加新快递单，无需退出 Python 重新运行的源代码。
 
-RetailID.py - 本地执行的 Apple 零售店图片快速下载和整理工具
+RetailID.py - 本地执行的 Apple 零售店图片快速下载和整理工具。
 
-RetailID-Instapush.py - Apple 零售店图片快速下载和整理工具的 Instapush 版本。
+RetailID_Instapush.py - Apple 零售店图片快速下载和整理工具的 Instapush 版本。
+
+Event_Instapush.py - 每天刷新中国大陆 Apple Store 零售店的特别活动，帮助你最快报名参加。
 
 Markdown
 ===========

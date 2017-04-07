@@ -1,4 +1,4 @@
-#coding=utf-8
+# -*- coding:utf-8 -*-
 from flask import Flask, jsonify, request
 import sys, json, urllib2, time, datetime
 app = Flask(__name__)

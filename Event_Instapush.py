@@ -1,4 +1,4 @@
-#coding=utf-8
+# -*- coding:utf-8 -*-
 import requests, json, sys, datetime, os
 wAns = ""; wCount = 0; endl = "\n"; rpath = "/home/pi/Retail/"
 def GetMiddleStr(content, startStr, endStr):
