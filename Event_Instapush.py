@@ -16,6 +16,7 @@ storelist = ['qibao', 'shanghaiiapm', 'wujiaochang', 'nanjingeast', 'pudong',
 			'westlake', 'xiamenlifestylecenter', 'thaihotplaza', 'olympia66dalian', 'parkland',
 			'zhongjiejoycity', 'mixcshenyang', 'jiefangbei', 'mixcchongqing', 'paradisewalkchongqing']
 def home():
+	wAns = ""; wCount = 0; endl = "\n"; rpath = "/home/pi/Retail/"
 	print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " 开始检查:"
 	for i in range(0, len(storelist)):
 		html = requests.get('http://www.apple.com/cn/retail/' + storelist[i] + '/')
@@ -26,12 +27,14 @@ def home():
 			jans = json.loads(Mans)
 			gDate = jans["event"][0]["startDate"].replace("Z", "").split("T")
 			aDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%m 月 %d 日")
+			aDay = aDay.replace("01", "1").replace("02", "2").replace("03", "3").replace("04", "4").replace("05", "5")
+			aDay = aDay.replace("06", "6").replace("07", "7").replace("08", "8").replace("09", "9")
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
 			pAns = jans["address"]['name'] + "有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
 			wAns = wAns + jans["event"][0]["name"]; wCount += 1
-			fb = open(rpath + "Event.md"); fcb = fb.read()
+			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close();
 			nCheck = fcb.count(jans["event"][0]["name"])
 			if nCheck == 0:
 				a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
@@ -48,6 +51,6 @@ def home():
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
 while True:
-	wAns = ""; wCount = 0; endl = "\n"; rpath = "/home/pi/Retail/"
 	home()
+	print "Sleeping, interval will be 12 hrs."
 	time.sleep(43200) #12 hrs
