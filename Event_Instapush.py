@@ -26,15 +26,13 @@ def home():
 			Mans = GetMiddleStr(orgSource, '<script type="application/ld+json">', '"price": "0"') + '"price": "0"}}]}'
 			jans = json.loads(Mans)
 			gDate = jans["event"][0]["startDate"].replace("Z", "").split("T")
-			aDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%m 月 %d 日")
-			aDay = aDay.replace("01", "1").replace("02", "2").replace("03", "3").replace("04", "4").replace("05", "5")
-			aDay = aDay.replace("06", "6").replace("07", "7").replace("08", "8").replace("09", "9")
+			aDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
 			pAns = jans["address"]['name'] + "有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
 			wAns = wAns + jans["event"][0]["name"]; wCount += 1
-			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close();
+			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close()
 			nCheck = fcb.count(jans["event"][0]["name"])
 			if nCheck == 0:
 				a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
