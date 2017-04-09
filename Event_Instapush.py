@@ -23,10 +23,34 @@ def home():
 		jcount = html.text.count('@type": "Event')
 		if jcount > 0:
 			orgSource = html.text.replace("\n", "").replace("	", "")
-			Mans = GetMiddleStr(orgSource, '<script type="application/ld+json">', '"price": "0"') + '"price": "0"}}]}'
+			Mans = GetMiddleStr(orgSource, '<script type="application/ld+json">', '"price": "0"') + '"price": "0"' + '}' + '}' + ']}'
 			jans = json.loads(Mans)
-			gDate = jans["event"][0]["startDate"].replace("Z", "").split("T")
-			aDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
+			gDate = jans["event"][0]["startDate"].replace("Z", "").split("T"); aDay = str(gDate[0])
+			Tomorrow = str(datetime.datetime.now() + datetime.timedelta(days = 1))
+			AfterTomorrow = str(datetime.datetime.now() + datetime.timedelta(days = 2))
+			wkChn = ["一", "二", "三", "四", "五", "六", "日"]
+			todayWeekday = int(datetime.datetime.now().strftime("%w"))
+			DayWeek = list(range(7))
+			if todayWeekday != 0:
+				for s in range(1, todayWeekday + 1):
+					DayWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s)))
+				for e in range(todayWeekday, 8):
+					DayWeek [e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday)))
+			else:
+				for j in range(1, 8):
+					DayWeek [j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday + 7 - j)))
+			if Tomorrow.count(aDay) > 0: 
+				aDay = "明天"
+			else:
+				if AfterTomorrow.count(aDay) > 0: 
+					aDay = "后天"
+				else:			
+					for r in range(0,7):
+						if DayWeek[r].count(aDay) > 0:
+							aDay = "本周" + wkChn [r]
+					if len(aDay) > 9:
+						OriaDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
+						aDay = OriaDay + " 星期" + wkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
