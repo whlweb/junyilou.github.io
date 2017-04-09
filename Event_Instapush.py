@@ -41,8 +41,7 @@ def home():
 				for j in range(1, 8):
 					DayWeek [j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j)))
 			for r in range(0,7):
-				if DayWeek[r].count(aDay) > 0:
-					aDay = "下周" + wkChn [r]
+				if DayWeek[r].count(aDay) > 0: aDay = "下周" + wkChn [r]
 			if len(aDay) > 9:
 				OriaDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
 				aDay = OriaDay + " 星期" + wkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
@@ -63,12 +62,11 @@ def home():
 					finalOut = a+AppID+b+AppSecret+c+d+e+f+g+m+n+o+p; os.system(finalOut)
 					AppID = "58e7a6f5a4c48aff6614b36c"; AppSecret = "6ca99600f849dbb0d9a296c29218929f"
 					finalOut = a+AppID+b+AppSecret+c+d+e+f+g+m+n+o+p; os.system(finalOut)
+					# GitHub users please notice: AppSecret only uses for private.
 					print endl + pAns + " [推送]"
 				else: print pAns + " [已经推送]"
 	if wCount > 0:
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
 while True:
-	home()
-	print "Sleeping, interval will be 12 hrs."
-	time.sleep(43200) #12 hrs
+	home(); print "Sleeping, interval will be 12 hrs."; time.sleep(43200) #12 hrs
