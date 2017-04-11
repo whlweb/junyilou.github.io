@@ -29,7 +29,7 @@ def home():
 			aDaytime = datetime.datetime.strptime(aDay, "%Y-%m-%d");
 			ncDaytime = datetime.datetime(int(nowDatetime.strftime("%Y")), int(nowDatetime.strftime("%m")), int(nowDatetime.strftime("%d")))
 			if (aDaytime - ncDaytime).days < 1: noShow = True
-			wkChn = ["一", "二", "三", "四", "五", "六", "日"]
+			wkChn = ["一", "二", "三", "四", "五", "六", "日"]; masterWkChn = ["日", "一", "二", "三", "四", "五", "六"]
 			todayWeekday = int(datetime.datetime.now().strftime("%w"))
 			DayWeek = list(range(7)); NextWeek = list(range(7))
 			if todayWeekday != 0: #下周
@@ -52,7 +52,7 @@ def home():
 				if NextWeek[r].count(aDay) > 0: aDay = "下周" + wkChn [r]
 				if DayWeek[r].count(aDay) > 0: aDay = "本周" + wkChn [r]
 			if len(aDay) > 9:
-				aDay = "星期" + wkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
+				aDay = "星期" + masterWkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
 			OriaDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = OriaDay + " " + aDay + " " + str(aHour) + aTime
