@@ -31,22 +31,31 @@ def home():
 			if (aDaytime - ncDaytime).days < 1: noShow = True
 			wkChn = ["一", "二", "三", "四", "五", "六", "日"]
 			todayWeekday = int(datetime.datetime.now().strftime("%w"))
-			DayWeek = list(range(7))
-			if todayWeekday != 0:
+			DayWeek = list(range(7)); NextWeek = list(range(7))
+			if todayWeekday != 0: #下周
 				for s in range(1, todayWeekday + 1):
-					DayWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s - 7)))
+					NextWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s - 7)))
 				for e in range(todayWeekday, 8):
-					DayWeek [e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday + 7)))
+					NextWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday + 7)))
 			else:
 				for j in range(1, 8):
-					DayWeek [j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j)))
+					NextWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j)))
+			if todayWeekday != 0: #本周
+				for s in range(1, todayWeekday + 1):
+					DayWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s)))
+				for e in range(todayWeekday, 8):
+					DayWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday)))
+			else:
+				for j in range(1, 8):
+					DayWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j + 7)))
 			for r in range(0,7):
-				if DayWeek[r].count(aDay) > 0: aDay = "下周" + wkChn [r]
+				if NextWeek[r].count(aDay) > 0: aDay = "下周" + wkChn [r]
+				if DayWeek[r].count(aDay) > 0: aDay = "本周" + wkChn [r]
 			if len(aDay) > 9:
-				OriaDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
-				aDay = OriaDay + " 星期" + wkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
+				aDay = "星期" + wkChn[int(datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%w"))]
+			OriaDay = datetime.datetime.strptime(str(gDate[0]), "%Y-%m-%d").strftime("%-m 月 %-d 日")
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
-			tAns = aDay + " " + str(aHour) + aTime
+			tAns = OriaDay + " " + aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
 			pAns = jans["address"]['name'] + "有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
 			wAns = wAns + jans["event"][0]["name"]; wCount += 1
