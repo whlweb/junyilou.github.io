@@ -1,16 +1,14 @@
 import os, sys, fileinput, urllib2, datetime, json, time
 from instapush import Instapush, App
 def filesize(url):
-    opener = urllib2.build_opener()
-    request = urllib2.Request(url)
-    request.get_method = lambda: 'HEAD'
-    try:
-        response = opener.open(request)
-        response.read()
-    except Exception, e:
-        return 0
-    else:
-        return int(dict(response.headers).get('content-length', 0))
+	opener = urllib2.build_opener()
+	request = urllib2.Request(url)
+	request.get_method = lambda: 'HEAD'
+	try:
+		response = opener.open(request)
+		response.read()
+	except Exception, e: return 0
+	else: return int(dict(response.headers).get('content-length', 0))
 def down(rtl):
 	tmnow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	spr = "R" + rtl + ".png"; sx = sbn + rtl + ".png"
@@ -21,7 +19,7 @@ def down(rtl):
 	nameopen.close()
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize and newsize > 819200:
+	if newsize != oldsize and newsize > 1024000:
 		fb = open(rpath + "List.md")
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
@@ -42,6 +40,4 @@ while True:
 		for j in range (0, line.count(",")):
 			rtl = (line.split(","))[j]
 			down(rtl)
-	for t in range(1,2):
-		print "Sleeping for an hour..."
-		time.sleep(3600)
+	print "Sleeping, interval will be 1 hr."; time.sleep(3600)

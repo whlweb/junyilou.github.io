@@ -83,4 +83,4 @@ while True:
 	if checkbrew == (brew - 2): break
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew-2) + " packages signed with " + str(tti) + " times, exit." + endl + nt
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew-2) + " packages signed, exit." + endl + nt

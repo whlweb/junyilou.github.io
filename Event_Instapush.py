@@ -2,8 +2,7 @@
 import requests, json, sys, datetime, os, time, re
 def GetMiddleStr(content, startStr, endStr):
 	startIndex = content.index(startStr)
-	if startIndex>=0:
-		startIndex += len(startStr)
+	if startIndex>=0: startIndex += len(startStr)
 	endIndex = content.index(endStr)
 	return content[startIndex:endIndex]
 storelist = list(range(50))
@@ -33,21 +32,15 @@ def home():
 			todayWeekday = int(datetime.datetime.now().strftime("%w"))
 			DayWeek = list(range(7)); NextWeek = list(range(7))
 			if todayWeekday != 0: #下周
-				for s in range(1, todayWeekday + 1):
-					NextWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s - 7)))
-				for e in range(todayWeekday, 8):
-					NextWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday + 7)))
+				for s in range(1, todayWeekday + 1): NextWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s - 7)))
+				for e in range(todayWeekday, 8): NextWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday + 7)))
 			else:
-				for j in range(1, 8):
-					NextWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j)))
+				for j in range(1, 8): NextWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j)))
 			if todayWeekday != 0: #本周
-				for s in range(1, todayWeekday + 1):
-					DayWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s)))
-				for e in range(todayWeekday, 8):
-					DayWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday)))
+				for s in range(1, todayWeekday + 1): DayWeek[s - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - s)))
+				for e in range(todayWeekday, 8): DayWeek[e - 1] = str(datetime.datetime.now() + datetime.timedelta(days = (e - todayWeekday)))
 			else:
-				for j in range(1, 8):
-					DayWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j + 7)))
+				for j in range(1, 8): DayWeek[j - 1] = str(datetime.datetime.now() - datetime.timedelta(days = (todayWeekday - j + 7)))
 			for r in range(0,7):
 				if NextWeek[r].count(aDay) > 0: aDay = "下周" + wkChn [r]
 				if DayWeek[r].count(aDay) > 0: aDay = "本周" + wkChn [r]
