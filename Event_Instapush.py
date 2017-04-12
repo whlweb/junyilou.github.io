@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import requests, json, sys, datetime, os, time
+import requests, json, sys, datetime, os, time, re
 def GetMiddleStr(content, startStr, endStr):
 	startIndex = content.index(startStr)
 	if startIndex>=0:
@@ -58,9 +58,10 @@ def home():
 			tAns = OriaDay + " " + aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
 			pAns = jans["address"]['name'] + "有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
-			wAns = wAns + jans["event"][0]["name"]; wCount += 1
+			idURL = re.findall(r"\d+\.?\d*", jans["event"][0]["url"])
+			EventID = idURL[len(idURL) - 1]; wAns = wAns + EventID + ", "; wCount += 1
 			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close()
-			nCheck = fcb.count(jans["event"][0]["name"])
+			nCheck = fcb.count(EventID)
 			if noShow == False:
 				if nCheck == 0:
 					a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
