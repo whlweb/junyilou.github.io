@@ -78,7 +78,7 @@
     "077": "Pioneer Place", 
     "078": "Short Pump Town Center", 
     "079": "Ginza", 
-    "080": "North Point", 
+    "080": "Avalon", 
     "081": "Eton", 
     "082": "UTC", 
     "083": "SouthPark", 

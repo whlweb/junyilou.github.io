@@ -62,9 +62,12 @@ def home():
 					e='{"event":"raw","trackers":{"ans":"'; f=pAns
 					g='"'; m='}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
 					AppID = "585e4e62a4c48a05d607b545"; AppSecret = "a32883f25245516940ea6b9f9b80fa54"
-					finalOut = a+AppID+b+AppSecret+c+d+e+f+g+m+n+o+p; os.system(finalOut)
-					AppID = "58e7a6f5a4c48aff6614b36c"; AppSecret = "6ca99600f849dbb0d9a296c29218929f"
-					finalOut = a+AppID+b+AppSecret+c+d+e+f+g+m+n+o+p; os.system(finalOut)
+					finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
+					simonStore = ['七宝', '上海环贸 iapm', '五角场', '南京东路', '浦东', '环球港', '香港广场', '杭州万象城', '西湖']
+					for s in range(0, len(simonStore)):
+						if pAns.count(simonStore[s]) > 0:
+							AppID = "58e7a6f5a4c48aff6614b36c"; AppSecret = "6ca99600f849dbb0d9a296c29218929f"
+							finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
 					# GitHub users please notice: AppSecret only uses for private.
 					print endl + pAns + " [推送]"
 				else: print pAns + " [已经推送]"
