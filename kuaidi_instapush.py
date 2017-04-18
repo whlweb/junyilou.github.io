@@ -27,8 +27,9 @@ def pytry(tryurl):
 def home(readid):
 	noShow = True; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"; exi = os.path.isfile(idt)
 	if exi:
-		for line in fileinput.input(idt): orgCounter = int(line.split(", ")[0])
-		linetime = line.split(", ")[1]
+		for line in fileinput.input(idt): 
+			orgCounter = int(line.split(", ")[0])
+			linetime = line.split(", ")[1]
 		fileinput.close()
 	else:
 		createFile = open(idt, 'w'); createFile.write("0, N/A")
