@@ -22,17 +22,17 @@ def blanker(bid, notice):
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
 def pytry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
-	except urllib2.URLError as err: 
-		if hasattr(err, 'reason') or hasattr(err, 'code'): return "False"
+	except urllib2.URLError: return "False"
 	else: return response.read()
 def home(readid):
-	exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"; exi = os.path.isfile(idt)
+	noShow = True; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"; exi = os.path.isfile(idt)
 	if exi:
-		for line in fileinput.input(idt): orgCounter = int(line)
+		for line in fileinput.input(idt): orgCounter = int(line.split(", ")[0])
+		linetime = line.split(", ")[1]
 		fileinput.close()
 	else:
-		createFile = open(idt, 'w'); createFile.write("0")
-		createFile.close(); orgCounter = 0
+		createFile = open(idt, 'w'); createFile.write("0, N/A")
+		createFile.close(); orgCounter = 0; linetime = "";
 	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
 	if trya != "False": countp = trya.count("comCode")
 	else: countp = 1
@@ -48,14 +48,18 @@ def home(readid):
 					result = ansj["data"]
 					realComp = comtext.get(ansj["com"], "其他") + "快递"
 					fTime = time.strftime("%m月%d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
+					if linetime.count(fTime) > 0: noShow = True
 					reload(sys); sys.setdefaultencoding('utf-8')
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")")
 					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收") + fContent.count("取件")
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and sendCount < 1: es = "[签收] "; exsc = maxnum
-					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum)); fileRefresh.close()
-					app = App(appid = AppID, secret = AppSecret)
-					app.notify(event_name = 'kuaidi', trackers = {'rc': realComp, 'ri': readid, 'ft': fTime, 'fc': fContent})
+					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
+					if noShow == False:
+						app = App(appid = AppID, secret = AppSecret)
+						app.notify(event_name = 'kuaidi', trackers = {'rc': realComp, 'ri': readid, 'ft': fTime, 'fc': fContent})
+						print "Successfully sent message: '" + fContent + "'."
+					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])
 		else: blanker(readid, "has web connect error")
@@ -64,7 +68,7 @@ def home(readid):
 for m in sys.argv[1:]: arg += 1; brew = arg;
 AppID = "585e4e62a4c48a05d607b545" # GitHub users please notice:
 AppSecret = "a32883f25245516940ea6b9f9b80fa54" # AppSecret only uses for private.
-TimeInterval = int(sys.argv[1])*60
+TimeInterval = int(sys.argv[1]) * 60
 FileLocation = sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be " + sys.argv[1] + "min." + endl
