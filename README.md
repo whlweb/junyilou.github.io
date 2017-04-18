@@ -3,22 +3,26 @@
 Workflow
 ===========
 kuaidi20170105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解。
-![截图](https://junyilou.github.io/bkP/workflow.jpg)
+
+![截图](/bkP/workflow.jpg)
 
 Python
 ===========
 Kuaidi_Instapush.py 基于 Instapush 的快递实时推送工具，无公布计划。
-![截图](https://junyilou.github.io/bkP/kuaidi.jpg)
+
+![截图](/bkP/kuaidi.jpg)
 
 Instapush_Signal.py 通过 signal 向 Kuaidi_Instapush.py 增添快递单的工具。
 
 RetailID.py - 用于本地库执行的 Apple 零售店图片快速下载和整理工具。
 
 RetailID_Instapush.py - 基于 Instapush 的 Apple Store 零售店图片更新推送工具。
-![截图](https://junyilou.github.io/bkP/retailid.jpg)
+
+![截图](/retailid.jpg)
 
 Event_Instapush.py - 基于 Instapush 获取中国大陆 Apple Store 零售店特别活动的推送工具。
-![截图](https://junyilou.github.io/bkP/event.jpg)
+
+![截图](/event.jpg)
 
 * 请注意，私人 Instapush AppID 和 AppSecret 在源代码中有明文保存，请不要恶意使用。
 
