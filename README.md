@@ -18,11 +18,11 @@ RetailID.py - 用于本地库执行的 Apple 零售店图片快速下载和整�
 
 RetailID_Instapush.py - 基于 Instapush 的 Apple Store 零售店图片更新推送工具。
 
-![截图](/retailid.jpg)
+![截图](/bkP/retailid.jpg)
 
 Event_Instapush.py - 基于 Instapush 获取中国大陆 Apple Store 零售店特别活动的推送工具。
 
-![截图](/event.jpg)
+![截图](/bkP/event.jpg)
 
 * 请注意，私人 Instapush AppID 和 AppSecret 在源代码中有明文保存，请不要恶意使用。
 
