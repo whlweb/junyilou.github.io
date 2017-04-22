@@ -20,7 +20,7 @@ RetailID_Instapush.py - 基于 Instapush 的 Apple Store 零售店图片更新�
 
 ![截图](/bkP/retailid.jpg)
 
-Event_Instapush.py - 基于 Instapush 获取中国大陆 Apple Store 零售店特别活动的推送工具。
+Event_Instapush.py - 基于 Instapush 获取中国 Apple Store 零售店特别活动的推送工具。
 
 ![截图](/bkP/event.jpg)
 

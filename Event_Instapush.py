@@ -2,23 +2,29 @@
 import requests, json, sys, datetime, os, time, re
 def GetMiddleStr(content, startStr, endStr):
 	startIndex = content.index(startStr)
-	if startIndex>=0: startIndex += len(startStr)
+	if startIndex >= 0: startIndex += len(startStr)
 	endIndex = content.index(endStr)
 	return content[startIndex:endIndex]
 storelist = list(range(50))
-storelist = ['qibao', 'shanghaiiapm', 'wujiaochang', 'nanjingeast', 'pudong',
-			'globalharbor', 'hongkongplaza', 'kunming', 'sanlitun', 'chinacentralmall',
-			'chaoyangjoycity', 'wangfujing', 'xidanjoycity', 'mixcchengdu', 'taikoolichengdu',
-			'tianjinjoycity', 'riverside66tianjin', 'galaxymall', 'parc66jinan', 'mixcqingdao',
-			'parccentral', 'zhujiangnewtown', 'holidayplazashenzhen', 'mixcnanning', 'nanjingist',
-			'nanjingjinmaoplace', 'wondercity', 'center66wuxi', 'mixczhengzhou', 'mixchangzhou',
-			'westlake', 'xiamenlifestylecenter', 'thaihotplaza', 'olympia66dalian', 'parkland',
-			'zhongjiejoycity', 'mixcshenyang', 'jiefangbei', 'mixcchongqing', 'paradisewalkchongqing']
+storelist = ['@qibao', '@shanghaiiapm', '@wujiaochang', '@nanjingeast', '@pudong',
+			'@globalharbor', '@hongkongplaza', '@kunming', '@sanlitun', '@chinacentralmall',
+			'@chaoyangjoycity', '@wangfujing', '@xidanjoycity', '@mixcchengdu', '@taikoolichengdu',
+			'@tianjinjoycity', '@riverside66tianjin', '@galaxymall', '@parc66jinan', '@mixcqingdao',
+			'@parccentral', '@zhujiangnewtown', '@holidayplazashenzhen', '@mixcnanning', '@nanjingist',
+			'@nanjingjinmaoplace', '@wondercity', '@center66wuxi', '@mixczhengzhou', '@mixchangzhou',
+			'@westlake', '@xiamenlifestylecenter', '@thaihotplaza', '@olympia66dalian', '@parkland',
+			'@zhongjiejoycity', '@mixcshenyang', '@jiefangbei', '@mixcchongqing', '@paradisewalkchongqing',
+			'*apmhongkong', '*cantonroad', '*causewaybay', '*festivalwalk', '*ifcmall', '*newtownplaza', '#galaxymall']
 def home():
 	wAns = ""; wCount = 0; endl = "\n"; rpath = "/home/pi/Retail/"; nowDatetime = datetime.datetime.now()
 	print nowDatetime.strftime("%Y-%m-%d %H:%M:%S") + " 开始检查:"
 	for i in range(0, len(storelist)):
-		html = requests.get('http://www.apple.com/cn/retail/' + storelist[i] + '/')
+		if storelist[i][0] == "*": regionCode = "hk"
+		if storelist[i][0] == "#": regionCode = "mo"
+		if storelist[i][0] == "@": regionCode = "cn"
+		storelist[i] = storelist[i].replace("*", "").replace("#", "").replace("@", "")
+		print "Checking web alias '" + storelist[i] + "' in region code '" + regionCode + "'."
+		html = requests.get('https://www.apple.com/' + regionCode + '/retail/' + storelist[i] + '/')
 		jcount = html.text.count('@type": "Event'); noShow = False
 		if jcount > 0:
 			orgSource = html.text.replace("\n", "").replace("	", "")
@@ -50,7 +56,7 @@ def home():
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = OriaDay + " " + aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
-			pAns = jans["address"]['name'] + "有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
+			pAns = jans["address"]['name'] + " 有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
 			idURL = re.findall(r"\d+\.?\d*", jans["event"][0]["url"])
 			EventID = idURL[len(idURL) - 1]; wAns = wAns + EventID + ", "; wCount += 1
 			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close()
