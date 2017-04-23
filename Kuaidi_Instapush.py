@@ -25,15 +25,15 @@ def pytry(tryurl):
 	except urllib2.URLError: return "False"
 	else: return response.read()
 def home(readid):
-	noShow = True; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"; exi = os.path.isfile(idt)
-	if exi:
-		for line in fileinput.input(idt): 
+	noShow = False; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"
+	if os.path.isfile(idt):
+		for line in fileinput.input(idt):
 			orgCounter = int(line.split(", ")[0])
 			linetime = line.split(", ")[1]
 		fileinput.close()
 	else:
 		createFile = open(idt, 'w'); createFile.write("0, N/A")
-		createFile.close(); orgCounter = 0; linetime = "";
+		createFile.close(); orgCounter = 0; linetime = "N/A";
 	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
 	if trya != "False": countp = trya.count("comCode")
 	else: countp = 1
