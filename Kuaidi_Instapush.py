@@ -67,8 +67,8 @@ def home(readid):
 	else: blanker(readid, "returned no auto-company")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-AppID = "585e4e62a4c48a05d607b545" # GitHub users please notice:
-AppSecret = "a32883f25245516940ea6b9f9b80fa54" # AppSecret only uses for private.
+AppID = "58fcc453a4c48a7623de6e9c"; AppSecret = "bfd223832711a220f2c7e25c93cd77f5"
+# GitHub users please notice: AppSecret only uses for private.
 TimeInterval = int(sys.argv[1]) * 60
 FileLocation = sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]

@@ -24,7 +24,7 @@ def down(rtl):
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
 		fc.write(newlist); fc.close()
-		app = App(appid = "585e4e62a4c48a05d607b545", secret = "a32883f25245516940ea6b9f9b80fa54")
+		app = App(appid = "58fcc453a4c48a7623de6e9c", secret = "bfd223832711a220f2c7e25c93cd77f5")
 		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
 		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
 		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})

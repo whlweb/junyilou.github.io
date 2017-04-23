@@ -67,7 +67,7 @@ def home():
 					c='" -H "Content-Type: application/json" -d '; d="'"
 					e='{"event":"raw","trackers":{"ans":"'; f=pAns
 					g='"'; m='}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-					AppID = "585e4e62a4c48a05d607b545"; AppSecret = "a32883f25245516940ea6b9f9b80fa54"
+					AppID = "58fcc453a4c48a7623de6e9c"; AppSecret = "bfd223832711a220f2c7e25c93cd77f5"
 					finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
 					simonStore = ['七宝', '上海环贸 iapm', '五角场', '南京东路', '浦东', '环球港', '香港广场', '杭州万象城', '西湖']
 					for s in range(0, len(simonStore)):
