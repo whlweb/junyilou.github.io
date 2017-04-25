@@ -24,6 +24,8 @@ Event_Instapush.py - 基于 Instapush 获取中国 Apple Store 零售店特别�
 
 ![截图](/bkP/event.jpg)
 
+Instapush_Pushbot.py - 由于 Instapush 服务临时不稳定性，用于测试推送的工具。
+
 * 请注意，私人 Instapush AppID 和 AppSecret 在源代码中有明文保存，请不要恶意使用。
 
 Markdown
