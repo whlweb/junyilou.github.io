@@ -1,5 +1,5 @@
+# -*- coding:utf-8 -*-
 import os, sys, fileinput, urllib2, datetime, json, time
-from instapush import Instapush, App
 def filesize(url):
 	opener = urllib2.build_opener()
 	request = urllib2.Request(url)
@@ -24,11 +24,15 @@ def down(rtl):
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
 		fc.write(newlist); fc.close()
-		app = App(appid = "58fcc453a4c48a7623de6e9c", secret = "bfd223832711a220f2c7e25c93cd77f5")
-		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
-		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
-		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
-		# GitHub users please notice: AppSecret only uses for private.
+		reload(sys); sys.setdefaultencoding('utf-8')
+		pushRaw = "零售店图册 - Apple " + storejson[0][rtl] + " 刚刚获得了更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB，访问 Apple 官网了解更多。"
+#		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
+#		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
+		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
+			   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
+		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
+			   + "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa"); print
+		# GitHub users please notice: IFTTT key only uses for private.
 		os.system("sudo rm " + sbn + rtl + ".png")
 		os.system("sudo wget -t 2 -c -P " + rpath + " " + dieter + "/16_9/" + spr)
 	else: print tmnow + " Checked R" + rtl +" has no update, ignore."

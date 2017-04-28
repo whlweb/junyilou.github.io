@@ -56,26 +56,23 @@ def home():
 			aTotal = str(gDate[1]); aHour = int(aTotal[0] + aTotal[1]) + 8; aTime = aTotal.replace(aTotal[0] + aTotal[1], "")
 			tAns = OriaDay + " " + aDay + " " + str(aHour) + aTime
 			reload(sys); sys.setdefaultencoding('utf-8')
-			pAns = jans["address"]['name'] + " 有新活动：" + jans["event"][0]["name"] + "，时间是 " + tAns
+			pAns = "零售店活动 - " + jans["address"]['name'] + " 在 " + tAns + " 将开展活动「" + jans["event"][0]["name"] + "」"
+			pAns = pAns.replace("00:00", "00").replace("15:00", "00").replace("30:00", "00").replace("45:00", "00")
 			idURL = re.findall(r"\d+\.?\d*", jans["event"][0]["url"])
 			EventID = idURL[len(idURL) - 1]; wAns = wAns + EventID + ", "; wCount += 1
 			fb = open(rpath + "Event.md"); fcb = fb.read(); fb.close()
 			nCheck = fcb.count(EventID)
 			if noShow == False:
 				if nCheck == 0:
-					a='curl -X POST -H "x-instapush-appid: '; b='" -H "x-instapush-appsecret: '
-					c='" -H "Content-Type: application/json" -d '; d="'"
-					e='{"event":"raw","trackers":{"ans":"'; f=pAns
-					g='"'; m='}'; n='}'; o="'"; p=' https://api.instapush.im/v1/post'
-					AppID = "58fcc453a4c48a7623de6e9c"; AppSecret = "bfd223832711a220f2c7e25c93cd77f5"
-					finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
+					os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pAns + '"}' 
+							   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
 					simonStore = ['七宝', '上海环贸 iapm', '五角场', '南京东路', '浦东', '环球港', '香港广场', '杭州万象城', '西湖']
-					for s in range(0, len(simonStore)):
-						if pAns.count(simonStore[s]) > 0:
-							AppID = "58e7a6f5a4c48aff6614b36c"; AppSecret = "6ca99600f849dbb0d9a296c29218929f"
-							finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
-					# GitHub users please notice: AppSecret only uses for private.
-					print endl + pAns + " [推送]"
+#					for s in range(0, len(simonStore)):
+#						if pAns.count(simonStore[s]) > 0:
+#							AppID = "58e7a6f5a4c48aff6614b36c"; AppSecret = "6ca99600f849dbb0d9a296c29218929f"
+#							finalOut = a + AppID + b + AppSecret + c + d + e + f + g + m + n + o + p; os.system(finalOut)
+					# GitHub users please notice: IFTTT Key only uses for private.
+					print pAns + " [推送]"
 				else: print pAns + " [已经推送]"
 	if wCount > 0:
 		fc = open(rpath + "Event.md", "w")

@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, fileinput, signal
-from instapush import Instapush, App
 arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a,b): global binvar; binvar += "0"
@@ -20,10 +19,14 @@ signal.signal(signal.SIGTERM,sig_end)
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
+	# GitHub users please notice: IFTTT key only uses for private.
 def pytry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
 	else: return response.read()
+def pushbots(pushRaw): 
+	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
+			   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
 def home(readid):
 	noShow = False; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
@@ -56,10 +59,7 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and sendCount < 1: es = "[签收] "; exsc = maxnum
 					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
-					if noShow == False:
-						app = App(appid = AppID, secret = AppSecret)
-						app.notify(event_name = 'kuaidi', trackers = {'rc': realComp, 'ri': readid, 'ft': fTime, 'fc': fContent})
-						print "Successfully sent message: '" + fContent + "'."
+					if noShow == False: pushbots("快递查询 - " + realComp + " " + readid + " 新物流: " + fTime + " " + fContent)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])
@@ -67,8 +67,6 @@ def home(readid):
 	else: blanker(readid, "returned no auto-company")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-AppID = "58fcc453a4c48a7623de6e9c"; AppSecret = "bfd223832711a220f2c7e25c93cd77f5"
-# GitHub users please notice: AppSecret only uses for private.
 TimeInterval = int(sys.argv[1]) * 60
 FileLocation = sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]

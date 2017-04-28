@@ -8,25 +8,23 @@ kuaidi20170105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，
 
 Python
 ===========
-Kuaidi_Instapush.py 基于 Instapush 的快递实时推送工具，无公布计划。
+Kuaidi_IFTTT.py 基于 IFTTT Maker 的快递实时推送工具，无公布计划。
 
 ![截图](/bkP/kuaidi.jpg)
 
-Instapush_Signal.py 通过 signal 向 Kuaidi_Instapush.py 增添快递单的工具。
+IFTTT_Signal.py 通过 signal 向 Kuaidi_IFTTT.py 增添快递单的工具。
 
 RetailID.py - 用于本地库执行的 Apple 零售店图片快速下载和整理工具。
 
-RetailID_Instapush.py - 基于 Instapush 的 Apple Store 零售店图片更新推送工具。
+RetailID_IFTTT.py - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。
 
 ![截图](/bkP/retailid.jpg)
 
-Event_Instapush.py - 基于 Instapush 获取中国 Apple Store 零售店特别活动的推送工具。
+Event_IFTTT.py - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具。
 
 ![截图](/bkP/event.jpg)
 
-Instapush_Pushbot.py - 由于 Instapush 服务临时不稳定性，用于测试推送的工具。
-
-* 请注意，私人 Instapush AppID 和 AppSecret 在源代码中有明文保存，请不要恶意使用。
+* 请注意，私人 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用。
 
 Markdown
 ===========
