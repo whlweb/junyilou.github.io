@@ -34,7 +34,7 @@ README.md - 本文件
 
 name.md - Apple 零售店编号和对应名称
 
-Future.md - Apple 零售店未来计划
+future.md - Apple 零售店未来计划
 
 ./Previous
 ==========
