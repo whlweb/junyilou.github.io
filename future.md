@@ -5,13 +5,14 @@ Future (Might canceled.)
 349 Grand Place - St Paul
 407 TBD - Hong Kong
 510 Italy
-531 Ningbo
+531 Ningbo //Ningbo Candidate
 605 Australia
-617 Changsha - China
+617 Changsha //Changsha Candidate
 633 Singapore
-669 Orchard Road //Singapore Candidate
+669 Singapore //Singapore Candidate
+687 Vienna
 690 Taiwan
 691 Korea
-692 Korea
+692 Korea //Seoul Candidate
 694 Taiwan
-713 Taipei - Taiwan
+713 Taipei //Taipei Candidate
