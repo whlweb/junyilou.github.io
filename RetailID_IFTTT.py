@@ -36,7 +36,7 @@ def down(rtl):
 		os.system("sudo rm " + sbn + rtl + ".png")
 		os.system("sudo wget -t 2 -c -P " + rpath + " " + dieter + "/16_9/" + spr)
 	else: print tmnow + " Checked R" + rtl +" has no update, ignore."
-rpath = "/home/pi/Retail/"
+rpath = os.path.expanduser('~') + "/Retail/"
 sbn = rpath + "R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 while True:
