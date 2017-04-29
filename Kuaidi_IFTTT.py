@@ -16,6 +16,10 @@ def sig_end(a,b):
 signal.signal(signal.SIGCONT,sig_start)
 signal.signal(signal.SIGTERM,sig_end)
 
+def plut(pint):
+	if (pint): pluro = "s"
+	if not (pint): pluro = ""
+	return pluro
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
@@ -35,8 +39,7 @@ def home(readid):
 			linetime = line.split(", ")[1]
 		fileinput.close()
 	else:
-		createFile = open(idt, 'w'); createFile.write("0, N/A")
-		createFile.close(); orgCounter = 0; linetime = "N/A";
+		os.system("cd >" + idt); orgCounter = 0; linetime = "N/A";
 	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
 	if trya != "False": countp = trya.count("comCode")
 	else: countp = 1
@@ -67,23 +70,23 @@ def home(readid):
 	else: blanker(readid, "returned no auto-company")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-TimeInterval = int(sys.argv[1]) * 60
-FileLocation = sys.argv[2]
+TimeInterval = 10 #int(sys.argv[1]) * 60
+FileLocation = os.path.expanduser('~') + "/" #sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
-print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be " + sys.argv[1] + "min." + endl
+print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl #修改sys.argv时
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
-		for n in range(3, arg + 1):
+		for n in range(1, arg + 1): #修改sys.argv时
 			readid = argv[n]
 			if readid != "-": stat = home(readid)
 			else: stat = 0
 			if stat:
-				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " times."
+				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
 				argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
-		if checkbrew == (brew - 2): break
+		if checkbrew == (brew): break #修改sys.argv时
 		time.sleep(TimeInterval)
-	if checkbrew == (brew - 2): break
+	if checkbrew == (brew): break #修改sys.argv时
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew-2) + " packages signed, exit." + endl + nt
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew - 1) +" signed, exit." + endl + nt #修改sys.argv时

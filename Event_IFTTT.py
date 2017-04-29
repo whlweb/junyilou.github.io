@@ -16,7 +16,7 @@ storelist = ['@qibao', '@shanghaiiapm', '@wujiaochang', '@nanjingeast', '@pudong
 			'@zhongjiejoycity', '@mixcshenyang', '@jiefangbei', '@mixcchongqing', '@paradisewalkchongqing',
 			'*apmhongkong', '*cantonroad', '*causewaybay', '*festivalwalk', '*ifcmall', '*newtownplaza', '#galaxymall']
 def home():
-	wAns = ""; wCount = 0; endl = "\n"; rpath = "/home/pi/Retail/"; nowDatetime = datetime.datetime.now()
+	wAns = ""; wCount = 0; endl = "\n"; rpath = os.path.expanduser('~') + "/Retail/"; nowDatetime = datetime.datetime.now()
 	print nowDatetime.strftime("%Y-%m-%d %H:%M:%S") + " 开始检查:"
 	for i in range(0, len(storelist)):
 		if storelist[i][0] == "*": regionCode = "hk"
