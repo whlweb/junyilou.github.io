@@ -23,7 +23,6 @@ def plut(pint):
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
-	# GitHub users please notice: IFTTT key only uses for private.
 def pytry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
@@ -31,6 +30,7 @@ def pytry(tryurl):
 def pushbots(pushRaw): 
 	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
+	# GitHub users please notice: IFTTT key only uses for private.
 def home(readid):
 	noShow = False; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
@@ -70,7 +70,7 @@ def home(readid):
 	else: blanker(readid, "returned no auto-company")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-TimeInterval = 10 #int(sys.argv[1]) * 60
+TimeInterval = 600 #int(sys.argv[1]) * 60
 FileLocation = os.path.expanduser('~') + "/" #sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl #修改sys.argv时
