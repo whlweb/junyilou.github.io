@@ -17,8 +17,8 @@ signal.signal(signal.SIGCONT,sig_start)
 signal.signal(signal.SIGTERM,sig_end)
 
 def plut(pint):
-	if (pint): pluro = "s"
-	if not (pint): pluro = ""
+	if (pint - 1): pluro = "s"
+	if not (pint - 1): pluro = ""
 	return pluro
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -30,7 +30,7 @@ def pytry(tryurl):
 	else: return response.read()
 def pushbots(pushRaw): 
 	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
-			   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
+			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 def home(readid):
 	noShow = False; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
@@ -89,4 +89,4 @@ while True:
 	if checkbrew == (brew): break #修改sys.argv时
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew - 1) +" signed, exit." + endl + nt #修改sys.argv时
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) +" signed, exit." + endl + nt #修改sys.argv时

@@ -29,7 +29,7 @@ def down(rtl):
 #		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
 #		app.notify(event_name = 'retail', trackers = {'rtl': rtl, 'size': str(newsize / 1024)+"KB", 'name': storejson[0][rtl]})
 		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
-			   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
+			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa"); print
 		# GitHub users please notice: IFTTT key only uses for private.

@@ -65,7 +65,7 @@ def home():
 			if noShow == False:
 				if nCheck == 0:
 					os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pAns + '"}' 
-							   + "' https://maker.ifttt.com/trigger/raw/with/key/cMgQhRp4tZBhs3B2OreX07"); print
+							   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 					simonStore = ['七宝', '上海环贸 iapm', '五角场', '南京东路', '浦东', '环球港', '香港广场', '杭州万象城', '西湖']
 #					for s in range(0, len(simonStore)):
 #						if pAns.count(simonStore[s]) > 0:
