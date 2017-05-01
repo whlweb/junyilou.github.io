@@ -2,19 +2,19 @@
 import sys, json, urllib2, time, datetime, os, signal
 arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
-def user1(a,b): global binvar; binvar += "0"
-def user2(a,b): global binvar; binvar += "1"
-signal.signal(signal.SIGUSR1,user1)
-signal.signal(signal.SIGUSR2,user2)
-def sig_start(a,b):
+def user1(a, b): global binvar; binvar += "0"
+def user2(a, b): global binvar; binvar += "1"
+def sig_start(a, b):
 	global siging, binvar; siging = 1; binvar = ""
 	print 'Received Linux siganal, analyzing.'
-def sig_end(a,b): 
-	global siging, arg, binvar, brew; sigans = int(binvar,2); siging = 0
+def sig_end(a, b):
+	global siging, arg, binvar, brew; sigans = int(binvar, 2); siging = 0
 	print "Binary: " + binvar + "\nReceived new readid:", sigans
 	arg += 1; brew += 1; argv[arg] = str(sigans); binvar = ""
-signal.signal(signal.SIGCONT,sig_start)
-signal.signal(signal.SIGTERM,sig_end)
+signal.signal(signal.SIGCONT, sig_start)
+signal.signal(signal.SIGTERM, sig_end)
+signal.signal(signal.SIGUSR1, user1)
+signal.signal(signal.SIGUSR2, user2)
 
 def plut(pint):
 	if (pint - 1): plural = "s"
@@ -32,7 +32,7 @@ def pushbots(pushRaw):
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
 def home(readid):
-	linetime = "N/A" ;noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
+	linetime = "N/A"; noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
 		dtRead = open(idt); dt = dtRead.read()
 		if dt != "":

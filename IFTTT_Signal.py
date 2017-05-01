@@ -3,6 +3,7 @@ from time import sleep
 pRead = open(os.path.expanduser('~') + "/pid.txt"); pid = pRead.read()
 bint = bin(int(sys.argv[1])).replace("0b",""); lbn = len(bint)
 print "\nGet Integer: " + sys.argv[1] + "\nSending binary: " +  bint + " to PID " + pid; sleep(0.7)
+os.kill(int(pid),signal.SIGCONT)
 for l in range (0, lbn):
 	if bint[l] == "0": os.kill(int(pid),signal.SIGUSR1)
 	if bint[l] == "1": os.kill(int(pid),signal.SIGUSR2)
