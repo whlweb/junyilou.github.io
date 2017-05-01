@@ -32,14 +32,14 @@ def pushbots(pushRaw):
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
 def home(readid):
-	noShow = False; exsc = False; es = ""; idt = FileLocation + '/' + readid + ".txt"
+	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
 		for line in fileinput.input(idt):
 			orgCounter = int(line.split(", ")[0])
 			linetime = line.split(", ")[1]
 		fileinput.close()
 	else:
-		os.system("cd >" + idt); orgCounter = 0; linetime = "N/A";
+		os.system("cd >" + idt); orgCounter = 0; linetime = "N/A"; es = "[新增]"
 	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
 	if trya != "False": countp = trya.count("comCode")
 	else: countp = 1
@@ -62,7 +62,7 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and sendCount < 1: es = "[签收] "; exsc = maxnum
 					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
-					if noShow == False: pushbots("快递查询 - " + realComp + " " + readid + " 新物流: " + fTime + " " + fContent)
+					if noShow == False: pushbots("快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])
@@ -74,6 +74,7 @@ TimeInterval = 600 #int(sys.argv[1]) * 60
 FileLocation = os.path.expanduser('~') + "/" #sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl #修改sys.argv时
+os.system("rm -f " + FileLocation + "pid.txt&&cd >" + FileLocation + "pid.txt"); pWrite = open((FileLocation + "pid.txt"), 'w'); pWrite.write(str(os.getpid())); pWrite.close() 
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
