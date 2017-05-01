@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import sys, json, urllib2, time, datetime, os, fileinput, signal
+import sys, json, urllib2, time, datetime, os, signal
 arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a,b): global binvar; binvar += "0"
@@ -17,9 +17,9 @@ signal.signal(signal.SIGCONT,sig_start)
 signal.signal(signal.SIGTERM,sig_end)
 
 def plut(pint):
-	if (pint - 1): pluro = "s"
-	if not (pint - 1): pluro = ""
-	return pluro
+	if (pint - 1): plural = "s"
+	if not (pint - 1): plural = ""
+	return plural
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
@@ -32,14 +32,15 @@ def pushbots(pushRaw):
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
 def home(readid):
-	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
+	linetime = "N/A" ;noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
 	if os.path.isfile(idt):
-		for line in fileinput.input(idt):
-			orgCounter = int(line.split(", ")[0])
-			linetime = line.split(", ")[1]
-		fileinput.close()
+		dtRead = open(idt); dt = dtRead.read()
+		if dt != "":
+			orgCounter = int(dt.split(", ")[0])
+			linetime = dt.split(", ")[1]
+		dtRead.close()
 	else:
-		os.system("cd >" + idt); orgCounter = 0; linetime = "N/A"; es = "[新增]"
+		os.system("cd >" + idt); es = "[新增]"
 	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
 	if trya != "False": countp = trya.count("comCode")
 	else: countp = 1
@@ -90,4 +91,4 @@ while True:
 	if checkbrew == (brew): break #修改sys.argv时
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) +" signed, exit." + endl + nt #修改sys.argv时
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt #修改sys.argv时

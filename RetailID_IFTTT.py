@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import os, sys, fileinput, urllib2, datetime, json, time
+import os, sys, urllib2, datetime, json, time
 def filesize(url):
 	opener = urllib2.build_opener()
 	request = urllib2.Request(url)
