@@ -61,8 +61,7 @@ def home(readid):
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")")
 					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收") + fContent.count("取件")
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
-					print signCount, sendCount
-					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum; print "Pass"
+					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
 					if noShow == False: pushbots("快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent)
 					else: blanker(readid, "got noShow signal")
