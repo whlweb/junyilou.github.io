@@ -15,7 +15,6 @@ storelist = ['@qibao', '@shanghaiiapm', '@wujiaochang', '@nanjingeast', '@pudong
 			'@westlake', '@xiamenlifestylecenter', '@thaihotplaza', '@olympia66dalian', '@parkland',
 			'@zhongjiejoycity', '@mixcshenyang', '@jiefangbei', '@mixcchongqing', '@paradisewalkchongqing',
 			'*apmhongkong', '*cantonroad', '*causewaybay', '*festivalwalk', '*ifcmall', '*newtownplaza', '#galaxymall']
-storelist = ['@qibao', '@shanghaiiapm', '*apmhongkong', '*cantonroad', '#galaxymall', 'blank']
 def home():
 	wAns = ""; wCount = 0; endl = "\n"; rpath = os.path.expanduser('~') + "/Retail/"; nowDatetime = datetime.datetime.now()
 	print nowDatetime.strftime("%Y-%m-%d %H:%M:%S") + " 开始检查:"
@@ -79,4 +78,4 @@ def home():
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
 while True:
-	home(); print "Sleeping, interval will be 12 hrs."; time.sleep(5) #time.sleep(43200) #12 hrs
+	home(); print "Sleeping, interval will be 12 hrs."; time.sleep(43200) #12 hrs
