@@ -12,9 +12,9 @@ def sig_end(a, b):
 	print "Binary: " + binvar + "\nReceived new readid:", sigans
 	arg += 1; brew += 1; argv[arg] = str(sigans); binvar = ""
 signal.signal(signal.SIGCONT, sig_start)
-signal.signal(signal.SIGTERM, sig_end)
 signal.signal(signal.SIGUSR1, user1)
 signal.signal(signal.SIGUSR2, user2)
+signal.signal(signal.SIGTERM, sig_end)
 
 def plut(pint):
 	if (pint - 1): plural = "s"
