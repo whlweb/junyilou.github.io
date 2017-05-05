@@ -19,7 +19,7 @@ def down(rtl):
 	nameopen.close()
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize and newsize > 1024000:
+	if newsize != oldsize and newsize > 512000:
 		fb = open(rpath + "List.md")
 		newlist = fb.read().replace((rtl + ","), ""); fb.close()
 		fc = open(rpath + "List.md", "w")
@@ -40,8 +40,9 @@ rpath = os.path.expanduser('~') + "/Retail/"
 sbn = rpath + "R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 while True:
-	for line in fileinput.input(rpath + "List.md"):
-		for j in range (0, line.count(",")):
-			rtl = (line.split(","))[j]
-			down(rtl)
+	st = open(rpath + "List.md");
+	line = st.read(); st.close() 
+	for j in range (0, line.count(",")):
+		rtl = (line.split(","))[j]
+		down(rtl)
 	print "Sleeping, interval will be 1 hr."; time.sleep(3600)
