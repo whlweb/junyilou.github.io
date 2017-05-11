@@ -25,7 +25,7 @@ def home():
 		storename = storelist[i].replace("*", "").replace("#", "").replace("@", "")
 		print "Checking web alias '" + storename + "' in region code '" + regionCode + "'."
 		try: html = requests.get('https://www.apple.com/' + regionCode + '/retail/' + storename + '/').text
-		except requests.exceptions.RequestException as re: html = ""; print storename + "returned python requests exceptions:", re
+		except requests.exceptions.RequestException as re: html = ""; print "-- " + storename + " returned python requests exceptions: --\n", re
 		jcount = html.count('@type": "Event'); noShow = False
 		if jcount > 0:
 			orgSource = html.replace("\n", "").replace("	", "")
