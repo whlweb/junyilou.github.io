@@ -38,6 +38,8 @@ name.md - Apple 零售店编号和对应名称
 
 future.md - Apple 零售店未来计划
 
+url.md - Today_IFTTT.py 依赖的下载文件列表，Apple 在存储零售店活动信息时，即使文件不同，但每个城市所有零售店使用文件的内容完全一致。如中国重庆有三家零售店，Apple 解放碑和 Apple 重庆北城天街使用的文件分别为 .../jiefangbei.json 和 .../paradisewalkchongqing.json 但实则完全相同，本列表选择了所有有 Apple Store 城市中的其中一架店作为下载文件
+
 ./Previous
 ==========
 kuaidi20161210.wflow - 旧版本，请访问 [Workflow 通知中心查快递 4](http://matrix.sspai.com/p/d384dd60) 了解。

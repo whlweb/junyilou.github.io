@@ -10,13 +10,12 @@ Unknown:
 694 Taiwan
 
 Confirmed:
-[Confirmed] 531 Ningbo
-[Confirmed] 617 Changsha
+[Confirmed] 531 Ningbo - China
+[Confirmed] 617 Changsha - China
 [Confirmed] 667 Piazza Liberty - Milan
-[Confirmed] 669 Orchard Road - Singapore
 [Confirmed] 687 Vienna
 [Confirmed] 692 Seoul - South Korea
-[Confirmed] 713 Taipei
+[Confirmed] 713 Taipei - Taiwan(China)
 
 Canceled:
 [Canceled] 306 Qianmen - Beijing
