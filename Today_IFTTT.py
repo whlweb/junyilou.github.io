@@ -1,6 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, time, datetime, urllib2, sys
-import simplejson as json
+import os, time, datetime, urllib2, sys, json
 filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riverside66tianjin',
 			'parc66jinan', 'mixcqingdao', 'parccentral', 'holidayplazashenzhen', 'mixcnanning',
 			'nanjingist', 'center66wuxi', 'mixczhengzhou', 'westlake', 'xiamenlifestylecenter',
@@ -9,7 +8,7 @@ cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛'
 			'郑州', '杭州', '厦门', '福州', '大连', '沈阳', '重庆', '香港特别行政区', '澳门特别行政区']
 def home():
 	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now(); rpath = os.path.expanduser('~') + "/Retail/"
-	os.system("rm " + rpath + "*.json"); os.system("wget –no-check-certificate -t 0 -T 3 -P " + rpath + " -i " + rpath + "url.md"); os.system("clear")
+	os.system("rm " + rpath + "*.json"); os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate -i " + rpath + "url.md"); os.system("clear")
 	print nowDatetime.strftime("%Y-%m-%d %H:%M:%S") + " 的检查结果:"
 	for i in range(0, len(filename)):
 		r = open(rpath + filename[i] + ".json"); raw = r.read(); r.close(); rJson = json.loads(raw)["courses"]
@@ -30,5 +29,5 @@ def home():
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
 while True:
-	home(); os.system("rm " + rpath + "*.json")
+	home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")
 	print "Sleeping, interval will be 12 hrs."; time.sleep(43200) #12 hrs
