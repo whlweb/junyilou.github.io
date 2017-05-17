@@ -20,11 +20,15 @@ RetailID_IFTTT.py - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推�
 
 ![截图](/bkP/retailid.jpg)
 
-Event_IFTTT.py - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具。
+Event_IFTTT.py - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
 
 ![截图](/bkP/event.jpg)
 
-* 请注意，私人 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用。
+Today_IFTTT.py - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具，你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。
+
+![截图](/bkP/todayatapple.jpg)
+
+* 请注意，私人 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。
 
 Markdown
 ===========
