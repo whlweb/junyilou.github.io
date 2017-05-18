@@ -28,7 +28,7 @@ def down(rtl):
 		reload(sys); sys.setdefaultencoding('utf-8')
 		pushRaw = "零售店 - Apple " + storejson[0][rtl] + " 更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB."
 		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '", "value2":"' 
-			   + dieter + "/16_9/" + spr + '"}' + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x");
+			   + dieter + "/16_9/" + spr + '"}' + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x");
 		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa"); print
 		# GitHub users please notice: IFTTT key only uses for private.
