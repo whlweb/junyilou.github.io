@@ -19,11 +19,12 @@ def down(rtl):
 	nameopen.close()
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize and newsize > 512000:
-		fb = open(rpath + "List.md")
-		newlist = fb.read().replace((rtl + ","), ""); fb.close()
-		fc = open(rpath + "List.md", "w")
-		fc.write(newlist); fc.close()
+	if newsize != oldsize:
+		if newsize > 1024000:
+			fb = open(rpath + "List.md")
+			newlist = fb.read().replace((rtl + ","), ""); fb.close()
+			fc = open(rpath + "List.md", "w")
+			fc.write(newlist); fc.close()
 		reload(sys); sys.setdefaultencoding('utf-8')
 		pushRaw = "零售店图册 - Apple " + storejson[0][rtl] + " 刚刚获得了更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB，访问 Apple 官网了解更多。"
 #		app = App(appid = "58e64646a4c48abbdd14b36c", secret = "0480f2c86128ba527b520053bab047a8")
