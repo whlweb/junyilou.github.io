@@ -488,6 +488,7 @@
     "648": "济南恒隆广场", 
     "650": "Summerlin", 
     "654": "World Trade Center", 
+    "667": "Piazza Liberty",
     "669": "Orchard Road",
     "670": "昆明", 
     "672": "Galaxy Macau", 
