@@ -19,7 +19,7 @@ def down(rtl):
 	nameopen.close()
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize:
+	if newsize != oldsize and newsize > 1:
 		if newsize > 1024000:
 			fb = open(rpath + "List.md")
 			newlist = fb.read().replace((rtl + ","), ""); fb.close()

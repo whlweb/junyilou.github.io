@@ -6,6 +6,8 @@ filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riversid
 			'thaihotplaza', 'olympia66dalian', 'zhongjiejoycity', 'jiefangbei', 'ifcmall', 'galaxymacau']
 cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛', '广州', '深圳', '南宁', '南京', '无锡',
 			'郑州', '杭州', '厦门', '福州', '大连', '沈阳', '重庆', '香港特别行政区', '澳门特别行政区']
+checksum = list(range(21))
+for c in range(0, 21): checksum[c] = 0
 def home():
 	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now(); rpath = os.path.expanduser('~') + "/Retail/"
 	os.system("rm " + rpath + "*.json"); os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate -i " + rpath + "url.md"); os.system("clear")
@@ -24,10 +26,12 @@ def home():
 					os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushAns 
 							   + '", "value2":"' + singleURL + '"}' + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 				# GitHub users please notice: IFTTT Key only uses for private.
-				wAns = wAns + singleID + ", "; wCount += 1
+				wAns = wAns + singleID + ", "; wCount += 1; checksum[i] += 1
 	if wCount > 0:
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
+	for j in range(0, 21):
+		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 while True:
 	home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")
 	print "Sleeping, interval will be 12 hrs."; time.sleep(43200) #12 hrs

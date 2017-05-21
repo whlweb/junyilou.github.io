@@ -63,8 +63,9 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
-					end = "快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent; end = end.replace("(点击查询电话)", "")
-					if noShow == False: pushbots()
+					end = "快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent
+					end = end.replace("(点击查询电话)", "").replace("( ", "(").replace(" )", ")")
+					if noShow == False: pushbots(end)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])

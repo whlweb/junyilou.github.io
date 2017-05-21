@@ -20,6 +20,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 该文件将读取 ~/pid.txt 下的进程编号，运行 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 时该文件会自动创建，并通过 Linux 信号 SIGUSR0 和 SIGUSR1 传递二进制信号，首先将快递单号转换为二进制。并发送信号交由运行中的 Python 分析。这将使 0 字头的快递单号失效，但现实中使用 0 字快递单的只有顺丰快捷下单服务，你可以重新运行 Kuaidi_IFTTT.py 并在参数中添加，因为该方法使用了 raw_input()。
 
+如果没有 ~/pid.txt，它将自动用 screen 创建一个名为 jdk 的新窗体并运行 Kuaidi_IFTTT.py，这将使得你只需要运行这条 Python 它将自动判断是向已有进程添加，还是创建新进程。
 
 [RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具，这一文件仅供在个人电脑执行，需要超过 2GB 的本地文件支持，对 GitHub 用户该文件仅供参考代码。
 
