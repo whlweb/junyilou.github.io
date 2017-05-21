@@ -8,6 +8,10 @@ kuaidi20170105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，
 
 Python
 ===========
+请注意，私人 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。
+
+使用有关 IFTTT 的 Python 之前，请先将代码中 dJ4B3uIsxy 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。
+
 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 基于 IFTTT Maker 的快递实时推送工具，运行该 Python 需要给予参数，在后面直接跟运单号码即可，如：
 ````bash
 python Kuaidi_IFTTT.py 600316811932 199217929998
@@ -39,8 +43,6 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。这条 Python 可以帮助你找到中国 Apple Store Today at Apple 项目的活动信息，只会输出有 Apple 特邀嘉宾的活动，例如 与卢根一起行走重庆 此类艺术家活动。它需要在 ~/Retail/ 下有一个文件 Event.md ，可以为空，用来记录 ID 以便确定每次检查到的新活动是不是已经推送过。
 
 ![截图](/bkP/todayatapple.jpg)
-
-* 请注意，私人 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。
 
 Markdown
 ===========
