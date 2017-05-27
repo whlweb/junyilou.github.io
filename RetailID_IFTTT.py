@@ -39,9 +39,11 @@ rpath = os.path.expanduser('~') + "/Retail/"
 sbn = rpath + "R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 while True:
-	st = open(rpath + "List.md");
-	line = st.read(); st.close() 
+	st = open(rpath + "List.md")
+	line = st.read(); st.close()
 	for j in range (0, line.count(",")):
-		rtl = (line.split(","))[j]
-		down(rtl)
-	print "Sleeping, interval will be 1 hr."; time.sleep(3600)
+		down(line.split(",")[j])
+		print "Sleeping, interval will be 1 hr."
+		if line.count(",") == 0: break
+		time.sleep(3600)
+	if line.count(",") == 0: break
