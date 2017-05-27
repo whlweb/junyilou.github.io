@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-import sys, json, urllib2, time, datetime, os, signal
-arg = signCheck = siging = brew = tti = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
+import sys, json, urllib2, time, datetime, os, signal, exceptions
+arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a, b): global binvar; binvar += "0"
 def user2(a, b): global binvar; binvar += "1"
@@ -31,22 +31,27 @@ def pushbots(pushRaw):
 	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
-def home(readid):
-	linetime = "N/A"; noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"
-	if os.path.isfile(idt):
-		dtRead = open(idt); dt = dtRead.read()
-		if dt != "":
-			orgCounter = int(dt.split(", ")[0])
-			linetime = dt.split(", ")[1]
-		dtRead.close()
-	else:
-		os.system("cd >" + idt); es = "[新增]"
-	urla = "https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid; trya = pytry(urla)
-	if trya != "False": countp = trya.count("comCode")
-	else: countp = 1
-	if (countp - 1):
-		comp = json.loads(trya)["auto"][0]["comCode"]
+def autocomp(readid):
+	aTry = pytry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
+	if aTry != "False": 
+		countp = aTry.count("comCode")
+		if countp >= 1: return json.loads(aTry)["auto"][0]["comCode"]
+		else: return "no"
+def home(readid, forTime):
+	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"; comp = "auto"; linetime = "N/A"
+	if not os.path.isfile(idt): os.system("cd >" + idt); es = "[新增]"
+	dtRead = open(idt); dt = dtRead.read()
+	if len(dt) > 2:
+		comp = dt.split(", ")[0]
+		try: orgCounter = int(dt.split(", ")[1])
+		except (IndexError, exceptions.ValueError): pass
+		try: linetime = dt.split(", ")[2]
+		except (IndexError, exceptions.ValueError): pass
+	dtRead.close()
+	if comp == "auto": comp = autocomp(readid)
+	if comp != "no":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = pytry(urlb)
+		if forTime == 1: print "Starting in readid " + readid + " in company code '" + comp + "'."
 		if tryb != "False":
 			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%m月%d日")
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
@@ -58,19 +63,18 @@ def home(readid):
 					fTime = time.strftime("%-m月%-d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 					if linetime.count(fTime) > 0: noShow = True
 					reload(sys); sys.setdefaultencoding('utf-8')
-					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")")
+					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")").replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
 					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收") + fContent.count("取件")
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
-					fileRefresh = open(idt, 'w'); fileRefresh.write(str(maxnum) + ", " + fTime); fileRefresh.close()
+					fileRefresh = open(idt, 'w'); fileRefresh.write(comp + ", " + str(maxnum) + ", " + fTime); fileRefresh.close()
 					end = "快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent
-					end = end.replace("(点击查询电话)", "").replace("( ", "(").replace(" )", ")")
 					if noShow == False: pushbots(end)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
 			else: blanker(readid, "returned code " + ansj["status"])
 		else: blanker(readid, "has web connect error")
-	else: blanker(readid, "returned no auto-company")
+	else: blanker(readid, "no custom or auto company")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
 TimeInterval = 600 #int(sys.argv[1]) * 60
@@ -82,8 +86,8 @@ while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
 		for n in range(1, arg + 1): #修改sys.argv时
-			readid = argv[n]
-			if readid != "-": stat = home(readid)
+			readid = argv[n]; forTime += 1
+			if readid != "-": stat = home(readid, forTime)
 			else: stat = 0
 			if stat:
 				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
