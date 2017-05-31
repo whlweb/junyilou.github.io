@@ -35,9 +35,10 @@ def autocomp(readid):
 	aTry = pytry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
 	if aTry != "False": 
 		countp = aTry.count("comCode")
-		if countp >= 1: return json.loads(aTry)["auto"][0]["comCode"]
-		else: return "no"
-def home(readid, forTime):
+		if countp >= 2: return json.loads(aTry)["auto"][0]["comCode"]
+		else: return "unknown"
+	else: return "http"
+def home(readid):
 	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"; comp = "auto"; linetime = "N/A"
 	if not os.path.isfile(idt): os.system("cd >" + idt); es = "[新增]"
 	dtRead = open(idt); dt = dtRead.read()
@@ -49,9 +50,8 @@ def home(readid, forTime):
 		except (IndexError, exceptions.ValueError): pass
 	dtRead.close()
 	if comp == "auto": comp = autocomp(readid)
-	if comp != "no":
+	if comp != "unknown":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = pytry(urlb)
-		if forTime == 1: print "Starting in readid " + readid + " in company code '" + comp + "'."
 		if tryb != "False":
 			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%m月%d日")
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
@@ -72,9 +72,13 @@ def home(readid, forTime):
 					if noShow == False: pushbots(end)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
-			else: blanker(readid, "returned code " + ansj["status"])
-		else: blanker(readid, "has web connect error")
-	else: blanker(readid, "no custom or auto company")
+			else: 
+				blanker(readid, "returned code " + ansj["status"])
+				if ansj["status"] == "400": print "[" + readid + " is currently using comp code '" + comp + "'.]"
+		else: blanker(readid, "failed connecting net")
+	else: 
+		blanker(readid, "without company")
+		print "[" + readid + " is currently using comp code '" + comp + "'.]"
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
 TimeInterval = 600 #int(sys.argv[1]) * 60
@@ -86,8 +90,8 @@ while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
 		for n in range(1, arg + 1): #修改sys.argv时
-			readid = argv[n]; forTime += 1
-			if readid != "-": stat = home(readid, forTime)
+			readid = argv[n]
+			if readid != "-": stat = home(readid)
 			else: stat = 0
 			if stat:
 				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
