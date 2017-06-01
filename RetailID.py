@@ -33,5 +33,5 @@ else:
 	if sys.argv[1] == "check":
 		for i in range(1, 706): down("%03d" % i, "check")
 	else: 
-		for j in range(1, arg + 1):	down(sys.argv[j], "")
+		for j in range(1, arg + 1): down(sys.argv[j], "")
 print
