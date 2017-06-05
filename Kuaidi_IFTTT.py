@@ -75,7 +75,7 @@ def home(readid):
 			else: 
 				blanker(readid, "returned code " + ansj["status"])
 				if ansj["status"] == "400": print "[" + readid + " is currently using comp code '" + comp + "'.]"
-		else: blanker(readid, "failed connecting net")
+		else: blanker(readid, "failed connect")
 	else: 
 		blanker(readid, "without company")
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
