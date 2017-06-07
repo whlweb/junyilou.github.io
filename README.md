@@ -32,9 +32,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 [RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具，这一文件仅供在个人电脑执行，需要超过 2GB 的本地文件支持，对 GitHub 用户该文件仅供参考代码。
 
-[RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。该项目用于自动刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
-
-运行本文件需要在 ~/Retail/ 下有一个 List.md，可以为空，在内部填写 Apple Retail 代号（在 [name.md](name.md) 可以查看）并以无空格逗号分隔，如 669,559。运行时将自动读取该文件，如果刷新到的图片超过一定大小，Python 认为 Apple 已经最终确定该零售店图片，并自动将 List.md 中的对应店号删去。
+[RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
 
 ![截图](/bkP/retailid.jpg)
 
