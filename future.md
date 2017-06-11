@@ -15,7 +15,6 @@ Confirmed:
 [Confirmed] 667 Piazza Liberty - Milan
 [Confirmed] 687 Vienna
 [Confirmed] 692 Seoul - South Korea
-[Confirmed] 713 Taipei - Taiwan(China)
 
 Canceled:
 [Canceled] 306 Qianmen - Beijing

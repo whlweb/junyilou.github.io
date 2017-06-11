@@ -29,7 +29,7 @@ for m in sys.argv[1:]: arg += 1
 if sys.argv[1] == "check":
 	print "Start checking in platform " + platform.platform()
 	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-	for i in range(1, 706): down("%03d" % i, "check")
+	for i in range(1, 714): down("%03d" % i, "check")
 	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\nAnswer: " + cans
 else: 
 	for j in range(1, arg + 1): down(sys.argv[j], "")

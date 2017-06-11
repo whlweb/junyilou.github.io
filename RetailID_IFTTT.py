@@ -29,6 +29,6 @@ dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 while True:
 	os.system("clear")
-	for j in range(1, 706): down("%03d" % j)
-	print "Sleeping, interval will be 1 hr."; time.sleep(3600)
+	for j in range(1, 714): down("%03d" % j)
+	print "Sleeping, interval will be 6 hr."; time.sleep(21600)
 print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
