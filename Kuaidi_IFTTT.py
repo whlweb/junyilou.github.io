@@ -101,4 +101,5 @@ while True:
 	if checkbrew == (brew): break #修改sys.argv时
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt #修改sys.argv时
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl #修改sys.argv时
+if brew > 0: pushbots("[退出提示]所有 " + str(brew) + " 个快递单已经被识别为签收")
