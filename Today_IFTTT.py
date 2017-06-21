@@ -6,8 +6,9 @@ filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riversid
 			'thaihotplaza', 'olympia66dalian', 'zhongjiejoycity', 'jiefangbei', 'ifcmall', 'galaxymacau', 'taipei101']
 cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛', '广州', '深圳', '南宁', '南京', '无锡',
 			'郑州', '杭州', '厦门', '福州', '大连', '沈阳', '重庆', '香港特别行政区', '澳门特别行政区', '台湾']
-checksum = list(range(21))
-for c in range(0, 21): checksum[c] = 0
+# 添加城市需要修改 22 数字，或者在下次修改代码时直接改用 len 函数
+checksum = list(range(22))
+for c in range(0, 22): checksum[c] = 0
 def home():
 	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now(); rpath = os.path.expanduser('~') + "/Retail/"
 	os.system("rm " + rpath + "*.json"); os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate -i " + rpath + "url.md"); os.system("clear")
@@ -30,7 +31,7 @@ def home():
 	if wCount > 0:
 		fc = open(rpath + "Event.md", "w")
 		fc.write(wAns); fc.close()
-	for j in range(0, 21):
+	for j in range(0, 22):
 		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 while True:
 	home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")

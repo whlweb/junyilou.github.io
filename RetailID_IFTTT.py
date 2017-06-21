@@ -32,5 +32,5 @@ while True:
 	#os.system("clear")
 	#for j in range(713, 714): down("%03d" % j)
 	for j in range(1, arg + 1): down(sys.argv[j])
-	print "Sleeping, interval will be 6 hr."; time.sleep(21600)
+	print "Sleeping, interval will be 2hr."; time.sleep(7200)
 print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
