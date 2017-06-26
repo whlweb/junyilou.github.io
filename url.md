@@ -19,3 +19,4 @@ https://www.apple.com/cn/today/static/data/store/zhongjiejoycity.json
 https://www.apple.com/cn/today/static/data/store/jiefangbei.json
 https://www.apple.com/hk/today/static/data/store/ifcmall.json
 https://www.apple.com/mo/today/static/data/store/galaxymacau.json
+https://www.apple.com/tw/today/static/data/store/taipei101.json
