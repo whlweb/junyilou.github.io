@@ -27,13 +27,13 @@ def pytry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
 	else: return response.read()
-def pushbots(pushRaw): 
-	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
+def pushbots(pushRaw):
+	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
 def autocomp(readid):
 	aTry = pytry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
-	if aTry != "False": 
+	if aTry != "False":
 		countp = aTry.count("comCode")
 		if countp >= 2: return json.loads(aTry)["auto"][0]["comCode"]
 		else: return "unknown"
@@ -72,11 +72,11 @@ def home(readid):
 					if noShow == False: pushbots(end)
 					else: blanker(readid, "got noShow signal")
 				else: blanker(readid, "has no update")
-			else: 
+			else:
 				blanker(readid, "returned code " + ansj["status"])
 				if ansj["status"] == "400": print "[" + readid + " is currently using comp code '" + comp + "'.]"
 		else: blanker(readid, "failed connect")
-	else: 
+	else:
 		blanker(readid, "without company")
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
 	global tti; tti += 1; return exsc
@@ -85,7 +85,7 @@ TimeInterval = 600 #int(sys.argv[1]) * 60
 FileLocation = os.path.expanduser('~') + "/" #sys.argv[2]
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl #修改sys.argv时
-os.system("rm -f " + FileLocation + "pid.txt&&cd >" + FileLocation + "pid.txt"); pWrite = open((FileLocation + "pid.txt"), 'w'); pWrite.write(str(os.getpid())); pWrite.close() 
+os.system("rm -f " + FileLocation + "pid.txt&&cd >" + FileLocation + "pid.txt"); pWrite = open((FileLocation + "pid.txt"), 'w'); pWrite.write(str(os.getpid())); pWrite.close()
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
@@ -102,4 +102,4 @@ while True:
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl #修改sys.argv时
-if brew > 0: pushbots("[退出提示]所有 " + str(brew) + " 个快递单已经被识别为签收")
+if brew > 0: pushbots("快递查询 - [退出提示] 所有 " + str(brew) + " 个快递单已经被识别为签收")

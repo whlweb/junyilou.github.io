@@ -3,7 +3,7 @@ from time import sleep
 pRead = open(os.path.expanduser('~') + "/pid.txt"); pid = pRead.read()
 bint = bin(int(sys.argv[1])).replace("0b",""); lbn = len(bint)
 try: os.kill(int(pid),signal.SIGCONT)
-except OSError: 
+except OSError:
 	print "No such progress featureing PID " + pid; sleep(0.7)
 	os.system('screen -S jdk -X stuff "exit\n"'); os.system("screen -dmS jdk")
 	os.system('screen -S jdk -X stuff "python ~/junyilou.github.io/Kuaidi_IFTTT.py ' + sys.argv[1] + '\n"')
@@ -17,3 +17,4 @@ else:
 		sleep(0.3)
 	os.kill(int(pid),signal.SIGTERM)
 	print "Sent. Run screen -r to check it."
+os.system("screen -r jdk")
