@@ -34,6 +34,13 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
 
+使用时在后面接 Retail 编号（在 [name.md](name.md) 可以找到），如：
+````bash
+python RetailID_IFTTT.py 713
+````
+
+由于 request 库无法较好的管理超时问题，为避免后台运行卡死，枚举店号 001-713 现已被注释。
+
 ![截图](/bkP/retailid.jpg)
 
 [Event_IFTTT.py](Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代，请参阅下一段。
@@ -46,6 +53,8 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 ![截图](/bkP/taa.jpg)
 
+[Jobs_IFTTT.py](Jobs_IFTTT.py) - 基于 IFTTT Maker 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件（可以用代码中的 down() 来下载），并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
+
 Markdown
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 将重定向至此。
@@ -53,6 +62,8 @@ Markdown
 [name.md](name.md) - Apple 零售店编号和对应名称。
 
 [future.md](future.md) - Apple 零售店未来计划。
+
+[states.json](states.json) - Apple 官网的中国省份列表，该列表可能会被 Apple 官方更新。
 
 [url.md](url.md) - 这是 [Today_IFTTT.py](Today_IFTTT.py) 依赖的下载文件列表，Apple 在存储零售店活动信息时，即使文件不同，但每个城市所有零售店使用文件的内容完全一致。如中国重庆有三家零售店，Apple 解放碑和 Apple 重庆北城天街使用的文件分别为 [https://www.apple.com/cn/.../jiefangbei.json](https://www.apple.com/cn/today/static/data/store/jiefangbei.json) 和 [https://www.apple.com/cn/.../paradisewalkchongqing.json](https://www.apple.com/cn/today/static/data/store/paradisewalkchongqing.json) 但实则完全相同，本列表选择了所有有 Apple Store 城市中的其中一架店作为下载文件。
 
