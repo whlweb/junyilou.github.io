@@ -1,6 +1,6 @@
 ![截图](/HomeIssue/1-1.png)
 
-![截图](/HomeIssue/1-2.png)
+![截图](/HomeIssue/1-2-2.png)
 
 ——
 
