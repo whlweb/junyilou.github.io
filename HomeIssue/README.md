@@ -1,32 +1,56 @@
-![截图](/HomeIssue/1-1.tiff)
-![截图](/HomeIssue/1-2.tiff)
+![截图](/HomeIssue/1-1.png)
+![截图](/HomeIssue/1-2.png)
+
 ——
-![截图](/HomeIssue/2-1.tiff)
-![截图](/HomeIssue/2-2.tiff)
+
+![截图](/HomeIssue/2-1.png)
+![截图](/HomeIssue/2-2.png)
+
 ——
-![截图](/HomeIssue/3-1.tiff)
-![截图](/HomeIssue/3-2.tiff)
+
+![截图](/HomeIssue/3-1.png)
+![截图](/HomeIssue/3-2.png)
+
 以及
-![截图](/HomeIssue/3-3.tiff)
-![截图](/HomeIssue/3-4.tiff)
+
+![截图](/HomeIssue/3-3.png)
+![截图](/HomeIssue/3-4.png)
+
 这两个是我说的：
+
 （1）Node.js 的版本问题，可以表明它是复制的现成教程（不一定是我的）
+
 （2）—unsafe-perm 是半错误写法，这一点我没有看到在其他教程出现错误，而我是 3 月写文章时就出了错，近期才更正，似乎可以表明是抄的我
+
 ——
-![截图](/HomeIssue/4-1.tiff)
-![截图](/HomeIssue/4-2.tiff)
+
+![截图](/HomeIssue/4-1.png)
+![截图](/HomeIssue/4-2.png)
+
 233 是好笑的意思，62 是杭州方言盝儿谐音，写文章时刚刚学到这个词随便写上去了，666 是很厉害的意思
+
 233 没改我的？78 难道是不可描述，123 大概就是随便打的
+
 ——
-![截图](/HomeIssue/5-1.tiff)
-![截图](/HomeIssue/5-2.tiff)
+
+![截图](/HomeIssue/5-1.png)
+![截图](/HomeIssue/5-2.png)
+
 都使用了不是最佳解决方案的办法，并且也使用了「解决」这个词（有点刁钻哈哈哈
+
 ——
+
 经确认 他用的 screen -S hb 这个「hb」是自己取的，虽然我也很喜欢用「hb」
+
 但是我在教程中使用的是 「homebdg」，视频教程中则是「hk」
-![截图](/HomeIssue/6-1.tiff)
+
+![截图](/HomeIssue/6-1.png)
 所以这个是我误解了
+
 ——
+
 另外除了这个问题的话原作者还有一个错误。
+
 以及他比我文章多出的（写入镜像、附加的远程桌面）他使用的办法都是非常复杂并且有非常简单的办法可以替代的，这两个我可以评论跟他说。
+
 我看到首页似乎已经撤下，感谢。
