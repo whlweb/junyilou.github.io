@@ -1,19 +1,23 @@
 ![截图](/HomeIssue/1-1.png)
+
 ![截图](/HomeIssue/1-2.png)
 
 ——
 
 ![截图](/HomeIssue/2-1.png)
+
 ![截图](/HomeIssue/2-2.png)
 
 ——
 
 ![截图](/HomeIssue/3-1.png)
+
 ![截图](/HomeIssue/3-2.png)
 
 以及
 
 ![截图](/HomeIssue/3-3.png)
+
 ![截图](/HomeIssue/3-4.png)
 
 这两个是我说的：
@@ -25,6 +29,7 @@
 ——
 
 ![截图](/HomeIssue/4-1.png)
+
 ![截图](/HomeIssue/4-2.png)
 
 233 是好笑的意思，62 是杭州方言盝儿谐音，写文章时刚刚学到这个词随便写上去了，666 是很厉害的意思
@@ -34,6 +39,7 @@
 ——
 
 ![截图](/HomeIssue/5-1.png)
+
 ![截图](/HomeIssue/5-2.png)
 
 都使用了不是最佳解决方案的办法，并且也使用了「解决」这个词（有点刁钻哈哈哈
@@ -44,7 +50,8 @@
 
 但是我在教程中使用的是 「homebdg」，视频教程中则是「hk」
 
-![截图](/HomeIssue/6-1.png)
+![截图](/HomeIssue/6.png)
+
 所以这个是我误解了
 
 ——
