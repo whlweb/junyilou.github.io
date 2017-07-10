@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, json, filecmp, datetime, time
+import os, json, filecmp
 tilde = os.path.expanduser('~') + "/Retail/"; preDir = tilde + "Jobs/"; uPre = "https://jobs.apple.com/cn/location"
 
 def wget(post, url, savename):
@@ -38,23 +38,23 @@ def compare():
 	for files in os.walk(preDir):
 		for l in range(0, len(files[2])):
 			oldLoc = preDir + files[2][l]; newLoc = oldLoc.replace("/Jobs", ""); p = ""
-			if oldLoc.count("._") == 0: #隐藏文件
+			if files[2][l][0] != ".": #隐藏文件
 				if filecmp.cmp(oldLoc, newLoc) == False:
+					print oldLoc, newLoc
 					oldOpen = open(oldLoc); oldJson = len(json.loads(oldOpen.read())); oldOpen.close()
 					newOpen = open(newLoc); newJson = len(json.loads(newOpen.read())); newOpen.close()
 					if oldJson < newJson:
-						p = dictionary(os.path.basename(oldLoc)) + "的招聘文件现在有 " + str(newJson) + " 个项目, 其原本只有 " + str(oldJson) + " 个。"
+						p = "现在有 " + str(newJson) + " 个项目, 其原本只有 " + str(oldJson) + " 个。"
 					if oldJson == newJson:
-						p = dictionary(os.path.basename(oldLoc)) + "的文招聘件现在有文字更新，其项目数量没有改变。"
+						p = "现在有文字更新，其项目数量没有改变，可能代码发生修改，或地点名字更加确定。"
 					if oldJson > newJson and newJson > 0:
-						p = dictionary(os.path.basename(oldLoc)) + "的招聘文件表明有大于等于一个地址不再招聘。"
-					p = "招贤纳才 - Apple 在" + p; print p
-	if p == "": print datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " 没有检测到更新。"
+						p = "表明有大于等于一个地址不再招聘，前往 Apple 官网确认。"
+					p = "招贤纳才 - Apple 在" + dictionary(os.path.basename(oldLoc)) + "的招聘文件" + p; print p
+	if p == "": "Nothing new."
 	else: os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + p + '"}'
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	os.system("rm " + preDir + "*.json");
 	os.system("mv " + tilde + "cities*.json " + preDir)
 	os.system("mv " + tilde + "location*.json " + preDir)
 
-while True:
-	down(); compare(); print "今天的刷新检测已经完成，Python 将休眠 24 小时。"; time.sleep(3600*24)
+down(); compare()
