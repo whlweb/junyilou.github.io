@@ -43,7 +43,7 @@ python RetailID_IFTTT.py 713
 
 由于 request 库无法较好的管理超时问题，为避免后台运行卡死，枚举店号现已被注释。虽然说它实在方便，为了减轻负担，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
 
-![截图](/bkP/hkjournal.jpg)
+![截图](/bkP/hkjournal.png)
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
