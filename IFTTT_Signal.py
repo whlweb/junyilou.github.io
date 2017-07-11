@@ -1,5 +1,6 @@
 import os, signal, sys
 from time import sleep
+
 pRead = open(os.path.expanduser('~') + "/pid.txt"); pid = pRead.read()
 bint = bin(int(sys.argv[1])).replace("0b",""); lbn = len(bint)
 try: os.kill(int(pid),signal.SIGCONT)

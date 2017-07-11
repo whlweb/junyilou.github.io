@@ -1,5 +1,5 @@
 import os, sys, fileinput, urllib2, platform, time
-cans = ""
+
 def filesize(url): 
     opener = urllib2.build_opener()
     request = urllib2.Request(url)
@@ -7,6 +7,7 @@ def filesize(url):
     try: response = opener.open(request); response.read()
     except Exception, e: return 0
     else: return int(dict(response.headers).get('content-length', 0))
+
 def down(rtl, argc):
 	global cans; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png" ; exi = os.path.isfile(sx); newsize = filesize(dieter + "/16_9" + spr)
 	if exi: oldsize = os.path.getsize(sx)
@@ -21,7 +22,8 @@ def down(rtl, argc):
 	else: 
 		if argc != "check": print "Photos of R" + rtl + " had been already downloaded or not ready yet."
 		else: print rtl
-arg = 0; rpath = ""
+
+arg = 0; rpath = ""; cans = ""
 if "Linux" in platform.platform(): rpath = "/home/pi/Retail/"
 if "Darwin" in platform.platform(): rpath = "/Users/Junyi_Lou/Downloads/Apple/Retail/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store"
@@ -33,4 +35,4 @@ if sys.argv[1] == "check":
 	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\nAnswer: " + cans
 else: 
 	for j in range(1, arg + 1): down(sys.argv[j], "")
-print
+print 

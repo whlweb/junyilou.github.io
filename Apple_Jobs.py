@@ -53,6 +53,7 @@ def compare():
 	if p == "": "Nothing new."
 	else: os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + p + '"}'
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
+	# GitHub users please notice: IFTTT Key only uses for private.
 	os.system("rm " + preDir + "*.json");
 	os.system("mv " + tilde + "cities*.json " + preDir)
 	os.system("mv " + tilde + "location*.json " + preDir)

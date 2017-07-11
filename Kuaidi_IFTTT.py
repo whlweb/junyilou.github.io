@@ -81,25 +81,25 @@ def home(readid):
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg;
-TimeInterval = 600 #int(sys.argv[1]) * 60
-FileLocation = os.path.expanduser('~') + "/" #sys.argv[2]
+TimeInterval = 600 #10 minutes
+FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
-print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl #修改sys.argv时
+print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl
 os.system("rm -f " + FileLocation + "pid.txt&&cd >" + FileLocation + "pid.txt"); pWrite = open((FileLocation + "pid.txt"), 'w'); pWrite.write(str(os.getpid())); pWrite.close()
 while True:
 	if not siging:
 		checkbrew = str(argv).count("-")
-		for n in range(1, arg + 1): #修改sys.argv时
+		for n in range(1, arg + 1): 
 			readid = argv[n]
 			if readid != "-": stat = home(readid)
 			else: stat = 0
 			if stat:
 				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
 				argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
-		if checkbrew == (brew): break #修改sys.argv时
+		if checkbrew == (brew): break
 		time.sleep(TimeInterval)
-	if checkbrew == (brew): break #修改sys.argv时
+	if checkbrew == (brew): break
 for ntm in range (1, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl #修改sys.argv时
+print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl
 if brew > 0: pushbots("快递查询 - [退出提示] 所有 " + str(brew) + " 个快递单已经被识别为签收")

@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import os, sys, urllib2, datetime, json, time
+
 def filesize(url):
 	opener = urllib2.build_opener()
 	request = urllib2.Request(url)
@@ -7,6 +8,7 @@ def filesize(url):
 	try: response = opener.open(request); response.read()
 	except Exception, e: return 0
 	else: return int(dict(response.headers).get('content-length', 0))
+
 def down(rtl, ps):
 	spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	exi = os.path.isfile(sx); newsize = filesize(dieter + "/16_9" + spr)
@@ -25,6 +27,7 @@ def down(rtl, ps):
 		# GitHub users please notice: IFTTT key only uses for private.
 		sys.argv[ps] = ""
 	else: print "Checked R" + rtl +" has no update, ignore."
+
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"; arg = 0
 sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

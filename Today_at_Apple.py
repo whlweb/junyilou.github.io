@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, time, datetime, urllib2, sys, json
+import os, datetime, urllib2, sys, json
 
 filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riverside66tianjin',
 			'parc66jinan', 'mixcqingdao', 'parccentral', 'holidayplazashenzhen', 'mixcnanning',
@@ -35,7 +35,5 @@ def home():
 	for j in range(0, 22):
 		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 
-while True:
-	home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")
-	os.system("cp /home/pi/junyilou.github.io/states.json /home/pi/Retail/") #与 Jobs_IFTTT.py 冲突
-	print "今天的刷新检测已经完成，Python 将休眠 24 小时。"; time.sleep(3600*24)
+home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")
+os.system("cp /home/pi/junyilou.github.io/states.json /home/pi/Retail/") #与 Jobs_IFTTT.py 冲突

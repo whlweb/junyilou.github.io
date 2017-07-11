@@ -43,13 +43,9 @@ python RetailID_IFTTT.py 713
 
 ![截图](/bkP/retailid.jpg)
 
-[Event_IFTTT.py](Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代，请参阅下一段。
+[Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
-![截图](/bkP/event.jpg)
-
-[Today_IFTTT.py](Today_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
-
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。这条 Python 可以帮助你找到中国 Apple Store Today at Apple 项目的活动信息，只会输出有 Apple 特邀嘉宾的活动，例如 与卢根一起行摄重庆 此类艺术家活动。它需要在 ~/Retail/ 下有一个文件 Event.md ，可以为空，用来记录 ID 以便确定每次检查到的新活动是不是已经推送过。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。这条 Python 可以帮助你找到中国 Apple Store Today at Apple 项目的活动信息，只会输出有 Apple 特邀嘉宾的活动，例如 与卢根一起行摄重庆 此类艺术家活动。它需要在 ~/Retail/ 下有一个文件 Event.md，可以为空，用来记录 ID 以便确定每次检查到的新活动是不是已经推送过。
 
 ![截图](/bkP/taa.jpg)
 
@@ -69,6 +65,10 @@ Markdown
 
 previous 文件夹
 ==========
+[Event_IFTTT.py](Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
+
+![截图](/bkP/event.jpg)
+
 kuaidi20161210.wflow - 旧版本，请访问 [Workflow 通知中心查快递 4](http://matrix.sspai.com/p/d384dd60) 了解。
 
 KuaidiUpdater - 上述文件的自动更新旗标文件。
