@@ -34,14 +34,16 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
 
+![截图](/bkP/retailid.jpg)
+
 使用时在后面接 Retail 编号（在 [name.md](name.md) 可以找到），如：
 ````bash
 python RetailID_IFTTT.py 713
 ````
 
-由于 request 库无法较好的管理超时问题，为避免后台运行卡死，枚举店号 001-713 现已被注释。
+由于 request 库无法较好的管理超时问题，为避免后台运行卡死，枚举店号现已被注释。虽然说它实在方便，为了减轻负担，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
 
-![截图](/bkP/retailid.jpg)
+![截图](/bkP/hkjournal.jpg)
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
