@@ -25,7 +25,11 @@ def down():
 	statesJson = json.loads(sOpen.read()); sOpen.close()
 	for s in range(0, len(statesJson)):
 		wget("countryCode=CHN&stateCode=" + str(statesJson[s]["id"]), uPre + "/cities.json", "cities" + str(s) + ".json")
-		lOpen = open(tilde + "cities" + str(s) + ".json"); lCount += len(json.loads(lOpen.read()))
+		lOpen = open(tilde + "cities" + str(s) + ".json")
+		if "<!DOCTYPE html>" in lOpen.read():
+			print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
+			os.system("rm " + preDir + "cities0.json"); exit()
+		else: lCount += len(json.loads(lOpen.read()))
 	citiesID = list(range(lCount))
 	for c in range(0, len(statesJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
