@@ -23,8 +23,9 @@ def down():
 	statesJson = json.loads(sOpen.read()); sOpen.close()
 	for s in range(0, len(statesJson)):
 		wget("countryCode=CHN&stateCode=" + str(statesJson[s]["id"]), uPre + "/cities.json", "cities" + str(s) + ".json")
+		if os.path.getsize(tilde + "cities" + str(s) + ".json") < 3:
+			dl_fix("cities" + str(s) + ".json", 0)
 		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read()
-		print lOpen.read()
 		if "<!DOCTYPE html>" in lRead:
 			print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
 			os.system("rm " + preDir + "cities0.json"); exit()
@@ -36,28 +37,24 @@ def down():
 		for g in range(0, len(citiesJson)):
 			citiesID = str(c) + "-" + str(g)
 			wget("countryCode=CHN&stateCode=" + str(statesJson[c]["id"]) + "&cityCode=" + citiesJson[g]["cityName"], uPre + ".json", "location" + citiesID + ".json")
+			if os.path.getsize(tilde + "location" + citiesID + ".json") < 3:
+				dl_fix("location" + citiesID + ".json", 0)
 
-def dl_fix(fileDir, fileName, byp):
-	if "location" in fileName:
-		byp += 1; print "location"
+def dl_fix(fileName, byp):
+	print "\n" + fileName + " is detected to be redownloaded."
 	if "cities" in fileName:
-		byp += 1; print "cities"
-	if byp == 0: return 0
+		byp += 1; rcID = int(fileName.replace("cities", "").replace(".json", ""))
+		sOpen = open(tilde + "states.json"); statesJson = json.loads(sOpen.read()); sOpen.close()
+		wget("countryCode=CHN&stateCode=" + str(statesJson[rcID]["id"]), uPre + "/cities.json", fileName)
+	if "location" in fileName:
+		byp += 1; lcIDB = int(fileName.replace("location", "").replace(".json", "").replace("-", "")[-1])
+		lcIDA = int(fileName.replace("location", "").replace(".json", "").replace("-", "").replace(str(lcIDB), ""))
+		rcOpen = open(tilde + "cities" + str(lcIDA) + ".json"); rcJson = json.loads(rcOpen.read()); rcOpen.close()
+		rsOpen = open(tilde + "states.json"); rsJson = json.loads(rsOpen.read()); rsOpen.close()
+		wget("countryCode=CHN&stateCode=" + str(rsJson[lcIDA]["id"]) + "&cityCode=" + rcJson[lcIDB]["cityName"], uPre + ".json", fileName)
+	if byp == 0: "Not a location or city file."
 
 def compare():
-	while True:
-		for files in os.walk(preDir.replace("Jobs/", "")):
-			cSum = 0
-			for l in range(0, len(files[2])):
-				if files[2][l][0] != "." and files[2][l][-5:] == ".json":
-					fixSize = os.path.getsize(preDir.replace("Jobs/", "") + files[2][l])
-					if fixSize < 3: 
-						dl_fix(preDir.replace("Jobs/", ""), files[2][l], 0)
-					else: 
-						cSum += 1
-				if cSum == len(Dict): break
-			if cSum == len(Dict): break
-		if cSum == len(Dict): break
 	for files in os.walk(preDir):
 		for l in range(0, len(files[2])):
 			oldLoc = preDir + files[2][l]; newLoc = oldLoc.replace("/Jobs", ""); p = ""
@@ -82,4 +79,4 @@ def delete():
 	os.system("mv " + tilde + "cities*.json " + preDir)
 	os.system("mv " + tilde + "location*.json " + preDir)
 
-compare()
+down(); compare()
