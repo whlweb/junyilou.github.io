@@ -1,6 +1,9 @@
 #-*- coding:utf-8 -*-
-import os, json, filecmp
-tilde = os.path.expanduser('~') + "/Retail/"; preDir = tilde + "Jobs/"; uPre = "https://jobs.apple.com/cn/location"
+import os, json, filecmp, platform
+
+if "Linux" in platform.platform(): tilde = os.path.expanduser('~') + "/Retail/"
+if "Darwin" in platform.platform(): tilde = rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
+preDir = tilde + "Jobs/"; uPre = "https://jobs.apple.com/cn/location"
 
 def wget(post, url, savename):
 	os.system('wget -t 0 -T 3 -O ' + tilde + savename + ' --no-check-certificate --post-data "' + post + '" ' + url)
@@ -60,9 +63,9 @@ def compare():
 			oldLoc = preDir + files[2][l]; newLoc = oldLoc.replace("/Jobs", ""); p = ""
 			if files[2][l][0] != "." and files[2][l][-5:] == ".json":
 				if filecmp.cmp(oldLoc, newLoc) == False:
-					print oldLoc, newLoc
 					oldOpen = open(oldLoc); oldJson = len(json.loads(oldOpen.read())); oldOpen.close()
 					newOpen = open(newLoc); newJson = len(json.loads(newOpen.read())); newOpen.close()
+					os.system("mv " + newLoc + " " + newLoc.replace(os.path.basename(newLoc), os.path.basename(newLoc).replace(".json", "") + "-1.json"))
 					if oldJson < newJson:
 						p = "现在有 " + str(newJson) + " 个项目, 其原本只有 " + str(oldJson) + " 个。"
 					if oldJson == newJson:
@@ -75,8 +78,7 @@ def compare():
 	delete()
 
 def delete():
-	os.system("rm " + preDir + "*.json");
-	os.system("mv " + tilde + "cities*.json " + preDir)
-	os.system("mv " + tilde + "location*.json " + preDir)
+	os.system("mv -f " + tilde + "cities*.json " + preDir)
+	os.system("mv -f " + tilde + "location*.json " + preDir)
 
 down(); compare()

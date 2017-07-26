@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, signal, exceptions
+
 arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
 
 def user1(a, b): global binvar; binvar += "0"
@@ -18,7 +19,7 @@ signal.signal(signal.SIGTERM, sig_end)
 
 def plut(pint):
 	if (pint - 1): plural = "s"
-	if not (pint - 1): plural = ""
+	else: plural = ""
 	return plural
 def blanker(bid, notice):
 	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

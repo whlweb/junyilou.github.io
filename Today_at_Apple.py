@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, datetime, urllib2, sys, json
+import os, datetime, urllib2, sys, json, platform
 
 filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riverside66tianjin',
 			'parc66jinan', 'mixcqingdao', 'parccentral', 'holidayplazashenzhen', 'mixcnanning',
@@ -9,9 +9,11 @@ cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛'
 			'郑州', '杭州', '厦门', '福州', '大连', '沈阳', '重庆', '香港特别行政区', '澳门特别行政区', '台湾']
 checksum = list(range(len(cityname)))
 for c in range(0, len(cityname)): checksum[c] = 0
+if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
+if "Darwin" in platform.platform(): rpath = rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 
 def home():
-	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now(); rpath = os.path.expanduser('~') + "/Retail/"
+	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now()
 	os.system("rm " + rpath + "*.json"); os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate -i " + rpath + "url.md"); os.system("clear")
 	print nowDatetime.strftime("%Y-%m-%d %H:%M:%S") + " 的检查结果:"
 	for i in range(0, len(filename)):
@@ -35,5 +37,5 @@ def home():
 	for j in range(0, 22):
 		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 
-home(); os.system("rm " + os.path.expanduser('~') + "/Retail/*.json")
+home(); os.system("rm " + rpath + "*.json")
 os.system("cp /home/pi/junyilou.github.io/states.json /home/pi/Retail/") #与 Jobs_IFTTT.py 冲突

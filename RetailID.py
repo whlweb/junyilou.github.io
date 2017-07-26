@@ -24,8 +24,8 @@ def down(rtl, argc):
 		else: print rtl
 
 arg = 0; rpath = ""; cans = ""
-if "Linux" in platform.platform(): rpath = "/home/pi/Retail/"
-if "Darwin" in platform.platform(): rpath = "/Users/Junyi_Lou/Downloads/Apple/Retail/"
+if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
+if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Retail/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 for m in sys.argv[1:]: arg += 1
 if sys.argv[1] == "check":
