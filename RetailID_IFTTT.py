@@ -20,9 +20,9 @@ def down(rtl, ps):
 		pushRaw = "零售店图册 - Apple " + storejson[0][rtl] + " 刚刚获得了更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB，访问 Apple 官网了解更多。"
 		if exi: os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous/"); exi = False
 		if not exi: os.system("wget -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
-		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
+		os.system('curl --connect-timeout 2 --retry 3 -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
-		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
+		os.system('curl --connect-timeout 2 --retry 3 -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa"); print
 		# GitHub users please notice: IFTTT key only uses for private.
 		sys.argv[ps] = ""

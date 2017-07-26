@@ -29,7 +29,7 @@ def pytry(tryurl):
 	except urllib2.URLError: return "False"
 	else: return response.read()
 def pushbots(pushRaw):
-	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
+	os.system('curl --connect-timeout 2 --retry 3 -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 	# GitHub users please notice: IFTTT key only uses for private.
 def autocomp(readid):
