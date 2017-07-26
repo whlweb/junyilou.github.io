@@ -38,4 +38,4 @@ def home():
 		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 
 home(); os.system("rm " + rpath + "*.json")
-os.system(os.path.expanduser('~') + "/junyilou.github.io/states.json " + rpath) #与 Jobs_IFTTT.py 冲突
+os.system("cp " + os.path.expanduser('~') + "/junyilou.github.io/states.json " + rpath) #与 Jobs_IFTTT.py 冲突
