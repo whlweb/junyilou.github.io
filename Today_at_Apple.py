@@ -10,7 +10,7 @@ cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛'
 checksum = list(range(len(cityname)))
 for c in range(0, len(cityname)): checksum[c] = 0
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
-if "Darwin" in platform.platform(): rpath = rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
+if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 
 def home():
 	wAns = ""; wCount = 0; nowDatetime = datetime.datetime.now()
@@ -38,4 +38,4 @@ def home():
 		if checksum[j] == 0: print "Apple 在" + cityname[j] + "没有新活动"
 
 home(); os.system("rm " + rpath + "*.json")
-os.system("cp /home/pi/junyilou.github.io/states.json /home/pi/Retail/") #与 Jobs_IFTTT.py 冲突
+os.system(os.path.expanduser('~') + "/junyilou.github.io/states.json " + rpath) #与 Jobs_IFTTT.py 冲突

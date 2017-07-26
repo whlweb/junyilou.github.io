@@ -2,7 +2,7 @@
 import os, json, filecmp, platform
 
 if "Linux" in platform.platform(): tilde = os.path.expanduser('~') + "/Retail/"
-if "Darwin" in platform.platform(): tilde = rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
+if "Darwin" in platform.platform(): tilde = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 preDir = tilde + "Jobs/"; uPre = "https://jobs.apple.com/cn/location"
 
 def wget(post, url, savename):
