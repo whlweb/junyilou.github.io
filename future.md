@@ -1,7 +1,7 @@
 Unknown:
-165 Fair Oaks - Fairfiled
+165 Fair Oaks
 268 Santa Barbara
-407 TBD - Hong Kong
+407 Hong Kong
 510 Italy
 605 Australia
 633 Singapore
@@ -10,12 +10,12 @@ Unknown:
 694 Taiwan
 
 Confirmed:
-[Confirmed] 531 Ningbo - China
-[Confirmed] 617 Changsha - China
-[Confirmed] 667 Piazza Liberty - Milan
-[Confirmed] 687 Vienna
-[Confirmed] 692 Seoul - South Korea
+531 Ningbo - China
+667 Piazza Liberty - Italy
+687 Vienna - Austria
+692 Seoul - Republic of Korea
 
 Canceled:
-[Canceled] 306 Qianmen - Beijing
-[Canceled] 349 Grand Place - St Paul
+306 Qianmen - China
+349 Grand Place - U.S.
+617 Changsha - China

@@ -55,7 +55,7 @@ def dl_fix(fileName, byp):
 		rcOpen = open(tilde + "cities" + str(lcIDA) + ".json"); rcJson = json.loads(rcOpen.read()); rcOpen.close()
 		rsOpen = open(tilde + "states.json"); rsJson = json.loads(rsOpen.read()); rsOpen.close()
 		wget("countryCode=CHN&stateCode=" + str(rsJson[lcIDA]["id"]) + "&cityCode=" + rcJson[lcIDB]["cityName"], uPre + ".json", fileName)
-	if byp == 0: "Not a location or city file."
+	if byp == 0: print "Not a location or city file."
 
 def compare():
 	for files in os.walk(preDir):
