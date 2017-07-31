@@ -53,6 +53,8 @@ python RetailID_IFTTT.py 713
 
 [Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件（可以用代码中的 down() 来下载），并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
+[format.py](format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果。
+
 Markdown
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 将重定向至此。

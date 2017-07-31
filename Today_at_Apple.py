@@ -27,7 +27,7 @@ def home():
 				pushAns = "Apple 在" + cityname[i] + "有新活动 " + rJson[lct]["shortName"]
 				singleURL = rJson[lct]["image"]; print pushAns
 				if nCheck == 0:
-					os.system('curl --connect-timeout 2 --retry 3 -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushAns
+					os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushAns
 							   + '", "value2":"' + singleURL + '"}' + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
 				# GitHub users please notice: IFTTT Key only uses for private.
 				wAns = wAns + singleID + ", "; wCount += 1; checksum[i] += 1
