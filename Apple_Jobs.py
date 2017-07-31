@@ -23,9 +23,9 @@ Dict = {"cities19.json": "重庆市", "cities18.json": "辽宁省", "cities17.js
 
 def down():
 	sOpen = open(tilde + "states.json"); lCount = 0
-	statesJson = json.loads(sOpen.read()); sOpen.close()
-	for s in range(0, len(statesJson)):
-		wget("countryCode=CHN&stateCode=" + str(statesJson[s]["id"]), uPre + "/cities.json", "cities" + str(s) + ".json")
+	sJson = json.loads(sOpen.read()); sOpen.close()
+	for s in range(0, len(sJson)):
+		wget("countryCode=CHN&stateCode=" + str(sJson[s]["id"]), uPre + "/cities.json", "cities" + str(s) + ".json")
 		if os.path.getsize(tilde + "cities" + str(s) + ".json") < 3:
 			dl_fix("cities" + str(s) + ".json", 0)
 		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read()
@@ -34,27 +34,26 @@ def down():
 			os.system("rm " + preDir + "cities0.json"); exit()
 		else: lCount += len(json.loads(lRead))
 	citiesID = list(range(lCount))
-	for c in range(0, len(statesJson)):
+	for c in range(0, len(sJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
-		citiesJson = json.loads(cOpen.read()); cOpen.close()
-		for g in range(0, len(citiesJson)):
+		cJson = json.loads(cOpen.read()); cOpen.close()
+		for g in range(0, len(cJson)):
 			citiesID = str(c) + "-" + str(g)
-			wget("countryCode=CHN&stateCode=" + str(statesJson[c]["id"]) + "&cityCode=" + citiesJson[g]["cityName"], uPre + ".json", "location" + citiesID + ".json")
+			wget("countryCode=CHN&stateCode=" + str(sJson[c]["id"]) + "&cityCode=" + cJson[g]["cityName"], uPre + ".json", "location" + citiesID + ".json")
 			if os.path.getsize(tilde + "location" + citiesID + ".json") < 3:
 				dl_fix("location" + citiesID + ".json", 0)
 
 def dl_fix(fileName, byp):
 	print "\n" + fileName + " is detected to be redownloaded."
+	sOpen = open(tilde + "states.json"); sJson = json.loads(sOpen.read()); sOpen.close()
 	if "cities" in fileName:
-		byp += 1; rcID = int(fileName.replace("cities", "").replace(".json", ""))
-		sOpen = open(tilde + "states.json"); statesJson = json.loads(sOpen.read()); sOpen.close()
-		wget("countryCode=CHN&stateCode=" + str(statesJson[rcID]["id"]), uPre + "/cities.json", fileName)
+		byp += 1; cID = int(fileName.replace("cities", "").replace(".json", ""))
+		wget("countryCode=CHN&stateCode=" + str(sJson[cID]["id"]), uPre + "/cities.json", fileName)
 	if "location" in fileName:
-		byp += 1; lcIDB = int(fileName.replace("location", "").replace(".json", "").replace("-", "")[-1])
-		lcIDA = int(fileName.replace("location", "").replace(".json", "").replace("-", "").replace(str(lcIDB), ""))
-		rcOpen = open(tilde + "cities" + str(lcIDA) + ".json"); rcJson = json.loads(rcOpen.read()); rcOpen.close()
-		rsOpen = open(tilde + "states.json"); rsJson = json.loads(rsOpen.read()); rsOpen.close()
-		wget("countryCode=CHN&stateCode=" + str(rsJson[lcIDA]["id"]) + "&cityCode=" + rcJson[lcIDB]["cityName"], uPre + ".json", fileName)
+		byp += 1; lcB = int(fileName.replace("location", "").replace(".json", "").replace("-", "")[-1])
+		lcA = int(fileName.replace("location", "").replace(".json", "").replace("-", "").replace(str(lcB), ""))
+		cOpen = open(tilde + "cities" + str(lcA) + ".json"); cJson = json.loads(cOpen.read()); cOpen.close()
+		wget("countryCode=CHN&stateCode=" + str(sJson[lcA]["id"]) + "&cityCode=" + cJson[lcB]["cityName"], uPre + ".json", fileName)
 	if byp == 0: print "Not a location or city file."
 
 def compare():
@@ -66,14 +65,10 @@ def compare():
 					oldOpen = open(oldLoc); oldJson = len(json.loads(oldOpen.read())); oldOpen.close()
 					newOpen = open(newLoc); newJson = len(json.loads(newOpen.read())); newOpen.close()
 					os.system("mv " + newLoc + " " + newLoc.replace(os.path.basename(newLoc), os.path.basename(newLoc).replace(".json", "") + "-1.json"))
-					if oldJson < newJson:
-						p = "现在有 " + str(newJson) + " 个项目, 其原本只有 " + str(oldJson) + " 个。"
-					if oldJson == newJson:
-						p = "现在有文字更新，其项目数量没有改变，可能代码发生修改，或地点名字更加确定。"
-					if oldJson > newJson and newJson > 0:
-						p = "表明有大于等于一个地址不再招聘。"
-					if oldJson > newJson and newJson == 0:
-						p = "表明该地点似乎不再招聘。"
+					if oldJson < newJson: p = "现在有 " + str(newJson) + " 个项目, 其原本只有 " + str(oldJson) + " 个。"
+					if oldJson == newJson: p = "现在有文字更新，其项目数量没有改变，可能代码发生修改，或地点名字更加确定。"
+					if oldJson > newJson and newJson > 0: p = "表明有大于等于一个地址不再招聘。"
+					if oldJson > newJson and newJson == 0: p = "表明该地点似乎不再招聘。"
 					print "招贤纳才 - Apple 在" + Dict[os.path.basename(oldLoc)] + "的招聘文件" + p		
 	delete()
 
