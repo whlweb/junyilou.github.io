@@ -29,21 +29,24 @@ def down():
 	for s in range(0, len(sJson)):
 		wget(str(sJson[s]["id"]), "/cities.json", "cities" + str(s) + ".json")
 		if os.path.getsize(tilde + "cities" + str(s) + ".json") < 3:
-			dl_fix("cities" + str(s) + ".json", 0)
+			dl_fix("cities" + str(s) + ".json")
 		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read()
 		if "<!DOCTYPE html>" in lRead:
 			print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
 			os.system("rm " + preDir + "cities*.json"); exit()
 	for c in range(0, len(sJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
-		cJson = json.loads(cOpen.read()); cOpen.close()
+		for w in range(0,3):
+			try: cJson = json.loads(cOpen.read()); cOpen.close(); break
+			except ValueError: dl_fix("cities" + str(c) + ".json"); continue
+			w -= 1
 		for g in range(0, len(cJson)):
 			cID = str(c) + "-" + str(g)
 			wget(str(sJson[c]["id"]) + "&cityCode=" + cJson[g]["cityName"], ".json", "location" + cID + ".json")
 			if os.path.getsize(tilde + "location" + cID + ".json") < 3:
-				dl_fix("location" + cID + ".json", 0)
+				dl_fix("location" + cID + ".json")
 
-def dl_fix(fileName, byp):
+def dl_fix(fileName, byp = 0):
 	print "\n" + fileName + " is detected to be redownloaded."
 	sOpen = open(tilde + "states.json"); sJson = json.loads(sOpen.read()); sOpen.close()
 	if "cities" in fileName:
