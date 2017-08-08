@@ -14,6 +14,7 @@ Confirmed:
 667 Piazza Liberty - Italy
 687 Vienna - Austria
 692 Seoul - Republic of Korea
+711 Kyoto - Japan
 
 Canceled:
 306 Qianmen - China
