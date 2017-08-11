@@ -36,10 +36,8 @@ def down():
 			os.system("rm " + preDir + "cities*.json"); exit()
 	for c in range(0, len(sJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
-		for w in range(0,3):
-			try: cJson = json.loads(cOpen.read()); cOpen.close(); break
-			except ValueError: dl_fix("cities" + str(c) + ".json"); continue
-			w -= 1
+		try: cJson = json.loads(cOpen.read()); cOpen.close()
+		except ValueError: dl_fix("cities" + str(c) + ".json"); cJson = 0
 		for g in range(0, len(cJson)):
 			cID = str(c) + "-" + str(g)
 			wget(str(sJson[c]["id"]) + "&cityCode=" + cJson[g]["cityName"], ".json", "location" + cID + ".json")
