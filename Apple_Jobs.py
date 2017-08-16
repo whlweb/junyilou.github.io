@@ -21,7 +21,7 @@ Dict = {"cities19.json": "重庆市", "cities18.json": "辽宁省", "cities17.js
 	"location12-0.json": "南京市", "location12-1.json": "扬州市", "location12-2.json": "无锡市", "location12-3.json": "泰州市", "location12-4.json": "盐城市", 
 	"location12-5.json": "苏州市", "location13-0.json": "秦皇岛市", "location14-0.json": "郑州市", "location15-0.json": "宁波市", "location15-1.json": "德清县", 
 	"location15-2.json": "杭州市", "location15-3.json": "温州市", "location16-0.json": "厦门市", "location16-1.json": "福州市", "location17-0.json": "贵阳市", 
-	"location18-0.json": "大连市", "location18-1.json": "沈阳市", "location19-0.json": ""}
+	"location18-0.json": "大连市", "location18-1.json": "沈阳市", "location19-0.json": "", "tokyo.json": "日本东京"}
 
 def down():
 	sOpen = open(tilde + "states.json")
@@ -43,6 +43,9 @@ def down():
 			wget(str(sJson[c]["id"]) + "&cityCode=" + cJson[g]["cityName"], ".json", "location" + cID + ".json")
 			if os.path.getsize(tilde + "location" + cID + ".json") < 3:
 				dl_fix("location" + cID + ".json")
+	###### Tokyo
+	os.system("rm " + tilde + "tokyo.json"); tOpen = open(tilde + "tokyo.json", "w")
+	while os.path.getsize(tilde + "tokyo.json") < 2: os.system('wget -t 0 -T 3 -O ' + tilde + 'tokyo.json --no-check-certificate --post-data "countryCode=JPN&stateCode=671&cityCode=Tokyo" https://jobs.apple.com/jp/location.json')
 
 def dl_fix(fileName, byp = 0):
 	print "\n" + fileName + " is detected to be redownloaded."
@@ -70,7 +73,7 @@ def compare():
 					if oldJson == newJson: p = "现在有文字更新，其项目数量没有改变，可能代码发生修改，或地点名字更加确定。"
 					if oldJson > newJson and newJson > 0: p = "表明有大于等于一个地址不再招聘。"
 					if oldJson > newJson and newJson == 0: p = "表明该地点似乎不再招聘。"
-					print "招贤纳才 - Apple 在" + Dict[os.path.basename(oldLoc)] + "的招聘文件" + p		
+					print "招贤纳才 - Apple 在" + Dict[os.path.basename(oldLoc)] + "的招聘文件" + p + "\n  更新的文件名为 " + os.path.basename(oldLoc)
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
 
