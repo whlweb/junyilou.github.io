@@ -55,6 +55,8 @@ python RetailID_IFTTT.py 713
 
 [format.py](format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
 
+[EXIF.py](EXIF.py) - 通过 PIL 来获取图片生成软件（例如 Adobe Photoshop CS 2017 (Macintosh)）。
+
 Markdown
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 将重定向至此。
