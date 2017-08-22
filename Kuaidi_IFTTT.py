@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, signal, exceptions
 
-arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""; endl = "\n"; argv = list(range(10))
+arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""
+endl = "\n"; argv = list(range(10)); masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 
 def sig_u1(x, y): global binvar; binvar += "0"
 def sig_u2(x, y): global binvar; binvar += "1"
@@ -27,8 +28,8 @@ def netTry(tryurl):
 	except urllib2.URLError: return "False"
 	else: return response.read()
 def pushbots(pushRaw):
-	os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}'
-			   + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); print
+	os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
+		+ pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 	# GitHub users please notice: IFTTT key only uses for private.
 def autocomp(readid):
 	aTry = netTry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
@@ -78,6 +79,7 @@ def home(readid):
 	else:
 		blanker(readid, "without company")
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
+	os.system("rm -f " + masterKey + "*")
 	global tti; tti += 1; return exsc
 for m in sys.argv[1:]: arg += 1; brew = arg
 TimeInterval = 600 #10 minutes
@@ -102,4 +104,4 @@ while True:
 for ntm in range (0, 45): nt = nt + "="
 st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl
-if brew > 0: pushbots("快递查询 - [退出提示] 共 " + str(brew) + " 个快递单已经被识别为签收，程序运行了 " + str(tti) " 次。")
+if brew > 0: pushbots("快递查询 - [退出提示] 共 " + str(brew) + " 个快递单已经被识别为签收。")
