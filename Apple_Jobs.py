@@ -5,6 +5,7 @@ if "Linux" in platform.platform(): tilde = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): tilde = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 preDir = tilde + "Jobs/"
 
+def cRep(org, dep, des = ""): return org.replace(dep, des)
 def wget(post, url, savename):
 	os.system('wget -t 0 -T 3 -O ' + tilde + savename
 		+ ' --no-check-certificate --post-data "countryCode=CHN&stateCode='
@@ -28,12 +29,11 @@ def down():
 	sJson = json.loads(sOpen.read()); sOpen.close()
 	for s in range(0, len(sJson)):
 		wget(str(sJson[s]["id"]), "/cities.json", "cities" + str(s) + ".json")
-		if os.path.getsize(tilde + "cities" + str(s) + ".json") < 3:
-			dl_fix("cities" + str(s) + ".json")
 		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read()
 		if "<!DOCTYPE html>" in lRead:
 			print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
 			os.system("rm " + preDir + "cities*.json"); exit()
+	check()
 	for c in range(0, len(sJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
 		try: cJson = json.loads(cOpen.read()); cOpen.close()
@@ -46,16 +46,32 @@ def down():
 	###### Tokyo
 	os.system("rm " + tilde + "tokyo.json"); tOpen = open(tilde + "tokyo.json", "w")
 	while os.path.getsize(tilde + "tokyo.json") < 2: os.system('wget -t 0 -T 3 -O ' + tilde + 'tokyo.json --no-check-certificate --post-data "countryCode=JPN&stateCode=671&cityCode=Tokyo" https://jobs.apple.com/jp/location.json')
+	check()
+
+def check(cCount = 0, cString = ""):
+	os.system("clear")
+	for checks in os.walk(tilde):
+		for n in range(0, len(checks[2])):
+			if checks[2][n][0] != "." and checks[2][n][-5:] == ".json":
+				cLocation = tilde + checks[2][n]; cSize = os.path.getsize(cLocation)
+				if cSize != 0: cCount += 1
+				else: cString += (checks[2][n] + ", ")
+	if (cCount - 1) / 2 != len(Dict):
+		cLen = len(cString) / 2; cString = cString[:cLen]
+		print cString + "detected to be redownload."
+		cSpl = cString.split(", ")
+		for k in range(0, len(cSpl)):
+			while os.path.getsize(tilde + cSpl[k]) == 0: dl_fix(cSpl[k])
 
 def dl_fix(fileName, byp = 0):
 	print "\n" + fileName + " is detected to be redownloaded."
 	sOpen = open(tilde + "states.json"); sJson = json.loads(sOpen.read()); sOpen.close()
 	if "cities" in fileName:
-		byp += 1; cID = int(fileName.replace("cities", "").replace(".json", ""))
+		byp += 1; cID = int(cRep(cRep(fileName, "cities"), ".json"))
 		wget(str(sJson[cID]["id"]), "/cities.json", fileName)
 	if "location" in fileName:
-		byp += 1; lcB = int(fileName.replace("location", "").replace(".json", "").replace("-", "")[-1])
-		lcA = int(fileName.replace("location", "").replace(".json", "").replace("-", "").replace(str(lcB), ""))
+		byp += 1; lcB = int(cRep(cRep(cRep(fileName, "location"), ".json"), "-")[-1])
+		lcA = int(cRep(cRep(cRep(fileName, "location"), ".json"), "-" + str(lcB)))
 		cOpen = open(tilde + "cities" + str(lcA) + ".json"); cJson = json.loads(cOpen.read()); cOpen.close()
 		wget(str(sJson[lcA]["id"]) + "&cityCode=" + cJson[lcB]["cityName"], ".json", fileName)
 	if byp == 0: print "Not a location or city file."
@@ -63,7 +79,7 @@ def dl_fix(fileName, byp = 0):
 def compare():
 	for files in os.walk(preDir):
 		for l in range(0, len(files[2])):
-			oldLoc = preDir + files[2][l]; newLoc = oldLoc.replace("/Jobs", ""); p = ""
+			oldLoc = preDir + files[2][l]; newLoc = cRep(oldLoc, "/Jobs"); p = ""
 			if files[2][l][0] != "." and files[2][l][-5:] == ".json":
 				if filecmp.cmp(oldLoc, newLoc) == False:
 					oldOpen = open(oldLoc); oldJson = len(json.loads(oldOpen.read())); oldOpen.close()
