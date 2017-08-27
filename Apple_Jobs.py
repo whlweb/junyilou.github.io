@@ -29,11 +29,11 @@ def down():
 	sJson = json.loads(sOpen.read()); sOpen.close()
 	for s in range(0, len(sJson)):
 		wget(str(sJson[s]["id"]), "/cities.json", "cities" + str(s) + ".json")
-		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read()
+		lOpen = open(tilde + "cities" + str(s) + ".json"); lRead = lOpen.read(); lOpen.close()
 		if "<!DOCTYPE html>" in lRead:
 			print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
 			os.system("rm " + preDir + "cities*.json"); exit()
-	check()
+	check("cities")
 	for c in range(0, len(sJson)):
 		cOpen = open(tilde + "cities" + str(c) + ".json")
 		try: cJson = json.loads(cOpen.read()); cOpen.close()
@@ -44,15 +44,15 @@ def down():
 			if os.path.getsize(tilde + "location" + cID + ".json") < 3:
 				dl_fix("location" + cID + ".json")
 	###### Tokyo
-	os.system("rm " + tilde + "tokyo.json"); tOpen = open(tilde + "tokyo.json", "w")
+	os.system("rm " + tilde + "tokyo.json"); tOpen = open(tilde + "tokyo.json", "w"); tOpen.close()
 	while os.path.getsize(tilde + "tokyo.json") < 2: os.system('wget -t 0 -T 3 -O ' + tilde + 'tokyo.json --no-check-certificate --post-data "countryCode=JPN&stateCode=671&cityCode=Tokyo" https://jobs.apple.com/jp/location.json')
-	check()
+	check("location")
 
-def check(cCount = 0, cString = ""):
+def check(cInclude, cCount = 0, cString = ""):
 	os.system("clear")
 	for checks in os.walk(tilde):
 		for n in range(0, len(checks[2])):
-			if checks[2][n][0] != "." and checks[2][n][-5:] == ".json":
+			if checks[2][n][0] != "." and checks[2][n][-5:] == ".json" and cInclude in checks[2][n]:
 				cLocation = tilde + checks[2][n]; cSize = os.path.getsize(cLocation)
 				if cSize != 0: cCount += 1
 				else: cString += (checks[2][n] + ", ")
@@ -70,10 +70,10 @@ def dl_fix(fileName, byp = 0):
 		byp += 1; cID = int(cRep(cRep(fileName, "cities"), ".json"))
 		wget(str(sJson[cID]["id"]), "/cities.json", fileName)
 	if "location" in fileName:
-		byp += 1; lcB = int(cRep(cRep(cRep(fileName, "location"), ".json"), "-")[-1])
-		lcA = int(cRep(cRep(cRep(fileName, "location"), ".json"), "-" + str(lcB)))
+		byp += 1; lcB = cRep(cRep(cRep(fileName, "location"), ".json"), "-")[-1]
+		lcA = int(cRep(cRep(cRep(fileName, "location"), ".json"), "-" + lcB))
 		cOpen = open(tilde + "cities" + str(lcA) + ".json"); cJson = json.loads(cOpen.read()); cOpen.close()
-		wget(str(sJson[lcA]["id"]) + "&cityCode=" + cJson[lcB]["cityName"], ".json", fileName)
+		wget(str(sJson[lcA]["id"]) + "&cityCode=" + cJson[int(lcB)]["cityName"], ".json", fileName)
 	if byp == 0: print "Not a location or city file."
 
 def compare():
