@@ -32,6 +32,7 @@ def home():
 					for ect in range(0, len(eJson)):
 						if eJson[ect]["shortName"] == singleName and not cityname[r] in citAns:
 							citAns += "、" + cityname[r]
+				if fullCity in citAns: citAns = "全中国大陆"
 				pushAns = "Apple 在" + citAns + "有新活动: " + singleName + " " + rJson[lct]["image"]; print pushAns
 				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
 					+ pushAns + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x")
