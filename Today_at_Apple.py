@@ -15,7 +15,6 @@ fullCity = fullCity.replace(cityname[num - 1] + "、", cityname[num - 1])
 
 def home():
 	wAns = ""; wCount = 0
-	for rm in range(0, num): os.system("rm " + rpath + filename[rm] + ".json")
 	mOpen = open(rpath + "Event.md"); mark = mOpen.read(); mOpen.close()
 	for d in range(0, num): 
 		os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate " + 
@@ -40,3 +39,4 @@ def home():
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
 home()
+for rm in range(0, num): os.system("rm " + rpath + filename[rm] + ".json")
