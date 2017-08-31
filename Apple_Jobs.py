@@ -22,11 +22,14 @@ DictB = {"location0-0.json": "三亚市", "location1-0.json": "", "location2-0.j
 	"location12-0.json": "南京市", "location12-1.json": "扬州市", "location12-2.json": "无锡市", "location12-3.json": "泰州市", "location12-4.json": "盐城市", 
 	"location12-5.json": "苏州市", "location13-0.json": "秦皇岛市", "location14-0.json": "郑州市", "location15-0.json": "宁波市", "location15-1.json": "德清县", 
 	"location15-2.json": "杭州市", "location15-3.json": "温州市", "location16-0.json": "厦门市", "location16-1.json": "福州市", "location17-0.json": "贵阳市", 
-	"location18-0.json": "大连市", "location18-1.json": "沈阳市", "location19-0.json": "", "tokyo.json": "日本东京"}
+	"location18-0.json": "大连市", "location18-1.json": "沈阳市", "location19-0.json": ""}
 
 def Dict(reqDict):
-	try: return DictA[reqDict]
-	except KeyError: return DictB[reqDict]
+	try: rr = DictA[reqDict]
+	except KeyError: 
+		rr = DictB[reqDict]
+		if rr == "": rr = DictA[cRep(cRep(reqDict, "location", "cities"), "-0")]
+	return rr
 
 def down():
 	sOpen = open(tilde + "states.json")
@@ -45,9 +48,6 @@ def down():
 		for g in range(0, len(cJson)):
 			cID = str(c) + "-" + str(g)
 			wget(str(sJson[c]["id"]) + "&cityCode=" + cJson[g]["cityName"], ".json", "location" + cID + ".json")
-	###### Tokyo
-	os.system("rm " + tilde + "tokyo.json"); tOpen = open(tilde + "tokyo.json", "w"); tOpen.close()
-	while os.path.getsize(tilde + "tokyo.json") < 2: os.system('wget -t 0 -T 3 -O ' + tilde + 'tokyo.json --no-check-certificate --post-data "countryCode=JPN&stateCode=671&cityCode=Tokyo" https://jobs.apple.com/jp/location.json')
 	check("location")
 
 def check(cInclude, cCount = 0, cString = ""):
