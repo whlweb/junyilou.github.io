@@ -25,20 +25,18 @@ def down(rtl, ps):
 		os.system('curl -X POST -H "Content-Type: application/json" -d' + "'" + '{"value1":"' + pushRaw + '"}' 
 			   + "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa"); print
 		# GitHub users please notice: IFTTT key only uses for private.
-		sys.argv[ps] = ""
+		argv[ps] = ""
 	else: print "Checked R" + rtl +" has no update, ignore."
 
-rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
-dieter = "https://rtlimages.apple.com/cmc/dieter/store"; arg = 0
+rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"; argv = list(range(10))
+dieter = "https://rtlimages.apple.com/cmc/dieter/store"; arg = arm = 0;
 sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 for m in sys.argv[1:]: arg += 1
+for r in range (1, arg + 1): argv[r] = sys.argv[r]
 while True:
-	arm = 0
-	#os.system("clear")
-	#for j in range(713, 714): down("%03d" % j)
-	for j in range(1, arg + 1): down(sys.argv[j], j)
-	for k in range(1, arg + 1):
-		if sys.argv[k] == "": arm += 1
+	for j in range(1, arg + 1): 
+		if argv[j] != "": down(argv[j], j)
+		else: arm += 1
 	if arm == arg: break
 	print "Sleeping, interval will be 2hr."; time.sleep(7200)
 print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

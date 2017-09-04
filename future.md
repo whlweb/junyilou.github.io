@@ -10,7 +10,6 @@ Unknown:
 694 Taiwan
 
 Confirmed:
-531 Ningbo - China
 667 Piazza Liberty - Italy
 687 Vienna - Austria
 692 Seoul - Republic of Korea

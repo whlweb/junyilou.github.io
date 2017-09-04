@@ -1,13 +1,13 @@
 #-*- coding:utf-8 -*-
 import os, urllib2, sys, json, platform
 
-filename = ['nanjingeast', 'kunming', 'wangfujing', 'taikoolichengdu', 'riverside66tianjin',
-			'parc66jinan', 'mixcqingdao', 'parccentral', 'holidayplazashenzhen', 'mixcnanning',
-			'nanjingist', 'center66wuxi', 'mixczhengzhou', 'westlake', 'xiamenlifestylecenter',
-			'thaihotplaza', 'olympia66dalian', 'zhongjiejoycity', 'jiefangbei']
-cityname = ['上海', '昆明', '北京', '成都', '天津', '济南', '青岛', '广州', '深圳', '南宁', '南京', '无锡',
-			'郑州', '杭州', '厦门', '福州', '大连', '沈阳', '重庆']; fullCity = ""; num = len(filename)
-checksum = list(range(num))
+filename = ['wangfujing', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 'thaihotplaza',
+			'parccentral', 'westlake', 'parc66jinan', 'kunming', 'nanjingist', 'mixcnanning',
+			'tianyisquare', 'mixcqingdao', 'nanjingeast', 'zhongjiejoycity', 'holidayplazashenzhen',
+			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
+cityname = ['北京', '成都', '重庆', '大连', '福州', '广州', '杭州', '济南', '昆明', '南京', 
+			'南宁', '宁波', '青岛', '上海', '沈阳', '深圳', '天津', '无锡', '厦门', '郑州']
+fullCity = ""; num = len(filename); checksum = list(range(num))
 for u in range(0, num): checksum[u] = 0
 
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
