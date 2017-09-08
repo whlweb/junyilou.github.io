@@ -37,7 +37,8 @@ def home():
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for pc in range(0, num):
 					if cityname[pc] in pushAns: checksum[pc] += 1
-				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
+				if input("\nContinue posting these event to Telegram Channel? "):
+					os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
 					+ pushAns + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x")
 			# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
