@@ -13,6 +13,8 @@ Confirmed:
 667 Piazza Liberty - Italy
 687 Vienna - Austria
 692 Seoul - Republic of Korea
+696 Venice - Italy
+697 Macau - S.A.R of China
 711 Kyoto - Japan
 
 Canceled:
