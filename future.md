@@ -1,9 +1,4 @@
 Unknown:
-165 Fair Oaks
-268 Santa Barbara
-407 Hong Kong
-510 Italy
-605 Australia
 633 Singapore
 690 Taiwan
 691 Korea
@@ -21,3 +16,12 @@ Canceled:
 306 Qianmen - China
 349 Grand Place - U.S.
 617 Changsha - China
+
+No Retail ID but confirmed:
+China - Jiangsu - Suzhou - Suzhou Center
+France - Paris - Paris - Champs-Élysées
+United States - District of Columbia - Washington DC - Carnegie Library
+United States - Illinois - Chicago - Michigan Avenue
+
+Nearly confirmed:
+Sweden - Stockholm - Stockholm - Kungsträdgården
