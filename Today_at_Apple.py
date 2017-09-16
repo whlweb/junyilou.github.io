@@ -33,13 +33,13 @@ def home():
 						if eJson[ect]["shortName"] == singleName and not cityname[r] in citAns:
 							citAns += "、" + cityname[r]
 				if fullCity in citAns: citAns = "全中国大陆"
-				pushAns = "Apple 在" + citAns + "有新活动: " + singleName + " " + rJson[lct]["image"]; print pushAns
+				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; print pushAns
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for pc in range(0, num):
 					if cityname[pc] in pushAns: checksum[pc] += 1
 				if input("\nContinue posting this event to Telegram Channel? "):
-					os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
-					+ pushAns + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x")
+					os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushAns + "&value2="
+					 			+ rJson[lct]["image"] + "' https://maker.ifttt.com/trigger/today/with/key/dJ4B3uIsxyedsXeQKk_D3x")
 			# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
