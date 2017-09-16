@@ -32,16 +32,18 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 [RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具，这一文件仅供在个人电脑执行，需要超过 2GB 的本地文件支持，对 GitHub 用户该文件仅供参考代码。
 
-[RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 的 Apple Store 零售店图片更新推送工具。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
+[RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
 
-![截图](/bkP/retailid.jpg)
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
+
+![截图](/bkP/NewRID.png)
 
 使用时在后面接 Retail 编号（在 [name.md](name.md) 可以找到），如：
 ````bash
 python RetailID_IFTTT.py 713
 ````
 
-由于 request 库无法较好的管理超时问题，为避免后台运行卡死，枚举店号现已被注释。虽然说它实在方便，为了减轻负担，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
+由于 request 库无法较好的管理超时问题，为避免后台运行卡死，该程序不会检测所有零售店图片，而需要手动设置 Watchlist，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
 
 ![截图](/bkP/hkjournal.png)
 
@@ -56,6 +58,8 @@ python RetailID_IFTTT.py 713
 [format.py](format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
 
 [EXIF.py](EXIF.py) - 通过 PIL 来获取图片生成软件（例如 Adobe Photoshop CS 2017 (Macintosh)）。
+
+[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码。
 
 Markdown
 ===========
