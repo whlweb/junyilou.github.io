@@ -9,10 +9,11 @@ def filesize(url):
     else: return int(dict(response.headers).get('content-length', 0))
 
 def down(rtl, argc):
-	global cans; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png" ; exi = os.path.isfile(sx); newsize = filesize(dieter + "/16_9" + spr)
+	global cans; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
+	exi = os.path.isfile(sx); newsize = filesize(dieter + "/16_9" + spr)
 	if exi: oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	if newsize != oldsize and newsize > 100:
+	if newsize != oldsize:
 		if argc != "check":
 			if exi: os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous" + spr); exi = False
 			if not exi: os.system("wget -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
@@ -32,7 +33,7 @@ if sys.argv[1] == "check":
 	print "Start checking in platform " + platform.platform()
 	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 	for i in range(1, 714): down("%03d" % i, "check")
-	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\nAnswer: " + cans
+	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\nAnswer: " + cans[:-2]
 else: 
 	for j in range(1, arg + 1): down(sys.argv[j], "")
 print 
