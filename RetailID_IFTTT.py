@@ -25,8 +25,8 @@ def down(rtl, ps):
 		os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushRaw 
 				+ "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa")
 		# GitHub users please notice: IFTTT key only uses for private.
-		argv[ps] = ""
-	else: print "Checked R" + rtl +" has no update, ignore."
+		argv[ps] = ""; return 1
+	else: print "Checked R" + rtl +" has no update, ignore."; return 0
 
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"; argv = list(range(10))
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"; arg = arm = 0;
@@ -35,8 +35,8 @@ for m in sys.argv[1:]: arg += 1
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 while True:
 	for j in range(1, arg + 1): 
-		if argv[j] != "": down(argv[j], j)
-		else: arm += 1
+		if argv[j] != "": ant = down(argv[j], j)
+		if ant: arm += 1 
 	if arm == arg: break
 	print "Sleeping, interval will be 2hr."; time.sleep(7200)
 print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
