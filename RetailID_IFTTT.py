@@ -17,11 +17,13 @@ def down(rtl, ps):
 	else: oldsize = 0
 	if newsize != oldsize and newsize > 1:
 		reload(sys); sys.setdefaultencoding('utf-8')
-		pushRaw = "Apple " + storejson[0][rtl] + " 刚刚更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB。"
+		pushRaw = "[零售店图片]Apple " + storejson[0][rtl] + " 刚刚更新，店号 R" + rtl + "，图片大小 " + str(newsize / 1024) + " KB。"
 		if exi: os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous/"); exi = False
 		if not exi: os.system("wget -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
-		os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushRaw + "&value2=" + rtl 
-					+ "' https://maker.ifttt.com/trigger/rtlimages/with/key/dJ4B3uIsxyedsXeQKk_D3x")
+		os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushRaw 
+				+ "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
+		os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushRaw 
+				+ "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa")
 		# GitHub users please notice: IFTTT key only uses for private.
 		argv[ps] = ""
 	else: print "Checked R" + rtl +" has no update, ignore."
