@@ -37,8 +37,8 @@ def check(cInclude, cCount = 0, cString = ""):
 				cLocation = tilde + checks[2][n]; cSize = os.path.getsize(cLocation)
 				if cSize != 0: cCount += 1
 				else: cString += (checks[2][n] + ", ")
-	if cInclude == "cities": checkItems = len(DictA)
-	if cInclude == "location": checkItems = len(DictB)
+	if cInclude == "cities": checkItems = 20
+	if cInclude == "location": checkItems = 38
 	if cCount / 2 != checkItems:
 		cLen = len(cString) / 2; cString = cString[:cLen]
 		print cString + "detected to be redownload."
