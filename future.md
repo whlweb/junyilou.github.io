@@ -12,6 +12,7 @@ Confirmed:
 696 Venice - Italy
 697 Macau - S.A.R of China
 711 Kyoto - Japan
+728 Bangkok - Thailand
 824 Apple Park Visitor Center
 
 Canceled:
@@ -22,7 +23,4 @@ Canceled:
 No Retail ID but confirmed:
 China - Jiangsu - Suzhou - Suzhou Center
 France - Paris - Paris - Champs-Élysées
-United States - Illinois - Chicago - Michigan Avenue
-
-Nearly confirmed:
 Sweden - Stockholm - Stockholm - Kungsträdgården
