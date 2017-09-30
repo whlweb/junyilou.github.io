@@ -34,7 +34,7 @@
     "032": "SoHo", 
     "033": "Stonestown", 
     "034": "Pasadena", 
-    "035": "North Michigan Avenue", 
+    "035": "Michigan Avenue", 
     "036": "Clarendon", 
     "038": "Roma Est", 
     "039": "Valley Fair", 
