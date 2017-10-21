@@ -1,4 +1,4 @@
-import os, sys, fileinput, urllib2, platform, time
+import os, sys, urllib2, platform, time
 
 def filesize(url): 
     opener = urllib2.build_opener()

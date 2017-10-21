@@ -7,7 +7,7 @@ filename = ['wangfujing', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 't
 			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
 cityname = ['北京', '成都', '重庆', '大连', '福州', '广州', '杭州', '济南', '昆明', '南京', 
 			'南宁', '宁波', '青岛', '上海', '沈阳', '深圳', '天津', '无锡', '厦门', '郑州']
-fullCity = ""; num = len(filename); checksum = list(range(num))
+fullCity = ""; num = len(filename); checksum = list(range(num)); arg = 0
 for u in range(0, num): checksum[u] = 0
 
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
@@ -43,7 +43,12 @@ def home():
 			# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
-home()
-for f in range(0, num): 
-	if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"
-	os.system("rm " + rpath + filename[f] + ".json")
+for m in sys.argv[1:]: arg += 1
+if sys.argv[1] != "":  
+	os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate " + 
+			"https://www.apple.com/cn/today/static/data/store/" + sys.argv[1] + ".json");
+else:
+	home()
+	for f in range(0, num): 
+		if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"
+		os.system("rm " + rpath + filename[f] + ".json")
