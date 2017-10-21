@@ -72,7 +72,7 @@ def compare():
 					if oldJson == newJson: p = "has a text update without numbers updates."
 					if oldJson > newJson and newJson > 0: p = "seems to have a stop hiring."
 					if oldJson > newJson and newJson == 0: p = "stopped hiring."
-					print "The location for file '" + os.path.basename(oldLoc) + "' " + p
+					print "[*] The location for file '" + os.path.basename(oldLoc) + "' " + p
 				else: print "Checked file '" + os.path.basename(oldLoc) + "' has no update."
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
