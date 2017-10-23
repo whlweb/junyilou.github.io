@@ -44,7 +44,7 @@ def home():
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
 for m in sys.argv[1:]: arg += 1
-if sys.argv[1] != "":  
+if arg != 0:  
 	os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate " + 
 			"https://www.apple.com/cn/today/static/data/store/" + sys.argv[1] + ".json");
 else:
