@@ -4,7 +4,7 @@ Workflow
 ===========
 kuaidi20170105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解。
 
-![截图](/bkP/workflow.jpg)
+![截图](/bkP/workflow.png)
 
 Python
 ===========
@@ -22,13 +22,9 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 ![截图](/bkP/nano.png)
 
-[IFTTT_Signal.py](IFTTT_Signal.py) 通过 signal 向 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 增添快递单的工具。
+[New_Kuaidi.py](New_Kuaidi.py) 通过 signal 向 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 增添快递单的工具。
 
-该文件将读取 ~/pid.txt 下的进程编号，运行 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 时该文件会自动创建，并通过 Linux 信号 SIGUSR1 和 SIGUSR2 传递二进制信号，首先将快递单号转换为二进制。并发送信号交由运行中的 Python 分析。这将使 0 字头的快递单号失效，但现实中使用 0 字快递单的只有顺丰快捷下单服务，你可以重新运行 Kuaidi_IFTTT.py 并在参数中添加。
-
-![截图](/bkP/signal.png)
-
-如果没有 ~/pid.txt，它将自动用 screen 创建一个名为 jdk 的新窗体并运行 Kuaidi_IFTTT.py，这将使得你只需要运行这条 Python 它将自动判断是向已有进程添加，还是创建新进程。
+该文件将读取 ~/pid.txt 下的进程编号，运行 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 时该文件会自动创建，并通过 Linux 信号 SIGUSR1 和 SIGUSR2 传递二进制信号，首先将快递单号转换为二进制，传送到 Python 分析。它将自动确认是否有正在运行中的快递刷新程序，有则直接添加，无则新增窗口。
 
 [RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具，这一文件仅供在个人电脑执行，需要超过 2GB 的本地文件支持，对 GitHub 用户该文件仅供参考代码。
 
@@ -40,7 +36,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 使用时在后面接 Retail 编号（在 [name.md](name.md) 可以找到），如：
 ````bash
-python RetailID_IFTTT.py 713
+python RetailID_IFTTT.py 824
 ````
 
 由于 request 库无法较好的管理超时问题，为避免后台运行卡死，该程序不会检测所有零售店图片，而需要手动设置 Watchlist，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
@@ -73,7 +69,7 @@ Markdown
 
 previous 文件夹
 ==========
-[Event_IFTTT.py](Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
+[Event_IFTTT.py] - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
 
 ![截图](/bkP/event.jpg)
 
@@ -89,10 +85,10 @@ rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请�
 
 联系
 =======
-专注于 Workflow 和 Python 开发
+其实主要是瞎搞，能拿出来供 Public 使用的不太多。我个人很喜欢 Kuaidi_IFTTT.py，另外 Today at Apple 和 Apple Jobs 则是为自己的公众号准备内容用的比较多。
+
+少数派: [Junyi Lou](http://matrix.sspai.com/p/da7b1760 "Junyi Lou - Matrix")
 
 Twitter: [@Junyi_Lou](https://twitter.com/Junyi_Lou "@Junyi_Lou") 
 
 Sina Weibo: [@Junyi_Lou_](https://weibo.com/n/Junyi_Lou_ "@Junyi_Lou_")
-
-少数派 Matrix: [Junyi Lou](http://matrix.sspai.com/p/da7b1760 "Junyi Lou - Matrix")
