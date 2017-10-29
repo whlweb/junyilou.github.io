@@ -10,6 +10,7 @@ except OSError:
 	os.system('screen -S jdk -X stuff "python ~/junyilou.github.io/Kuaidi_IFTTT.py ' + sys.argv[1] + '\n"')
 	print "Daemon started screen session, run screen -r to check it."
 else:
+	os.kill(int(pid),signal.SIGCONT)
 	print "\nGet Integer: " + sys.argv[1] + "\nSending binary: " +  bint + " to PID " + pid; sleep(0.7)
 	for l in range (0, lbn):
 		if bint[l] == "0": os.kill(int(pid),signal.SIGUSR1)

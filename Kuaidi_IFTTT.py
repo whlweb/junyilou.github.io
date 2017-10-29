@@ -4,8 +4,8 @@ import sys, json, urllib2, time, datetime, os, signal, exceptions
 arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""
 endl = "\n"; argv = list(range(10)); masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 
-def sig_u1(x, y): global binvar; binvar += "0"
-def sig_u2(x, y): global binvar; binvar += "1"
+def sig_u1(x, y): global binvar, siging; siging = 1; binvar += "0"
+def sig_u2(x, y): global binvar, siging; siging = 1; binvar += "1"
 def sig_st(x, y):
 	global siging, binvar; siging = 1; binvar = ""
 	print 'Received Linux siganal, analyzing.'
