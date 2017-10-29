@@ -57,7 +57,7 @@ python RetailID_IFTTT.py 824
 python format.py ~/states.json
 ````
 
-[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 have recaptcha 1」
+[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
 ````bash
 python idc.py 11000019890604000

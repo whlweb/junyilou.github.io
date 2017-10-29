@@ -8,7 +8,7 @@ def checkIDNumber(num_str):
 	for index, num in enumerate(num_str):
 		if index == 17:
 			right_code = check_dict.get(check_num % 11)
-			print "IDC: " + num_str[:-1] + " have recaptcha " + right_code
+			print "IDC: " + num_str[:-1] + " has recaptcha " + right_code
 		check_num += str_to_int.get(num) * (2 ** (17 - index) % 11)
 arg = 0
 for m in sys.argv[1:]: arg += 1
