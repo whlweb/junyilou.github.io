@@ -53,9 +53,16 @@ python RetailID_IFTTT.py 824
 
 [format.py](format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
 
-[EXIF.py](EXIF.py) - 通过 PIL 来获取图片生成软件（例如 Adobe Photoshop CS 2017 (Macintosh)）。
+````bash
+python format.py ~/states.json
+````
 
-[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码。
+[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 have recaptcha 1」
+
+````bash
+python idc.py 11000019890604000
+````
+
 
 Markdown
 ===========
