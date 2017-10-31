@@ -2,7 +2,7 @@
 
 Workflow
 ===========
-kuaidi20170105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解。
+kuaidi20171031.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解，本文件最后更新于 2017 年 10 月 31 日。
 
 ![截图](/bkP/workflow.png)
 
@@ -79,6 +79,8 @@ previous 文件夹
 [Event_IFTTT.py] - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
 
 ![截图](/bkP/event.jpg)
+
+kuaidi20170105.wflow - 就版本，对比 kuaidi20171031.wflow 修复了「今天」「昨天」Relative 词语的使用问题。
 
 kuaidi20161210.wflow - 旧版本，请访问 [Workflow 通知中心查快递 4](http://matrix.sspai.com/p/d384dd60) 了解。
 
