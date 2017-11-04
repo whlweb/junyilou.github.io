@@ -26,6 +26,10 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 该文件将读取 ~/pid.txt 下的进程编号，运行 [Kuaidi_IFTTT.py](Kuaidi_IFTTT.py) 时该文件会自动创建，并通过 Linux 信号 SIGUSR1 和 SIGUSR2 传递二进制信号，首先将快递单号转换为二进制，传送到 Python 分析。它将自动确认是否有正在运行中的快递刷新程序，有则直接添加，无则新增窗口。
 
+[iPhone_X_IFTTT.py](iPhone_X_IFTTT.py) 自动获取指定型号，指定中国大陆零售店 iPhone X 手机的可预约购买情况，并在用户指定型号可预约购买（或不可预约购买，可设置仅在可预约购买时提醒）发送 IFTTT 通知至 iOS。
+
+![运行截图](/bkP/iPX_RCsc.png)
+
 [RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具，这一文件仅供在个人电脑执行，需要超过 2GB 的本地文件支持，对 GitHub 用户该文件仅供参考代码。
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
