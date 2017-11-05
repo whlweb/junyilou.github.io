@@ -4,14 +4,14 @@ import json, os, sys, time
 def pushbots(pushRaw): os.system("wget --post-data 'value1=" + pushRaw + "' -t 0 -T 3 https://maker.ifttt.com/trigger/iphone/with/key/" + masterKey)
 def check(rtl): os.system('wget --post-data="regioncode=CN&onlyshowavailability=false&storecode=R' + str(rtl) + '" -O ~/ans.json -q http://ir.weip.tech/Home/GetStoreiPhoneList')
 if not os.path.isfile(os.path.expanduser('~') + "/noshow.txt"): os.system("cd >" + os.path.expanduser('~') + "/noshow.txt")
-storeList = input("输入零售店 Rollout 编号，按照数组形式排列。",); nSingle = ""; nOut = ""
+storeList = input("输入零售店 Rollout 编号，按照数组形式排列。",); endl = "\n"
 modelSelect = input("选择所需 iPhone 机型：\niPhone X 256GB 银色 - 1\niPhone X 256GB 深空灰色 - 2\niPhone X 64GB 深空灰色 - 3\niPhone X 64GB 银色 - 4\n按照数组形式输入所有设备。",)
-masterKey = raw_input("输入 IFTTT Maker 密钥，可使用 default 代替 Junyi_Lou 的密钥。",); endl = "\n"
+masterKey = raw_input("输入 IFTTT Maker 密钥，可使用 default 代替 Junyi_Lou 的密钥。",)
 if masterKey == "default": masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 postSelect = input("你想要在所需设备无法预约时额外接受提示么？")
 while True:
 	print "******************** 新结果 ********************"
-	nOpen = open(os.path.expanduser('~') + "/noshow.txt"); nRead = nOpen.read(); nOpen.close()
+	nOpen = open(os.path.expanduser('~') + "/noshow.txt"); nRead = nOpen.read(); nOpen.close(); nSingle = ""; nOut = ""
 	try: lenStore = len(storeList)
 	except TypeError: lenStore = 1
 	for s in range(0, lenStore):
