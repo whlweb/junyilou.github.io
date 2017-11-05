@@ -2,8 +2,8 @@
 # GitHub users please notice: IFTTT key only uses for private.
 import json, os, sys, time
 def pushbots(pushRaw): os.system("wget --post-data 'value1=" + pushRaw + "' -t 0 -T 3 https://maker.ifttt.com/trigger/iphone/with/key/" + masterKey)
-def check(rtl): os.system('wget --post-data="regioncode=CN&onlyshowavailability=false&storecode=R' + str(rtl) + '" -O ~/ans.json -q http://ir.weip.tech/Home/GetStoreiPhoneList')
-if not os.path.isfile(os.path.expanduser('~') + "/noshow.txt"): os.system("cd >" + os.path.expanduser('~') + "/noshow.txt")
+def check(rtl): os.system('wget --post-data="regioncode=CN&onlyshowavailability=false&storecode=R' + str(rtl) + '" -O ~/ans_' +str(os.getpid()) + '.json -q http://ir.weip.tech/Home/GetStoreiPhoneList')
+nLocation = os.path.expanduser('~') + "/noshow_" + str(os.getpid()) + ".txt"; os.system("cd >" + nLocation)
 storeList = input("输入零售店 Rollout 编号，按照数组形式排列。",); endl = "\n"
 modelSelect = input("选择所需 iPhone 机型：\niPhone X 256GB 银色 - 1\niPhone X 256GB 深空灰色 - 2\niPhone X 64GB 深空灰色 - 3\niPhone X 64GB 银色 - 4\n按照数组形式输入所有设备。",)
 masterKey = raw_input("输入 IFTTT Maker 密钥，可使用 default 代替 Junyi_Lou 的密钥。",)
@@ -11,13 +11,13 @@ if masterKey == "default": masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 postSelect = input("你想要在所需设备无法预约时额外接受提示么？")
 while True:
 	print "******************** 新结果 ********************"
-	nOpen = open(os.path.expanduser('~') + "/noshow.txt"); nRead = nOpen.read(); nOpen.close(); nSingle = ""; nOut = ""
+	nOpen = open(nLocation); nRead = nOpen.read(); nOpen.close(); nSingle = ""; nOut = ""
 	try: lenStore = len(storeList)
 	except TypeError: lenStore = 1
 	for s in range(0, lenStore):
 		try: singleStore = storeList[s]
 		except TypeError: singleStore = storeList
-		check(singleStore); aOpen = open(os.path.expanduser('~') + "/ans.json"); aRead = aOpen.read(); aOpen.close(); aJSON = json.loads(aRead); Data = aJSON["Data"]
+		check(singleStore); aOpen = open(os.path.expanduser('~') + "/ans_" + str(os.getpid()) + ".json"); aRead = aOpen.read(); aOpen.close(); aJSON = json.loads(aRead); Data = aJSON["Data"]
 		output = list(range(4)); oBool = list(range(4)); oNoShow = list(range(4))
 		for i in range(0, 4):
 			reload(sys); sys.setdefaultencoding('utf-8')
@@ -37,6 +37,6 @@ while True:
 				if not postSelect: 
 					if not "不可预约" in output[i]: pushbots(output[i])
 		nOut = nOut.replace("[No Show]", "") + endl
-	nWrite = open(os.path.expanduser('~') + "/noshow.txt", "w"); nWrite.write(nOut); nWrite.close()
+	nWrite = open(nLocation, "w"); nWrite.write(nOut); nWrite.close()
 	os.system("rm -f " + os.path.expanduser('~') + "/" + masterKey + "*")
 	print "Sleeping, interval will be 3 minutes."; time.sleep(180)
