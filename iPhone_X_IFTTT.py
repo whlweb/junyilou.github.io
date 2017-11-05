@@ -5,7 +5,7 @@ def pushbots(pushRaw): os.system("wget --post-data 'value1=" + pushRaw + "' -t 0
 def check(rtl): os.system('wget --post-data="regioncode=CN&onlyshowavailability=false&storecode=R' + str(rtl) + '" -O ~/ans.json -q http://ir.weip.tech/Home/GetStoreiPhoneList')
 if not os.path.isfile(os.path.expanduser('~') + "/noshow.txt"): os.system("cd >" + os.path.expanduser('~') + "/noshow.txt")
 storeList = input("输入零售店 Rollout 编号，按照数组形式排列。",); nSingle = ""; nOut = ""
-modelSelect = input("选择所需 iPhone 机型：\niPhone X 256GB 银色 - 1\niPhone X 256GB 深空灰色 - 2\niPhone X 64GB 银色 - 3\niPhone X 64GB 深空灰色 - 4\n按照数组形式输入所有设备。",)
+modelSelect = input("选择所需 iPhone 机型：\niPhone X 256GB 银色 - 1\niPhone X 256GB 深空灰色 - 2\niPhone X 64GB 深空灰色 - 3\niPhone X 64GB 银色 - 4\n按照数组形式输入所有设备。",)
 masterKey = raw_input("输入 IFTTT Maker 密钥，可使用 default 代替 Junyi_Lou 的密钥。",); endl = "\n"
 if masterKey == "default": masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 postSelect = input("你想要在所需设备无法预约时额外接受提示么？")
@@ -29,7 +29,7 @@ while True:
 		try: lenModel = len(modelSelect)
 		except TypeError: lenModel = 1; 
 		for r in range(0, lenModel):
-			if lenModel == 1: nSingle = output[0]
+			if lenModel == 1: nSingle = output[modelSelect - 1]
 			else: nSingle = output[int(modelSelect[r]) - 1]
 			print nSingle; nOut += nSingle
 			if not "[No Show]" in nSingle:
