@@ -2,9 +2,9 @@
 
 Workflow
 ===========
-kuaidi20171031.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解，本文件最后更新于 2017 年 10 月 31 日。
+kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解，本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。
 
-![截图](/bkP/workflow.png)
+![截图](/bkP/wf_relative.png)
 
 Python
 ===========
@@ -84,7 +84,9 @@ previous 文件夹
 
 ![截图](/bkP/event.jpg)
 
-kuaidi20170105.wflow - 就版本，对比 kuaidi20171031.wflow 修复了「今天」「昨天」Relative 词语的使用问题。
+kuaidi20171031.wflow - 旧版本，对比 kuaidi20171105.wflow 新版增加了对总用时的计算，将自动判断是否签收，以确定是从最早的一条物流计算到查询时间，还是计算到最后一条物流时间。
+
+kuaidi20170105.wflow - 旧版本，对比 kuaidi20171031.wflow 新版修复了「今天」「昨天」Relative 词语的使用问题。
 
 kuaidi20161210.wflow - 旧版本，请访问 [Workflow 通知中心查快递 4](http://matrix.sspai.com/p/d384dd60) 了解。
 
