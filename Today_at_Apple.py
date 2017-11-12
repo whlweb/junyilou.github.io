@@ -15,9 +15,7 @@ if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Download
 for f in range(0, num): fullCity = fullCity + cityname[f] + "、"
 fullCity = fullCity.replace(cityname[num - 1] + "、", cityname[num - 1])
 
-def down(fname):
-	os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
-
+def down(fname): os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
 def home():
 	wAns = ""; mOpen = open(rpath + "Event.md"); mark = mOpen.read(); mOpen.close()
 	for d in range(0, num): down(filename[d])
@@ -46,7 +44,7 @@ def home():
 			# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
-os.system("rm -f " + rpath + "*.json.1")
+os.system("rm -f " + rpath + "*.json*")
 for r in range(0, num): os.system("rm -f " + rpath + filename[r] + ".json")
 home()
 for f in range(0, num): 

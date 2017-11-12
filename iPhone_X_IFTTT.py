@@ -39,4 +39,4 @@ while True:
 		nOut = nOut.replace("[No Show]", "") + endl
 	nWrite = open(nLocation, "w"); nWrite.write(nOut); nWrite.close()
 	os.system("rm -f " + os.path.expanduser('~') + "/" + masterKey + "*")
-	print "Sleeping, interval will be 3 minutes."; time.sleep(180)
+	print "Sleeping, interval will be 1 minute."; time.sleep(60)
