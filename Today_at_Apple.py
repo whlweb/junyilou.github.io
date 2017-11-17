@@ -7,7 +7,7 @@ filename = ['wangfujing', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 't
 			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
 cityname = ['北京', '成都', '重庆', '大连', '福州', '广州', '杭州', '济南', '昆明', '南京', 
 			'南宁', '宁波', '青岛', '上海', '沈阳', '深圳', '天津', '无锡', '厦门', '郑州']
-fullCity = ""; num = len(filename); checksum = list(range(num)); arg = 0
+fullCity = ""; num = len(filename); checksum = list(range(num))
 for u in range(0, num): checksum[u] = 0
 
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
@@ -15,13 +15,13 @@ if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Download
 for f in range(0, num): fullCity = fullCity + cityname[f] + "、"
 fullCity = fullCity.replace(cityname[num - 1] + "、", cityname[num - 1])
 
-def down(fname): os.system("wget -t 0 -T 3 -P " + rpath + " --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
+def down(fname): os.system("wget -t 0 -T 3 -O " + rpath + fname + ".json --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
 def home():
 	wAns = ""; mOpen = open(rpath + "Event.md"); mark = mOpen.read(); mOpen.close()
-	for d in range(0, num): down(filename[d])
+	for d in range(0, num): 
+		down(filename[d])
+		while os.path.getsize(rpath + filename[d] + ".json") == 0: down(filename[d])
 	for i in range(0, num):
-		try: rOpen = open(rpath + filename[i] + ".json") 
-		except IOError: down(filename[i])
 		rOpen = open(rpath + filename[i] + ".json"); raw = rOpen.read(); rOpen.close(); rJson = json.loads(raw)["courses"]
 		for lct in range(0, len(rJson)):
 			singleName = rJson[lct]["shortName"]
@@ -44,8 +44,6 @@ def home():
 			# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
-os.system("rm -f " + rpath + "*.json*")
-for r in range(0, num): os.system("rm -f " + rpath + filename[r] + ".json")
 home()
 for f in range(0, num): 
 	if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"

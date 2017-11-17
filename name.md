@@ -192,7 +192,7 @@
     "213": "Otay Ranch", 
     "214": "The Galleria", 
     "215": "Manchester Arndale", 
-    "216": "Domain Northside", 
+    "216": "Domain NORTHSIDE", 
     "217": "Chestnut Street", 
     "218": "Partridge Creek", 
     "219": "Town Square", 

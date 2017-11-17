@@ -16,7 +16,7 @@ def down(rtl, argc):
 	if newsize != oldsize:
 		if argc != "check":
 			if exi: os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous" + spr); exi = False
-			if not exi: os.system("wget -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
+			if not exi: os.system("wget --no-check-certificate -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
 		else:
 			print "[" + rtl + "] " + str(newsize) + " compare to " + str(oldsize)
 			cans = cans + rtl + ", "
