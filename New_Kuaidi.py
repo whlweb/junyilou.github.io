@@ -1,10 +1,12 @@
 import os, signal, sys
 from time import sleep
 
-pRead = open(os.path.expanduser('~') + "/pid.txt"); pid = pRead.read()
+pLoc = os.path.expanduser('~') + "/pid.txt"
+if not os.path.isfile(pLoc): os.system("cd >" + pLoc)
+pRead = open(pLoc); pid = pRead.read()
 bint = bin(int(sys.argv[1])).replace("0b",""); lbn = len(bint)
 try: os.kill(int(pid),signal.SIGCONT)
-except OSError:
+except (OSError, ValueError):
 	print "No such progress featureing PID " + pid; sleep(0.7)
 	os.system('screen -S jdk -X stuff "exit\n"'); os.system("screen -dmS jdk")
 	os.system('screen -S jdk -X stuff "python ~/junyilou.github.io/Kuaidi_IFTTT.py ' + sys.argv[1] + '\n"')
