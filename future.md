@@ -12,7 +12,6 @@ Confirmed:
 696 Venice - Italy
 697 Macau - S.A.R Macau
 711 Kyoto - Japan
-715 Brooklyn - U.S.
 728 Bangkok - Thailand
 824 Apple Park Visitor Center
 
