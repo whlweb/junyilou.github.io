@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, json, filecmp, platform
+import os, json, filecmp, platform, time
 
 if "Linux" in platform.platform(): tilde = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): tilde = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
@@ -77,4 +77,12 @@ def compare():
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
 
-down(); compare()
+def suzhou():
+	while True:
+		newSuzhou = tilde + "Suzhou.json"; os.system("touch " + newSuzhou); oldSuzhou = preDir + "Suzhou.json"
+		while os.path.getsize(newSuzhou) < 650: wget("165&cityCode=Suzhou", ".json", "Suzhou.json")
+		if filecmp.cmp(oldSuzhou, newSuzhou) == False:
+			os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在苏州的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
+		print "Sleeping, interval will be a day."; os.system("rm " + newSuzhou); time.sleep(86400)
+#down(); compare()
+suzhou()
