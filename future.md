@@ -13,7 +13,6 @@ Confirmed:
 697 Macau - S.A.R Macau
 711 Kyoto - Japan
 728 Bangkok - Thailand
-824 Apple Park Visitor Center
 
 Canceled:
 306 Qianmen - China

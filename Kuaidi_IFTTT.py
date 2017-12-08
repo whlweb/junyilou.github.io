@@ -1,35 +1,19 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, signal, exceptions
 
-arg = signCheck = siging = brew = tti = forTime = 0; sm = nt = binvar = ""
+arg = signCheck = siging = brew = tti = forTime = 0; nt = ""
 endl = "\n"; argv = list(range(10)); masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
-
-def sig_u1(x, y): global binvar, siging; siging = 1; binvar += "0"
-def sig_u2(x, y): global binvar, siging; siging = 1; binvar += "1"
-def sig_st(x, y):
-	global siging, binvar; siging = 1; binvar = ""
-	print 'Received Linux siganal, analyzing.'
-def sig_ed(x, y):
-	global siging, arg, binvar, brew; sigans = int(binvar, 2); siging = 0
-	print "Binary: " + binvar + "\nReceived new readid:", sigans
-	arg += 1; brew += 1; argv[arg] = str(sigans); binvar = ""
-signal.signal(signal.SIGCONT, sig_st); signal.signal(signal.SIGUSR1, sig_u1)
-signal.signal(signal.SIGUSR2, sig_u2); signal.signal(signal.SIGTERM, sig_ed)
 
 def plut(pint):
 	if (pint - 1): plural = "s"
 	else: plural = ""
 	return plural
-def blanker(bid, notice):
-	blanktime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-	print str(os.getpid()) + " " + blanktime + " Checked " + bid + " " + notice + ", ignore."
+def blanker(bid, notice): print str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
 def netTry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
 	else: return response.read()
-def pushbots(pushRaw):
-	os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1="
-		+ pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+def pushbots(pushRaw): os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 	# GitHub users please notice: IFTTT key only uses for private.
 def autocomp(readid):
 	aTry = netTry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
@@ -86,22 +70,17 @@ TimeInterval = 600 #10 minutes
 FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl
-os.system("rm -f " + FileLocation + "pid.txt&&cd >" + FileLocation + "pid.txt")
-pWrite = open((FileLocation + "pid.txt"), 'w'); pWrite.write(str(os.getpid())); pWrite.close()
 while True:
-	if not siging:
-		checkbrew = str(argv).count("-")
-		for n in range(1, arg + 1): 
-			readid = argv[n]
-			if readid != "-": stat = home(readid)
-			else: stat = 0
-			if stat:
-				print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
-				argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
-		if checkbrew == brew: break
-		time.sleep(TimeInterval)
+	checkbrew = str(argv).count("-")
+	for n in range(1, arg + 1): 
+		readid = argv[n]
+		if readid != "-": stat = home(readid)
+		else: stat = 0
+		if stat:
+			print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + " time" + plut(tti) + "."
+			argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
 	if checkbrew == brew: break
+	time.sleep(TimeInterval)
 for ntm in range (0, 45): nt = nt + "="
-st = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print endl + "Summary:" + endl + nt + endl + st + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl
+print endl + "Summary:" + endl + nt + endl + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " All " + str(brew) + " package" + plut(brew) + " signed, exit." + endl + nt + endl
 if brew > 0: pushbots("快递查询 - [退出提示] 共 " + str(brew) + " 个快递单已经被识别为签收。")
