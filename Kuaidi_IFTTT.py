@@ -41,7 +41,7 @@ def home(readid):
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
 			if ansj["status"] == "200":
 				erstat = 1; maxnum = tryb.count("location")
-				if maxnum != orgCounter:
+				if maxnum > orgCounter:
 					result = ansj["data"]
 					realComp = comtext.get(ansj["com"], "其他") + "快递"
 					fTime = time.strftime("%-m月%-d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
@@ -55,7 +55,9 @@ def home(readid):
 					end = "快递查询 - " + es + realComp + " " + readid + " 新物流: " + fTime + " " + fContent
 					if noShow == False: print end + endl; pushbots(end)
 					else: blanker(readid, "got noShow signal")
-				else: blanker(readid, "has no update")
+				else: 
+					if maxnum == orgCounter: blanker(readid, "has no update")
+					if maxnum < orgCounter: blanker(readid, "got lessPut signal")
 			else:
 				blanker(readid, "returned code " + ansj["status"])
 				if ansj["status"] == "400": print "[" + readid + " is currently using comp code '" + comp + "'.]"
