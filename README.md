@@ -26,18 +26,9 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并�
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
 
 ![截图](/bkP/NewRID.png)
-
-使用时在后面接 Retail 编号（在 [name.md](name.md) 可以找到），如：
-````bash
-python RetailID_IFTTT.py 824
-````
-
-由于 request 库无法较好的管理超时问题，为避免后台运行卡死，该程序不会检测所有零售店图片，而需要手动设置 Watchlist，目前将 Time interval 设置为了 2h，这也造成了一些媒体跑的比香港记者还快。
-
-![截图](/bkP/hkjournal.png)
 
 全新 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
