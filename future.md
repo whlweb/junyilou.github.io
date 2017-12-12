@@ -5,10 +5,6 @@ Unknown:
 694 Taiwan
 
 Confirmed:
-516 Carnegie Library - U.S.
-667 Piazza Liberty - Italy
-687 Vienna - Austria
-692 Seoul - Republic of Korea
 696 Venice - Italy
 697 Macau - S.A.R Macau
 711 Kyoto - Japan
