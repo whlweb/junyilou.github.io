@@ -484,7 +484,7 @@
     "638": "Galaxy Mall", 
     "639": "Zhujiang New Town", 
     "643": "Wonder City", 
-    "644": "Xiamen New Town Plaza", 
+    "644": "Xiamen Lifestyle Center", 
     "645": "Chaoyang Joy City", 
     "646": "Thaihot Plaza", 
     "648": "Parc 66 Jinan", 
