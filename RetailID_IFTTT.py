@@ -7,12 +7,11 @@ def down(rtl):
 	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
-	if rtl == "711": newsize = 123
 	if newsize != oldsize and newsize > 1:
 		try: rname = storejson[0][rtl]
 		except KeyError: rname = "Store"
 		pushRaw = "[Retail Images] Apple " + rname + " (R" + rtl + ") just updated, the size of the picture is " + str(newsize / 1024) + " KB."
-		upb = upb + pushRaw.replace("[Retail Images]", "") + "\n"; print pushRaw
+		upb = upb + pushRaw.replace("[Retail Images] ", "") + "\n"; print pushRaw
 		if os.path.isfile(sx): os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous/")
 		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + pushRaw 
 				+ "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
