@@ -77,12 +77,16 @@ def compare():
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
 
-def suzhou():
+def custom():
 	while True:
 		newSuzhou = tilde + "Suzhou.json"; os.system("touch " + newSuzhou); oldSuzhou = preDir + "Suzhou.json"
+		newChengdu = tilde + "Chengdu.json"; os.system("touch " + newChengdu); oldChengdu = preDir + "Chengdu.json"
 		while os.path.getsize(newSuzhou) < 650: wget("165&cityCode=Suzhou", ".json", "Suzhou.json")
+		while os.path.getsize(newChengdu) < 1300: wget("178&cityCode=Chengdu", ".json", "Chengdu.json")
 		if filecmp.cmp(oldSuzhou, newSuzhou) == False:
-			os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在苏州的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
-		print "Sleeping, interval will be a day."; os.system("rm " + newSuzhou); time.sleep(86400)
+			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在苏州的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
+		if filecmp.cmp(oldChengdu, newChengdu) == False:
+			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在成都的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
+		print "Sleeping, interval will be 12 hr."; os.system("rm " + newSuzhou); time.sleep(43200)
 #down(); compare()
-suzhou()
+custom()
