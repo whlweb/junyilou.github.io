@@ -87,6 +87,6 @@ def custom():
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在苏州的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
 		if filecmp.cmp(oldChengdu, newChengdu) == False:
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在成都的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
-		print "Sleeping, interval will be 12 hr."; os.system("rm " + newSuzhou); time.sleep(43200)
+		print "Sleeping, interval will be 12 hr."; os.system("rm " + newSuzhou); os.system("rm " + newChengdu); time.sleep(43200)
 #down(); compare()
 custom()

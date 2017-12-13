@@ -16,6 +16,7 @@ def down(rtl):
 	if newsize != oldsize:
 		if exi: os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous" + spr); exi = False
 		if not exi: os.system("wget --no-check-certificate -t 2 -c -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
+		if "Darwin" in platform.platform(): os.system("open " + rpath)
 	else: 
 		print "Photos of R" + rtl + " had been already downloaded or not ready yet."
 
@@ -24,4 +25,4 @@ if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Retail/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 for m in sys.argv[1:]: arg += 1
-for j in range(1, arg + 1): down(sys.argv[j], "")
+for j in range(1, arg + 1): down(sys.argv[j])
