@@ -30,12 +30,12 @@ if arg == 0: start = 1
 else: start = int(sys.argv[1])
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
-sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 while True:
+	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 	nameopen = open("/home/pi/Retail/name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
 	for j in range(start, 730): down("%03d" % j)
 	reload(sys); sys.setdefaultencoding('utf-8')
-	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb + "PID " + pid + " is sleeping, interval will be 12hr."
-	time.sleep(43200)
+	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb + "PID " + pid + " is sleeping, interval will be 6hrs."
+	time.sleep(21600)
 print upb
