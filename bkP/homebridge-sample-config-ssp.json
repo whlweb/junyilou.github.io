@@ -1,0 +1,89 @@
+{
+  "bridge": {
+    "name": "HomeBridge",
+    "username": "12:34:56:AB:CD:EF",
+    "port": 51826,
+    "pin": "123-45-678"
+  },
+  "accessories": [
+    {
+      "accessory": "RaspberryPiTemperature",
+      "name": "树莓派板温度"
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "MiAqaraPlatform",
+      "sid": [
+        "123456abcdef"
+      ],
+      "password": [
+        "1234567890ABCDEF"
+      ],
+      "defaultValue": {
+            "158d000defabc": {
+                "Mag": {
+                    "name": "卧室门"
+                }
+            },
+            "158d000cdefab": {
+                "Mag": {
+                    "name": "客厅大门"
+                }
+            },
+            "158d000bcdefa": {
+                "Plug": {
+                    "name": "小插座"
+                }
+            },
+            "158d000abcdef": {
+                "Tem": {
+                    "name": "温度传感器"
+                },
+                "Hum": {
+                    "name": "湿度传感器"
+                }
+            },
+            "123456abcdef": {
+                "GW_LS": {
+                    "name": "亮度传感器"
+                },
+                "GW_Light": {
+                    "name": "客厅网关灯"
+                }
+            }
+        }
+    },
+    {
+      "platform": "MiOutletPlatform",
+      "deviceCfgs": [
+        {
+          "type": "IntelligencePinboard",
+          "ip": "172.16.0.123",
+          "token": "123456abcdef123456abcdef",
+          "outletName": "智能插座",
+          "outletDisable": false,
+          "temperatureName": "插座温度",
+          "temperatureDisable": false,
+          "switchLEDName": "插座指示灯",
+          "switchLEDDisable": false
+        }
+      ]
+    },
+    {
+      "platform": "MiPhilipsLightPlatform",
+      "deviceCfgs": [
+        {
+          "type": "TableLamp2",
+          "ip": "172.16.0.234",
+          "token": "abcdef123456abcdef123456",
+          "mainLightName": "飞利浦台灯",
+          "secondLightName": "飞利浦辅助灯",
+          "secondLightDisable": false,
+          "eyecareSwitchName": "护眼模式",
+          "eyecareSwitchDisable": false
+        }
+      ]
+    }
+  ]
+}
