@@ -16,27 +16,25 @@ Python
 ````bash
 python Kuaidi_IFTTT.py 600316811932 199217929998
 ````
-Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件，并保存从快递 100 获取到的物流条数和最后一条的时间。通过物流条数确定是否有更新，由于快递 100 的 bug，申通和圆通快递单可能出现物流条数无理由增加，但物流信息并未更新的情况，第三个参数用于解决此问题，判定物流信息是否真的有更新。
+Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这个 txt 会保存快递公司代号、获取到的数目用于日后比对，以及最后一条物流信息的时间：这是为了避免某些快递公司会出现内容没有变化但是条数莫名其妙的变化。
 
 ![截图](/bkP/rtk.jpg)
 
-由于快递 100 自动计算的公司出错概率仍然存在（很小，如果出现错误 201 有可能是遇到此问题），你可以手动在 ~ 创建以快递单号命名的 txt 文件，并写入 "[公司], "（逗号后面打一个空格）保存。例如「jd, 」然后下一次检查时便会强制以京东快递来查询（也可以因此避免无法自动计算快递公司的问题）。
-
-[RetailID.py](RetailID.py) - 用于本地库执行的 Apple 零售店图片快速下载和整理工具。
+快递公司识别使用的是快递 100 的服务，有极小的概率出错或者无法判断（出现 201 或 400 错误），可以手动输入快递公司代号（一般为全拼）并逗号空格。例如「jd, 」，这样就会强制让程序使用京东快递来查询。
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
 
 ![截图](/bkP/NewRID.png)
 
-全新 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
+[Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/ars_teller) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
 ![截图](/bkP/NewTaa.png)
 
-[Apple_Jobs.py](Apple_Jobs.py) - 现在每 24 小时刷新 Apple 在中国苏州的招聘信息更新，该程序原本用于获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件（可以用代码中的 down() 来下载），并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
+[Apple_Jobs.py](Apple_Jobs.py) - 现在每 24 小时刷新 Apple 在中国苏州和成都的招聘信息更新，该程序原本用于获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件（可以用代码中的 down() 来下载），并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
 [idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
