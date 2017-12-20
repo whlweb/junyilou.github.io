@@ -1,7 +1,6 @@
 import os, sys, datetime, json, time, signal
 
-def emergency(a, b): exit()
-
+#def emergency(a, b): exit()
 def down(rtl):
 	global upb; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
@@ -32,7 +31,7 @@ if arg == 0: start = 1
 else: start = int(sys.argv[1])
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
-signal.signal(signal.SIGINFO, emergency)
+#signal.signal(signal.SIGINFO, emergency)
 
 while True:
 	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
