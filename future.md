@@ -16,6 +16,7 @@ Canceled:
 617 Changsha - China
 
 No Retail ID but confirmed:
-China - Jiangsu - Suzhou - Suzhou Center
 France - Paris - Paris - Champs-Élysées
+China - Jiangsu - Suzhou - Suzhou Center
 Sweden - Stockholm - Stockholm - Kungsträdgården
+Australia - Victoria - Melbourne - Federation Square

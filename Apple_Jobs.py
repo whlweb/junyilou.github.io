@@ -1,10 +1,11 @@
 #-*- coding:utf-8 -*-
-import os, json, filecmp, platform, time
+import os, json, filecmp, platform, time, signal
 
 if "Linux" in platform.platform(): tilde = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): tilde = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 preDir = tilde + "Jobs/"
 
+def emergency(a, b): exit()
 def cRep(org, dep, des = ""): return org.replace(dep, des)
 def wget(post, url, savename):
 	os.system('wget -t 0 -T 3 -O ' + tilde + savename
@@ -91,5 +92,6 @@ def custom():
 			if filecmp.cmp(oldChengdu, newChengdu) == False:
 				os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=[招贤纳才]Apple 在成都的招聘计划似乎发生了改变。' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x"); exit()
 		print "Sleeping, interval will be 12 hr."; os.system("rm " + newSuzhou); os.system("rm " + newChengdu); time.sleep(43200)
-#down(); compare()
-custom()
+
+signal.signal(signal.SIGINFO, emergency)
+custom() #down(); compare()

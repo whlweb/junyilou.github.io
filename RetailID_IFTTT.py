@@ -1,4 +1,6 @@
-import os, sys, datetime, json, time
+import os, sys, datetime, json, time, signal
+
+def emergency(a, b): exit()
 
 def down(rtl):
 	global upb; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
@@ -30,6 +32,7 @@ if arg == 0: start = 1
 else: start = int(sys.argv[1])
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
+signal.signal(signal.SIGINFO, emergency)
 
 while True:
 	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -38,4 +41,3 @@ while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
 	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb + "PID " + pid + " is sleeping, interval will be 6hrs."
 	time.sleep(21600)
-print upb
