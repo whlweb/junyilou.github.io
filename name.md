@@ -497,7 +497,7 @@
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
     "687": "Karntner Strasse",
-    "692": "Store at Seoul",
+    "692": "Garosugil",
     "696": "Store at Venice",
     "697": "Store at Macau",
     "703": "Nanjing Jinmao Place",
