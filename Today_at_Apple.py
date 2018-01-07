@@ -14,6 +14,7 @@ if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 for f in range(0, num): fullCity = fullCity + cityname[f] + "、"
 fullCity = fullCity.replace(cityname[num - 1] + "、", cityname[num - 1])
+masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 
 def down(fname): os.system("wget -t 0 -T 3 -O " + rpath + fname + ".json --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
 def home():
@@ -33,16 +34,19 @@ def home():
 						if eJson[ect]["shortName"] == singleName and not cityname[r] in citAns:
 							citAns += "、" + cityname[r]
 				if fullCity in citAns: citAns = "全中国大陆"
-				pushAns = "Apple 在" + citAns + "有新活动: " + singleName
+				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; pushed = 0
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for pc in range(0, num):
 					if cityname[pc] in pushAns: checksum[pc] += 1
-				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushAns + "&value2="
-					 		+ rJson[lct]["image"] + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
-			# GitHub users please notice: IFTTT Key only uses for private.
+				while not pushed:
+					os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" + pushAns + "&value2="
+					 		+ rJson[lct]["image"] + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+					pushed = input("\nDid wget post successfully? ",)
+				# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
 reload(sys); sys.setdefaultencoding('utf-8'); home()
 for f in range(0, num): 
 	if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"
 	os.system("rm " + rpath + filename[f] + ".json")
+	os.system("rm -f " + masterKey + "*")
