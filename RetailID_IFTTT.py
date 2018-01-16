@@ -15,7 +15,6 @@ def down(rtl):
 		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated, the size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; print pushRaw
 		tellRaw = "[零售店图片] Apple " + rname + "（编号 R" + rtl + "）刚刚更新，图片大小为 " + str(newsize / 1024) + " KB。"
-		if os.path.isfile(sx): os.system("mv -n " + sbn + rtl + ".png " + rpath + "Other/previous/")
 		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
 				+ "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
 		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
