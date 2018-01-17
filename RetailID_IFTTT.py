@@ -26,18 +26,21 @@ def down(rtl):
 		if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
 		else: print pid + " Checked R" + rtl + " has no update, ignore."
 
-global upb; arg = 0; pid = str(os.getpid()); upb = ""
+global upb; arg = 0; pid = str(os.getpid()); upb = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
-if arg == 0: start = 1
-else: start = int(sys.argv[1])
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
+nameopen = open("/home/pi/Retail/name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
 #signal.signal(signal.SIGINFO, emergency)
 
 while True:
-	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-	nameopen = open("/home/pi/Retail/name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
-	for j in range(start, 730): down("%03d" % j)
 	reload(sys); sys.setdefaultencoding('utf-8')
-	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb + "PID " + pid + " is sleeping, interval will be 6hrs."
-	time.sleep(21600)
+	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	if arg:
+		print "Starting special watchlist refreshing..."
+		for s in range(1, arg + 1): down("%03d" % int(sys.argv[s]))
+	if not (rTime % 5):
+		for j in range(1, 730): down("%03d" % j)
+	rTime += 1
+	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb
+	time.sleep(3600)
