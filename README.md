@@ -50,8 +50,6 @@ Markdown
 
 [name.md](name.md) - Apple 零售店编号和对应名称。
 
-[future.md](future.md) - Apple 零售店计划表。
-
 previous 文件夹
 ==========
 [iReserve.py](/previous/iReserve.py) 自动获取指定型号，指定中国大陆零售店 iPhone X 手机的可预约购买情况，并在用户指定型号可预约购买（或不可预约购买，可设置仅在可预约购买时提醒）发送 IFTTT 通知至 iOS。该源代码将在下一代 iPhone 发布时重新使用。
