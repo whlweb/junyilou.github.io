@@ -496,7 +496,7 @@
     "672": "Galaxy Macau", 
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
-    "687": "Karntner Strasse",
+    "687": "Kaerntner Strasse",
     "692": "Garosugil",
     "696": "Store at Venice",
     "697": "Store at Macau",

@@ -3,7 +3,7 @@ import os, sys, datetime, json, time, signal
 
 #def emergency(a, b): exit()
 def down(rtl):
-	global upb; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
+	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
 	else: oldsize = 0
 	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
