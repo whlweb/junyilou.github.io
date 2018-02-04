@@ -43,5 +43,5 @@ while True:
 	if not (rTime % 5):
 		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
-	print "\nStarted: " + sTime + "\nEnded:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n" + upb
+	print upb + "\n" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 	time.sleep(3600)
