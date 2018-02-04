@@ -1,6 +1,5 @@
-文件介绍
-
-其实主要是瞎搞，能拿出来供 Public 使用的不太多。我个人很喜欢 Kuaidi_IFTTT.py，另外 Today at Apple 和 Apple Jobs 则是为自己的公众号准备内容用的比较多。
+<center>**文件介绍**<b>
+其实主要是瞎搞，能拿出来供 Public 使用的不太多。我个人很喜欢 Kuaidi_IFTTT.py，另外 Today at Apple 和 Apple Jobs 则是为自己的公众号准备内容用的比较多。</center>
 
 Workflow
 ===========
@@ -26,7 +25,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
 
-你还可以直接设置特别关注店号，刷新频率则从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息。
+你还可以直接设置特别关注店号，刷新频率则从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
 ![截图](/bkP/Garosugil_2018.png)
 
@@ -36,7 +35,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 ![截图](/bkP/TaA_2018.png)
 
-[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件（可以用代码中的 down() 来下载），并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
+[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等，未来计划支持全球其他重点地区。
 
 [idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
