@@ -84,6 +84,6 @@ def compare():
 	print noChange + "\n============\n" + changeOut
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
-	time.sleep(86400)
+	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()); time.sleep(86400)
 
 down(); compare()
