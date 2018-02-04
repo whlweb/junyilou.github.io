@@ -18,7 +18,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 ````
 Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这个 txt 会保存快递公司代号、获取到的数目用于日后比对，以及最后一条物流信息的时间：这是为了避免某些快递公司会出现内容没有变化但是条数莫名其妙的变化。
 
-<div align=center>![截图](/bkP/rtk_reb.png)</div>
+<div align=center><img src ="/bkP/rtk_reb.png" /></div>
 
 快递公司识别使用的是快递 100 的服务，有极小的概率出错或者无法判断（出现 201 或 400 错误），可以手动输入快递公司代号（一般为全拼）并逗号空格。例如「jd, 」，这样就会强制让程序使用京东快递来查询。
 
@@ -28,13 +28,13 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 你还可以直接设置特别关注店，频率从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
-![截图](/bkP/Garosugil_2018_alpha.png)
+<div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
-![截图](/bkP/TaA_2018_alpha.png)
+<div align=center><img src ="/bkP/TaA_2018_reb.png" /></div>
 
 [Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等，未来计划支持全球其他重点地区。
 
