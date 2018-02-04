@@ -6,7 +6,7 @@ Workflow
 ===========
 kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](https://sspai.com)推荐。本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。
 
-<center>![截图](/bkP/wf_relative_reb.png)</center>
+<div align=center>![截图](/bkP/wf_relative_reb.png)</div>
 
 Python
 ===========
@@ -18,7 +18,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 ````
 Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这个 txt 会保存快递公司代号、获取到的数目用于日后比对，以及最后一条物流信息的时间：这是为了避免某些快递公司会出现内容没有变化但是条数莫名其妙的变化。
 
-<center>![截图](/bkP/rtk_reb.png)</center>
+<div align=center>![截图](/bkP/rtk_reb.png)</div>
 
 快递公司识别使用的是快递 100 的服务，有极小的概率出错或者无法判断（出现 201 或 400 错误），可以手动输入快递公司代号（一般为全拼）并逗号空格。例如「jd, 」，这样就会强制让程序使用京东快递来查询。
 
