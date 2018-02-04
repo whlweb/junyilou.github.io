@@ -1,11 +1,10 @@
-<center><b>文件介绍</b></center><br>
-<center>其实主要是瞎搞，能拿出来供 Public 使用的不太多。我个人很喜欢 Kuaidi_IFTTT.py，另外 Today at Apple 和 Apple Jobs 则是为自己的公众号准备内容用的比较多。</center>
+概要
+===========
+**其实主要是瞎搞，能拿出来供 Public 使用的不太多。我个人很喜欢 Kuaidi_IFTTT.py，另外 Today at Apple 和 Apple Jobs 则是为自己的公众号准备内容用的比较多。**
 
 Workflow
 ===========
-kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，支持剪切板，请访问 [Matrix 精选 | Workflow + 快递 100 原来快递既能这么查，还能这么显示](http://sspai.com/36871) 了解，本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。
-
-![截图](/bkP/wf_relative.png)
+kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](https://sspai.com)推荐。本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。![截图](/bkP/wf_relative_alpha.png)
 
 Python
 ===========
@@ -17,7 +16,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 ````
 Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这个 txt 会保存快递公司代号、获取到的数目用于日后比对，以及最后一条物流信息的时间：这是为了避免某些快递公司会出现内容没有变化但是条数莫名其妙的变化。
 
-![截图](/bkP/rtk.jpg)
+![截图](/bkP/rtk_alpha.png)
 
 快递公司识别使用的是快递 100 的服务，有极小的概率出错或者无法判断（出现 201 或 400 错误），可以手动输入快递公司代号（一般为全拼）并逗号空格。例如「jd, 」，这样就会强制让程序使用京东快递来查询。
 
@@ -25,15 +24,15 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
 
-你还可以直接设置特别关注店号，刷新频率则从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
+你还可以直接设置特别关注店，频率从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
-![截图](/bkP/Garosugil_2018.png)
+![截图](/bkP/Garosugil_2018_alpha.png)
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
-![截图](/bkP/TaA_2018.png)
+![截图](/bkP/TaA_2018_alpha.png)
 
 [Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等，未来计划支持全球其他重点地区。
 
@@ -56,8 +55,6 @@ previous 文件夹
 ![运行截图](/bkP/iPX_RCsc.png)
 
 [Event_IFTTT.py](/previous/Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
-
-![截图](/bkP/event.jpg)
 
 [EXIF.py](/previous/EXIF.py) - 获取 Apple 零售店图片的处理软件（Adobe Photoshop）版本。
 
