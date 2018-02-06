@@ -10,26 +10,32 @@ codnm = ["HNA", "SHA", "KMG", "NEI", "PEK", "CTU", "TJN", "ANH", "SDG", "SXI",
 		"CAN", "GXI", "JSU", "HBE", "HEN", "HGZ", "FUJ", "GUZ", "LNG", "CKG"]
 preDir = tilde + "Jobs/"
 
-def wget(post, savename):
+def wget(post, filen, savename):
 	os.system('wget -t 0 -T 4 -O ' + tilde + savename
-		+ ' --no-check-certificate --post-data "countryCode=CHN&stateCode='
-		+ post + '" https://jobs.apple.com/cn/location/cities.json')
+		+ ' --no-check-certificate --post-data "countryCode=CHN'
+		+ post + '" https://jobs.apple.com/cn/location/' + filen + '.json')
 def push(pushRaw):
 	os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" 
 		+ pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
 
 def down():
+	lSize = 0
+	while lSize < 3: wget("", "states", "states.json"); lSize = cSize = os.path.getsize(tilde + "states.json")
 	sOpen = open(tilde + "states.json"); sJson = json.loads(sOpen.read()); sOpen.close()
+	if len(sJson) > 20:
+		print "Apple Jobs updated states.json.\nPlease edit the script to fit the new JSON.\n"
+		push("[招贤纳才]Apple 更新了 states.json，请手动修改程序。")
+		os.system("rm " + tilde + "states.json"); exit()
 	for s in range(0, len(sJson)):
 		cSize = 0
-		while not cSize:
-			wget(str(sJson[s]["id"]), "cities" + str(s) + ".json")
+		while cSize < 3:
+			wget("&stateCode=" + str(sJson[s]["id"]), "cities", "cities" + str(s) + ".json")
 			cSize = os.path.getsize(tilde + "cities" + str(s) + ".json")
 			uOpen = open(tilde + "cities" + str(s) + ".json"); uRead = uOpen.read(); uOpen.close()
 			if "<!DOCTYPE html>" in uRead:
 				print "Apple Jobs is now having an update.\nPlease check jobs information later.\n"
 				push("[招贤纳才]Apple 招聘页面开始维护了，监测将退出。")
-				os.system("rm " + preDir + "cities*.json"); exit()
+				os.system("rm " + tilde + "cities*.json"); exit()
 
 def compare():
 	changeOut = noChange = p = c = ""; global changeSummary
@@ -46,7 +52,7 @@ def compare():
 					if oldJson > newJson and newJson == 0: p = "stopped hiring."; c = "已经不再招聘了。"
 					changeOut =  "[*] Apple Jobs at " + codnm[int(os.path.basename(oldLoc).replace("cities", "").replace(".json", ""))] + " " + p
 					push("[招贤纳才]Apple 在" + trans[int(os.path.basename(oldLoc).replace("cities", "").replace(".json", ""))] + c)
-					print changeOut; changeSummary = changeSummary + changeOut
+					print changeOut; changeSummary = changeSummary.replace("No changes found yet, please check back soon.", "") + changeOut + "\n"
 				else: noChange = noChange + "Checked file '" + os.path.basename(oldLoc) + "' has no update.\n"
 	if changeSummary == "": changeSummary = "No changes found yet, please check back soon."
 	print noChange + "\n============\n" + changeSummary

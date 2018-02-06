@@ -1,7 +1,6 @@
 #-*- coding:utf-8 -*-
-import os, sys, datetime, json, time, signal
+import os, sys, datetime, json, time
 
-#def emergency(a, b): exit()
 def down(rtl):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
@@ -31,7 +30,6 @@ for m in sys.argv[1:]: arg += 1
 rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
 dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 nameopen = open("/home/pi/Retail/name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
-#signal.signal(signal.SIGINFO, emergency)
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
@@ -43,5 +41,5 @@ while True:
 	if not (rTime % 5):
 		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
-	print upb + "\n" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(3600)
