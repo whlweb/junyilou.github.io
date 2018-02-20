@@ -36,7 +36,7 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 <div align=center><img src ="/bkP/TaA_2018_reb.png" /></div>
 
-[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等，未来计划支持全球其他重点地区。
+[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
 [idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
