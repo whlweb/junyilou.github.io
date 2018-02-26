@@ -7,12 +7,12 @@ endl = "\n"; argv = list(range(10)); masterKey = "dJ4B3uIsxyedsXeQKk_D3x"
 def keyNotice():
 	osLogName = os.environ.get("LOGNAME"); global keyBool
 	if osLogName != "junyi_lou" and osLogName != "pi" and masterKey == "dJ4B3uIsxyedsXeQKk_D3x" and not keyBool:
-		print "=================================="
+		print; print "==========================================="
 		print "警告: 这似乎不是 Junyi Lou 的电脑，但 IFTTT Key 并未在源代码中修改。"
 		print "为个人方便未在源代码中删除自用 Master Key，继续将会把消息推送至我的设备。"
 		print "您不仅无法体验本文件的功能，同时还将对我造成困扰。如需注册 IFTTT Key，"
 		print "请打开 README.md (https://junyilou.github.io) 并参照加粗文字。"
-		print "=================================="
+		print "==========================================="
 		keyBool = input("\n确定要继续么？",)
 	if not keyBool: exit()
 def plut(pint):
