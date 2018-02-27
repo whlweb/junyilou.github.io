@@ -40,6 +40,12 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 [Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
+[Weibo_Base62.py](Weibo_Base62.py) - 修改自[脚本之家](http://www.jb51.net/article/49353.htm)所展示的 Python 代码，利用 Python Flask，将微博 62 进制 URL 链接（示例：G56yQ4FFi）转换为 10 进制 Weibo ID 数字，并生成微博国际版（overseas.weibo.cc 和 fx.weibo.cc）分享链接。
+
+<div align=center><img src ="weibo_cc_mid.png" /></div>
+
+挂载 Flask 环境后，只需访问 IP地址:8080/<62进制>，如 192.168.24.74:8080/G56yQ4FFi，即可获得 fx.weibo.cc 的微博国际版分享地址。
+
 [idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
 ````bash
