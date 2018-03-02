@@ -18,9 +18,11 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 ````
 Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这个 txt 会保存快递公司代号、获取到的数目用于日后比对，以及最后一条物流信息的时间：这是为了避免某些快递公司会出现内容没有变化但是条数莫名其妙的变化。
 
-<div align=center><img src ="/bkP/rtk_reb.png" /></div>
+<div align=center><img src="/bkP/rich_kuaidi.jpg" /></div>
 
 快递公司识别使用的是快递 100 的服务，有极小的概率出错或者无法判断（出现 201 或 400 错误），可以手动输入快递公司代号（一般为全拼）并逗号空格。例如「jd, 」，这样就会强制让程序使用京东快递来查询。
+
+<div align=center><img src ="/bkP/rtk_reb.png" /></div>
 
 **近期，我的设备收到了来自陌生人推送的快递信息。似乎是 GitHub 用户运行时未修改 IFTTT Maker Key 所致，为个人方便，我并未删除源代码中的自用 Key，请参见本段头部加粗文字注册自用。在 Kuaidi_IFTTT.py 中，已加入相关代码减少此类情况发生。**
 
@@ -28,11 +30,15 @@ Python 会自动在 ~ 目录下创建以快递单号命名的 txt 文件。这�
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。该项目会读取本地库中已经下载的 Apple 零售店图片并比较大小，刷新 Apple Store 的图片更新，可以让用户最快知道 Apple 更新了零售店图片的消息。由于它将枚举 001 至 730，根据网络环境不同，运行一次事件可能超过 20 分钟。
 
+<div align=center><img src="/bkP/rich_rtl.jpg" /></div>
+
 你还可以直接设置特别关注店，频率从 6 小时变为 1 小时。利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
+
+<div align=center><img src="/bkP/rich_today.jpg" /></div>
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
