@@ -8,17 +8,18 @@ def down(rtl):
 	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
+	keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
+	# GitHub users please notice: IFTTT key only uses for private.
 	if newsize != oldsize and newsize > 1:
 		try: rname = storejson[0][rtl]
 		except KeyError: rname = "Store"
 		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated, the size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
-		tellRaw = "[零售店图片] Apple " + rname + "（编号 R" + rtl + "）刚刚更新，图片大小为 " + str(newsize / 1024) + " KB。"
-		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-				+ "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
-		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-				+ "' https://maker.ifttt.com/trigger/raw/with/key/bOGI8iEAyvjh782UYFKbRa")
-		# GitHub users please notice: IFTTT key only uses for private.
+		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
+		for pg in range(0, len(keyList)):
+			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+				+ "&value2=Apple Store 零售店图片&value3=" + dieter + "/16_9" 
+				+ spr + "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
 	else: 
 		try: pname = "R" + rtl + ": " + storejson[0][rtl]
 		except KeyError: pname = "R" + rtl

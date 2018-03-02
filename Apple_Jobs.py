@@ -16,7 +16,7 @@ def wget(post, filen, savename):
 		+ post + '" https://jobs.apple.com/cn/location' + filen + '.json')
 def push(pushRaw):
 	os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" 
-		+ pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/dJ4B3uIsxyedsXeQKk_D3x")
+		+ pushRaw + "' https://maker.ifttt.com/trigger/raw/with/key/bKwiDtPPRP6sY943piQKbd")
 
 def down():
 	lSize = 0

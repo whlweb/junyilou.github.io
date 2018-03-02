@@ -38,7 +38,7 @@ def home():
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for pc in range(0, num):
 					if cityname[pc] in pushAns: checksum[pc] += 1
-				print("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
+				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
 					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
 					"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 				# GitHub users please notice: IFTTT Key only uses for private.
