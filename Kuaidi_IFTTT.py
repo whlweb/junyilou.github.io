@@ -25,7 +25,7 @@ def netTry(tryurl):
 	except urllib2.URLError: return "False"
 	else: return response.read()
 def pushbots(pushRaw, pushTitle, pushURL): 
-	print("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
+	os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
 			pushRaw + "&value2=" + pushTitle + "&value3=" + pushURL +
 			"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 def autocomp(readid):
