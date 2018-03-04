@@ -19,7 +19,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 
 <div align=center><img src="/bkP/rich_kuaidi_2.jpg" /></div>
 
-更多内容详见 Repository 的 Wiki 页面。
+<br>更多内容详见 Repository 的 Wiki 页面。
 
 [RetailID_IFTTT.py](RetailID_IFTTT.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
 
@@ -27,7 +27,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 
 <div align=center><img src="/bkP/rich_rtl.jpg" /></div>
 
-利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
+<br>利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
