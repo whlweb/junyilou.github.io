@@ -17,8 +17,7 @@ def keyNotice():
 	if not keyBool: exit()
 
 def blanker(bid, notice): 
-	print str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
-		+ " Checked " + bid + " " + notice + ", ignore."
+	print str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
 def netTry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
@@ -94,8 +93,7 @@ for m in sys.argv[1:]: arg += 1; brew = arg
 TimeInterval = 600 #10 minutes
 FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
-print endl + "Start with PID " + str(os.getpid()) + "." + endl 
-		+ "Time interval will be 10 minutes." + endl
+print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl
 while True:
 	checkbrew = str(argv).count("-")
 	for n in range(1, arg + 1): 
@@ -103,8 +101,7 @@ while True:
 		if readid != "-": stat = home(readid)
 		else: stat = 0
 		if stat:
-			print "Checked " + str(readid) + " signed, " + str(stat) 
-				+ " updates in total recorded, refreshed " + str(tti) + "."
+			print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + "."
 			argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
 	if checkbrew == brew: break
 	time.sleep(TimeInterval)
