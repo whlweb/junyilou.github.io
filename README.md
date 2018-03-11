@@ -12,16 +12,18 @@ Python
 ===========
 **请注意，自用 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。使用有关 IFTTT 的 Python 之前，请先将代码中 bKwiDt 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。**
 
-[Kuaidi.py](Kuaidi.py) 基于 IFTTT Maker 的快递实时推送工具，运行该 Python 需要给予参数，在后面直接跟运单号码即可，如：
+[Kuaidi.py](Kuaidi.py) 基于 IFTTT 的快递实时推送工具，运行该 Python 需要给予参数，在后面直接跟运单号码即可，如：
 ````bash
-python Kuaidi_IFTTT.py 600316811932 199217929998
+python Kuaidi.py 600316811932 199217929998
 ````
+
+可配合 nohup 或 screen 使用，需要将代码一直保持在前台。
 
 <div align=center><img src="/bkP/rich_kuaidi_2.jpg" /></div>
 
-<br>更多内容详见 Repository 的 Wiki 页面。
+<br>**更多内容详见 Repository 的 Wiki 页面。**
 
-[RetailID.py](Retail.py) - 基于 IFTTT Maker 获取 Apple Store 图片更新工具。
+[Retail.py](Retail.py) - 基于 IFTTT 获取 Apple Store 图片更新工具。
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
@@ -31,7 +33,7 @@ python Kuaidi_IFTTT.py 600316811932 199217929998
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
-更多内容详见 Repository 的 Wiki 页面。
+**更多内容详见 Repository 的 Wiki 页面。**
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
 
