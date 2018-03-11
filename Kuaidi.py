@@ -64,7 +64,7 @@ def home(readid):
 				if maxnum > orgCounter:
 					result = ansj["data"]
 					realComp = comtext.get(ansj["com"], "其他") + "快递"
-					fTime = time.strftime("%-m月%-d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
+					fTime = time.strftime("%-m月%-d日 %-H:%-M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 					if linetime.count(fTime) > 0: noShow = True
 					reload(sys); sys.setdefaultencoding('utf-8')
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")").replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
