@@ -35,13 +35,15 @@ python Kuaidi.py 600316811932 199217929998
 
 **更多内容详见 Repository 的 Wiki 页面。**
 
-[Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特邀嘉宾活动的推送工具。
+[Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT 获取中国 Apple Store Today at Apple 新活动的工具。
 
 <div align=center><img src="/bkP/rich_today.jpg" /></div>
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
 <div align=center><img src ="/bkP/TaA_2018_reb.png" /></div>
+
+**更多内容详见 Repository 的 Wiki 页面。**
 
 [Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
