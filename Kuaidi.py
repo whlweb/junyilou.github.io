@@ -7,17 +7,19 @@ endl = "\n"; argv = list(range(10)); masterKey = "bKwiDtPPRP6sY943piQKbd"
 def keyNotice():
 	osLogName = os.environ.get("LOGNAME"); global keyBool
 	if osLogName != "junyi_lou" and osLogName != "pi" and masterKey == "bKwiDtPPRP6sY943piQKbd" and not keyBool:
-		print; print "==========================================="
-		print "警告: 这似乎不是 Junyi Lou 的电脑，但 IFTTT Key 并未在源代码中修改。"
-		print "为个人方便未在源代码中删除自用 IFTTT Key，继续将会把消息推送至我的设备。"
-		print "您不仅无法体验本文件的功能，同时还将对我造成困扰。如需注册 IFTTT Key，"
-		print "请打开 README.md (https://junyilou.github.io) 并参照加粗文字。"
-		print "==========================================="
-		keyBool = input("\n确定要继续么？",)
+		print (endl +"===========================================" + endl +
+		"警告: 这似乎不是 Junyi Lou 的电脑，但 IFTTT Key 并未在源代码中修改。" + endl +
+		"为个人方便未在源代码中删除自用 IFTTT Key，继续将会把消息推送至我的设备。" + endl +
+		"您不仅无法体验本文件的功能，同时还将对我造成困扰。如需注册 IFTTT Key，" + endl +
+		"请打开 README.md (https://junyilou.github.io) 并参照加粗文字。" + endl +
+		"===========================================" + endl)
+		keyBool = input("确定要继续么？",)
 	if not keyBool: exit()
 
 def blanker(bid, notice): 
-	print str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ", ignore."
+	print (str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	+ " Checked " + bid + " " + notice + ", ignore.")
+
 def netTry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
 	except urllib2.URLError: return "False"
@@ -51,14 +53,8 @@ def home(readid):
 	if comp != "unknown":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = netTry(urlb)
 		if tryb != "False":
-			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%m月%d日")
+			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%-m月%-d日")
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
-			compurl = {'yuantong': 'https://junyilou.github.io/bkP/k_yuantong.png',
-					'yunda': 'https://junyilou.github.io/bkP/k_yunda.png',
-					'shunfeng': 'https://junyilou.github.io/bkP/k_shunfeng.png',
-					'shentong': 'https://junyilou.github.io/bkP/k_shentong.png',
-					'zhongtong': 'https://junyilou.github.io/bkP/k_zhongtong.png',
-					'jd': 'https://junyilou.github.io/bkP/k_jingdong.png'}
 			if ansj["status"] == "200":
 				erstat = 1; maxnum = tryb.count("location")
 				if maxnum > orgCounter:
@@ -72,8 +68,10 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(comp + ", " + str(maxnum) + ", " + fTime); fileRefresh.close()
-					end = es + fTime + " " + fContent
-					if noShow == False: print end + endl; pushbots(end, "快递查询: " + realComp + " " + readid, compurl.get(ansj["com"], ""))
+					end = es + fTime + " " + fContent; pushImage = ""
+					if "其他" in realComp: pushImage = bkPloc + "other.png"
+					else: pushImage = bkPloc + ansj["com"] + ".png"
+					if noShow == False: print end + endl; pushbots(end, "快递查询: " + realComp + " " + readid, pushImage)
 					else: blanker(readid, "got noShow signal")
 				else: 
 					if maxnum == orgCounter: blanker(readid, "has no update")
@@ -85,15 +83,17 @@ def home(readid):
 	else:
 		blanker(readid, "without company")
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
-	os.system("rm -f " + masterKey + "*")
 	global tti; tti += 1; return exsc
 
 keyNotice()
 for m in sys.argv[1:]: arg += 1; brew = arg
-TimeInterval = 600 #10 minutes
+TimeInterval = 10
 FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
-print endl + "Start with PID " + str(os.getpid()) + "." + endl + "Time interval will be 10 minutes." + endl
+print (endl + "Start with PID " + str(os.getpid()) + "." +
+ endl + "Time interval will be 10 minutes." + endl)
+bkPloc = "https://junyilou.github.io/bkP/c_"
+
 while True:
 	checkbrew = str(argv).count("-")
 	for n in range(1, arg + 1): 
@@ -105,6 +105,10 @@ while True:
 			argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
 	if checkbrew == brew: break
 	time.sleep(TimeInterval)
+
 for ntm in range (0, 45): nt = nt + "="
-print endl + "Summary:" + endl + nt + endl + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " All " + str(brew) + " signed, exit." + endl + nt + endl
-if brew > 0: pushbots("共 " + str(brew) + " 个快递单已经被识别为签收，程序自动退出。签收单号为 " + ", ".join(sys.argv[1:]), "http://www.shejiye.com/uploadfile/icon/2017/0203/shejiyeiconen1cvjj2rje.png")
+print (endl + "Summary:" + endl + nt + endl + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
+	+ " All " + str(brew) + " signed, exit." + endl + nt + endl)
+if brew > 0: pushbots("共 " + str(brew) + " 个快递单已经被识别为签收，程序自动退出。签收单号为 " 
+	+ ", ".join(sys.argv[1:]) + "。", "快递查询: 退出提示", bkPloc + "exit.png")
+os.system("rm -f" + FileLocation + masterKey + "*")
