@@ -111,4 +111,4 @@ print (endl + "Summary:" + endl + nt + endl + datetime.datetime.now().strftime("
 	+ " All " + str(brew) + " signed, exit." + endl + nt + endl)
 if brew > 0: pushbots("共 " + str(brew) + " 个快递单已经被识别为签收，程序自动退出。签收单号为 " 
 	+ ", ".join(sys.argv[1:]) + "。", "快递查询: 退出提示", bkPloc + "exit.png")
-os.system("rm -f" + FileLocation + masterKey + "*")
+os.system("rm -f " + FileLocation + masterKey + "*")
