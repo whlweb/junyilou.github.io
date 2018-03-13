@@ -87,7 +87,7 @@ def home(readid):
 
 keyNotice()
 for m in sys.argv[1:]: arg += 1; brew = arg
-TimeInterval = 10
+TimeInterval = 600
 FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print (endl + "Start with PID " + str(os.getpid()) + "." +
