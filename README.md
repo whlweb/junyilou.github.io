@@ -19,7 +19,7 @@ python Kuaidi.py 600316811932 199217929998
 
 可配合 nohup 或 screen 使用，需要将代码一直保持在前台。
 
-<div align=center><img src="/bkP/rich_kuaidi_2.jpg" /></div>
+<div align=center><img src="/bkP/rich_kuaidi_3.jpg" /></div>
 
 <br>**更多内容详见 Repository 的 Wiki 页面。**
 
