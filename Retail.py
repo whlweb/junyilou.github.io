@@ -39,6 +39,7 @@ while True:
 		print "Starting special watchlist refreshing..."
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
+	else: "No special watchlist found, ignore 1 hour."
 	if not (rTime % 5):
 		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
