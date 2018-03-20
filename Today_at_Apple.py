@@ -40,7 +40,8 @@ def home():
 					if cityname[pc] in pushAns: checksum[pc] += 1
 				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
 					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
-					"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+				os.system("rm -f " + masterKey + "*")
 				# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 

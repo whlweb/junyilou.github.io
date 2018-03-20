@@ -1,11 +1,11 @@
 #-*- coding:utf-8 -*-
-import os, sys, datetime, json, time
+import os, sys, datetime, json, time, platform
 
 def down(rtl):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + "/16_9" + spr)
+	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
 	keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
@@ -18,8 +18,9 @@ def down(rtl):
 		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
 		for pg in range(0, len(keyList)):
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-				+ "&value2=Apple Store 零售店图片&value3=" + dieter + "/16_9" 
-				+ spr + "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
+				+ "&value2=Apple Store 零售店图片&value3=" + dieter + spr + "?output-format=jpg"
+				+ "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
+			os.system("rm -f " + keyList[pg] + "*")
 	else: 
 		try: pname = "R" + rtl + ": " + storejson[0][rtl]
 		except KeyError: pname = "R" + rtl
@@ -28,9 +29,10 @@ def down(rtl):
 
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
-rpath = "/home/pi/Retail/"; sbn = rpath + "Pictures/R"
-dieter = "https://rtlimages.apple.com/cmc/dieter/store"
-nameopen = open("/home/pi/Retail/name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
+if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
+if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
+sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
+nameopen = open(rpath + "name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')

@@ -22,7 +22,7 @@ def down(rtl):
 
 arg = 0; rpath = ""; cans = ""
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
-if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Retail/"
+if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store"
 for m in sys.argv[1:]: arg += 1
 for j in range(1, arg + 1): down(sys.argv[j])

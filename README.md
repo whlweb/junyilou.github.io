@@ -75,11 +75,13 @@ previous 文件夹
 
 [EXIF.py](/previous/EXIF.py) - 获取 Apple 零售店图片的处理软件（Adobe Photoshop）版本。
 
-[format.py](format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
+[format.py](/previous/format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
 
 ````bash
 python format.py ~/states.json
 ````
+
+[shrink.py](/previous/shrink.py) - 通过 TinyPNG 的 API 压缩图片并返回图片地址的源代码。曾尝试（没有 Commit 出来）用于 Today at Apple 和 Retail 两个文件中，但 Apple 的服务器自带了压缩功能，故代码闲置。
 
 kuaidi20171031.wflow - 旧版本，对比 kuaidi20171105.wflow 新版增加了对总用时的计算，将自动判断是否签收，以确定是从最早的一条物流计算到查询时间，还是计算到最后一条物流时间。
 
