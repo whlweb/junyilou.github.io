@@ -53,14 +53,14 @@ def home(readid):
 	if comp != "unknown":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = netTry(urlb)
 		if tryb != "False":
-			ansj = json.loads(tryb); today = datetime.datetime.now().strftime("%-m月%-d日")
-			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东'}
+			ansj = json.loads(tryb)
+			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东', 'ems': '邮政 EMS'}
 			if ansj["status"] == "200":
 				erstat = 1; maxnum = tryb.count("location")
 				if maxnum > orgCounter:
 					result = ansj["data"]
 					realComp = comtext.get(ansj["com"], "其他") + "快递"
-					fTime = time.strftime("%-m月%-d日 %-H:%-M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
+					fTime = time.strftime("%-m月%-d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 					if linetime.count(fTime) > 0: noShow = True
 					reload(sys); sys.setdefaultencoding('utf-8')
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")").replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
@@ -83,6 +83,7 @@ def home(readid):
 	else:
 		blanker(readid, "without company")
 		print "[" + readid + " is currently using comp code '" + comp + "'.]"
+	os.system("rm -f " + FileLocation + masterKey + "*")
 	global tti; tti += 1; return exsc
 
 keyNotice()
@@ -111,4 +112,3 @@ print (endl + "Summary:" + endl + nt + endl + datetime.datetime.now().strftime("
 	+ " All " + str(brew) + " signed, exit." + endl + nt + endl)
 if brew > 0: pushbots("共 " + str(brew) + " 个快递单已经被识别为签收，程序自动退出。签收单号为 " 
 	+ ", ".join(sys.argv[1:]) + "。", "快递查询: 退出提示", bkPloc + "exit.png")
-os.system("rm -f " + FileLocation + masterKey + "*")
