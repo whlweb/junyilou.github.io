@@ -63,12 +63,13 @@ def home(readid):
 					fTime = time.strftime("%-m月%-d日 %H:%M", time.strptime(result[0]["time"], "%Y-%m-%d %H:%M:%S"))
 					if linetime.count(fTime) > 0: noShow = True
 					reload(sys); sys.setdefaultencoding('utf-8')
-					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")").replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
+					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")")
+					fContent = fContent.replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
 					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收") + fContent.count("取件")
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(comp + ", " + str(maxnum) + ", " + fTime); fileRefresh.close()
-					end = es + fTime + " " + fContent; pushImage = ""
+					end = es + fTime + " " + fContent; end = end.replace("EMS快递", "EMS"); pushImage = ""
 					if "其他" in realComp: pushImage = bkPloc + "other.png"
 					else: pushImage = bkPloc + ansj["com"] + ".png"
 					if noShow == False: print end + endl; pushbots(end, "快递查询: " + realComp + " " + readid, pushImage)
