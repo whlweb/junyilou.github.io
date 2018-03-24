@@ -69,7 +69,7 @@ def home(readid):
 					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(comp + ", " + str(maxnum) + ", " + fTime); fileRefresh.close()
-					end = es + fTime + " " + fContent; end = end.replace("EMS快递", "EMS"); pushImage = ""
+					end = es + fTime + " " + fContent; realComp = realComp.replace("EMS快递", "EMS"); pushImage = ""
 					if "其他" in realComp: pushImage = bkPloc + "other.png"
 					else: pushImage = bkPloc + ansj["com"] + ".png"
 					if noShow == False: print end + endl; pushbots(end, "快递查询: " + realComp + " " + readid, pushImage)
