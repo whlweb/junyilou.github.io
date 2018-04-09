@@ -498,6 +498,7 @@
     "673": "apm Hong Kong", 
     "683": "Global Harbor", 
     "687": "Kaerntner Strasse",
+    "688": "Store at Suzhou",
     "692": "Garosugil",
     "696": "Store at Venice",
     "697": "Store at Macau",

@@ -49,4 +49,4 @@ reload(sys); sys.setdefaultencoding('utf-8'); home()
 for f in range(0, num): 
 	if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"
 	os.system("rm " + rpath + filename[f] + ".json")
-	os.system("rm -f " + masterKey + "*")
+os.system("rm -f " + masterKey + "*")
