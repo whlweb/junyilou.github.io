@@ -54,8 +54,8 @@ def compare():
 					oldOpen = open(oldLoc); oldJson = len(json.loads(oldOpen.read())); oldOpen.close()
 					newOpen = open(newLoc); newJson = len(json.loads(newOpen.read())); newOpen.close()
 					os.system("mv " + newLoc + " " + newLoc.replace(os.path.basename(newLoc), os.path.basename(newLoc).replace(".json", "-1.json")))
-					if oldJson < newJson: p = "had " + str(newJson - oldJson) + " more item now."; c = "增加了 " + str(newJson - oldJson) + "个招聘地点。"
-					if oldJson > newJson and newJson > 0: p = "seems to stopped some hiring."; c = "似乎停止了部分地点的招聘。"
+					if oldJson < newJson: p = "has " + str(newJson - oldJson) + " more item now."; c = "增加了 " + str(newJson - oldJson) + "个招聘地点。"
+					if oldJson > newJson and newJson > 0: p = "seems to have stopped some hiring."; c = "似乎停止了部分地点的招聘。"
 					if oldJson > newJson and newJson == 0: p = "stopped hiring."; c = "已经不再招聘了。"
 					if "cities" in os.path.basename(oldLoc): repOldLoc = os.path.basename(oldLoc).replace("cities", "").replace(".json", "")
 					if "location" in os.path.basename(oldLoc):
@@ -64,14 +64,14 @@ def compare():
 							if noLoc[rl] == "-": rans = rl
 						rl -= 1; repOldLoc = noLoc[:rl]
 					changeOut =  "[*] Apple Jobs at " + codnm[int(repOldLoc)] + " " + p
-					push("[招贤纳才]Apple 在" + trans[int(repOldLoc)] + c)
+					#push("[招贤纳才]Apple 在" + trans[int(repOldLoc)] + c)
 					print changeOut; changeSummary = changeSummary.replace("No changes found yet, please check back soon.", "") + changeOut + "\n"
 				else: noChange = noChange + "Checked file '" + os.path.basename(oldLoc) + "' has no update.\n"
 	if changeSummary == "": changeSummary = "No changes found yet, please check back soon."
 	print noChange + "\n============\n" + changeSummary
 	os.system("mv -f " + tilde + "cities*.json " + preDir)
 	os.system("mv -f " + tilde + "location*.json " + preDir)
-	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()); time.sleep(43200)
+	#print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()); time.sleep(43200)
 
 global changeSummary; changeSummary = ""
-while True: down(); compare()
+down(); compare()
