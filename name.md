@@ -491,6 +491,8 @@
     "648": "Parc 66 Jinan", 
     "650": "Summerlin", 
     "654": "World Trade Center", 
+    "658": "Watch at Galeries Lafayette",
+    "659": "Watch at Selfridges",
     "667": "Piazza Liberty",
     "669": "Orchard Road",
     "670": "Kunming", 

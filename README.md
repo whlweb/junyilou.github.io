@@ -93,7 +93,8 @@ rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请�
 
 联系
 =======
+Telegram: [俊逸 娄](http://t.me/marvin_lou "俊逸 娄")
 
-少数派: [Junyi Lou](http://matrix.sspai.com/p/da7b1760 "Junyi Lou - Matrix")
+Twitter 私信: [@赛艇的同学](https://twitter.com/junyi_lou "@赛艇的同学") 
 
-新浪微博: [@Junyi_Lou_](https://weibo.com/n/Junyi_Lou_ "@Junyi_Lou_")
+新浪微博: [@赛艇的同学](https://weibo.com/3566216663 "@赛艇的同学")
