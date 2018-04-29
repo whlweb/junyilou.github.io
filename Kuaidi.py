@@ -93,7 +93,7 @@ TimeInterval = 600
 FileLocation = os.path.expanduser('~') + "/"
 for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print (endl + "Start with PID " + str(os.getpid()) + "." +
- endl + "Time interval will be 10 minutes." + endl)
+	endl + "Time interval will be 10 minutes." + endl)
 bkPloc = "https://junyilou.github.io/bkP/c_"
 
 while True:

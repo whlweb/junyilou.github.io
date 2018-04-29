@@ -8,51 +8,21 @@
   "accessories": [
     {
       "accessory": "RaspberryPiTemperature",
-      "name": "树莓派板温度"
+      "name": "树莓派温度"
+    },
+    {
+      "accessory": "MiGatewayFM",
+      "name": "重庆交通广播",
+      "ip": "192.168.24.345",
+      "token": "12345654321ABCDEFEDCBA12345654321ABCD",
+      "url": "https://ls.qingting.fm/live/1500/64k.m3u8",
+      "disable": true
     }
   ],
   "platforms": [
     {
       "platform": "MiAqaraPlatform",
-      "sid": [
-        "123456abcdef"
-      ],
-      "password": [
-        "1234567890ABCDEF"
-      ],
-      "defaultValue": {
-            "158d000defabc": {
-                "Mag": {
-                    "name": "卧室门"
-                }
-            },
-            "158d000cdefab": {
-                "Mag": {
-                    "name": "客厅大门"
-                }
-            },
-            "158d000bcdefa": {
-                "Plug": {
-                    "name": "小插座"
-                }
-            },
-            "158d000abcdef": {
-                "Tem": {
-                    "name": "温度传感器"
-                },
-                "Hum": {
-                    "name": "湿度传感器"
-                }
-            },
-            "123456abcdef": {
-                "GW_LS": {
-                    "name": "亮度传感器"
-                },
-                "GW_Light": {
-                    "name": "客厅网关灯"
-                }
-            }
-        }
+      "gateways": {"123456abcd": "12345654ABCDEFED"}
     },
     {
       "platform": "MiOutletPlatform",
