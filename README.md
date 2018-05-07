@@ -63,7 +63,7 @@ Markdown
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 首页将重定向至此。
 
-[name.md](name.md) - Apple 零售店编号和对应名称。
+[name.json](name.json) - Apple 零售店编号和对应名称。
 
 previous 文件夹
 ==========

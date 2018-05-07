@@ -32,7 +32,7 @@ for m in sys.argv[1:]: arg += 1
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
-nameopen = open(rpath + "name.md"); storejson = json.loads(nameopen.read()); nameopen.close()
+nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
