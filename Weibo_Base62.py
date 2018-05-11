@@ -9,7 +9,10 @@ app = Flask(__name__)
 def index(query):
 	dURL = shareURL + url_to_mid(query)
 	responce = urllib2.urlopen(dURL)
-	return json.loads(responce.read())["data"]["url"][:38]
+	fOpen = open("log.log"); fRead = fOpen.read(); fOpen.close()
+	fReopen = open("log.log", "w"); clearURL = json.loads(responce.read())["data"]["url"][:38]
+	fWrite = fReopen.write(fRead + query + " " + clearURL +"\n"); fReopen.close()
+	return clearURL
 
 def base62_encode(num):
 	arr = []; base = 62
