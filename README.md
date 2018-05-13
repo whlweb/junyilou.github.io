@@ -59,6 +59,16 @@ python Kuaidi.py 600316811932 199217929998
 python idc.py 11000019890604000
 ````
 
+Pythonista
+===========
+iOS App Pythonista 3 为用户提供了在手机上运行 Python2/3 的可能。将 Kuaidi.py 和 Weibo_Base62.py 优化后，现有未完工的 Kuaidi_Pythonista.py 和 Weibo_Base62_Pythonista.py。
+
+[Kuaidi_Pythonista.py](Kuaidi_Pythonista.py) - 尚未完工，已优化代码输出结果，正设计 UI 将其展示在 iOS 系统的 Widget 页面中。
+
+[Weibo_Base62_Pythonista.py](Weibo_Base62_Pythonista.py) - [Weibo_Base62.py](Weibo_Base62.py) 的 iOS 优化版本，复制完整的 weibo.com/userid/base62 链接，即可在 Today Widget 获取微博 ID 数字和国际版 fx.weibo.cc 链接，并将链接复制到剪切板。
+
+<div align=center><img src ="/bkP/Pythonista_Ruby.jpg" /></div>
+
 Markdown
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 首页将重定向至此。
