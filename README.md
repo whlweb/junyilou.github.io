@@ -10,13 +10,15 @@ kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](htt
 
 Pythonista
 ===========
-iOS App Pythonista 3 为用户提供了在手机上运行 Python2/3 的可能。将 Kuaidi.py 和 Weibo_Base62.py 优化后，现有未完工的 Kuaidi_Pythonista.py 和 Weibo_Base62_Pythonista.py。
+iOS App [Pythonista 3](https://itunes.apple.com/cn/app/pythonista-3/id1085978097?mt=8) 为用户提供了在手机上运行 Python2 的可能。
 
-[Kuaidi_Pythonista.py](Kuaidi_Pythonista.py) - 尚未完工，已优化代码输出结果，正设计 UI 将其展示在 iOS 系统的 Widget 页面中。
+当前主要计划将 Kuaidi.py 和 Weibo_Base62.py 优化：现有未完工的 Kuaidi_Pythonista.py 和已完成的 Weibo_Base62_Pythonista.py。未来计划优化 Today.py
+
+[Kuaidi_Pythonista.py](Kuaidi_Pythonista.py) - 尚未完工，已优化代码输出结果，正设计 UI 将其展示在 iOS 系统的 Widget 页面中。代码请参照下文 [Kuaidi.py](Kuaidi.py)。
 
 [Weibo_Base62_Pythonista.py](Weibo_Base62_Pythonista.py) - [Weibo_Base62.py](Weibo_Base62.py) 的 iOS 优化版本，复制完整的 weibo.com/userid/base62 链接，即可在 Today Widget 获取微博 ID 数字和国际版 fx.weibo.cc 链接，并将链接复制到剪切板。
 
-<div align=center><img src ="/bkP/Pythonista_Ruby.jpg" /></div>
+<div align=center><img src ="/bkP/Pythonista_NJT.jpg" /></div>
 
 Python
 ===========
