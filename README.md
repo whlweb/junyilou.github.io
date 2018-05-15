@@ -8,6 +8,16 @@ kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](htt
 
 <div align=center><img src ="/bkP/wf_relative_reb.png" /></div>
 
+Pythonista
+===========
+iOS App Pythonista 3 为用户提供了在手机上运行 Python2/3 的可能。将 Kuaidi.py 和 Weibo_Base62.py 优化后，现有未完工的 Kuaidi_Pythonista.py 和 Weibo_Base62_Pythonista.py。
+
+[Kuaidi_Pythonista.py](Kuaidi_Pythonista.py) - 尚未完工，已优化代码输出结果，正设计 UI 将其展示在 iOS 系统的 Widget 页面中。
+
+[Weibo_Base62_Pythonista.py](Weibo_Base62_Pythonista.py) - [Weibo_Base62.py](Weibo_Base62.py) 的 iOS 优化版本，复制完整的 weibo.com/userid/base62 链接，即可在 Today Widget 获取微博 ID 数字和国际版 fx.weibo.cc 链接，并将链接复制到剪切板。
+
+<div align=center><img src ="/bkP/Pythonista_Ruby.jpg" /></div>
+
 Python
 ===========
 **请注意，自用 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。使用有关 IFTTT 的 Python 之前，请先将代码中 bKwiDt 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。**
@@ -19,7 +29,7 @@ python Kuaidi.py 600316811932 199217929998
 
 可配合 nohup 或 screen 使用，需要将代码一直保持在前台。
 
-<div align=center><img src="/bkP/rich_kuaidi_3.jpg" /></div>
+<div align=center><img src="/bkP/rich_kuaidi_square.jpg" /></div>
 
 <br>**更多内容详见 Repository 的 Wiki 页面。**
 
@@ -27,17 +37,13 @@ python Kuaidi.py 600316811932 199217929998
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
-<div align=center><img src="/bkP/rich_rtl.jpg" /></div>
-
-<br>利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
+利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
 **更多内容详见 Repository 的 Wiki 页面。**
 
 [Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT 获取中国 Apple Store Today at Apple 新活动的工具。
-
-<div align=center><img src="/bkP/rich_today.jpg" /></div>
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
@@ -49,8 +55,6 @@ python Kuaidi.py 600316811932 199217929998
 
 [Weibo_Base62.py](Weibo_Base62.py) - 修改自[脚本之家](http://www.jb51.net/article/49353.htm)所展示的 Python 代码，利用 Python Flask，将微博 62 进制 URL 链接（示例：G56yQ4FFi）转换为 10 进制 Weibo ID 数字，并生成微博国际版（overseas.weibo.cc 和 fx.weibo.cc）分享链接。
 
-<div align=center><img src ="/bkP/weibo_cc_mid.png" /></div>
-
 挂载 Flask 环境后，只需访问 IP地址:8080/<62进制>，如 192.168.24.74:8080/G56yQ4FFi，即可获得 fx.weibo.cc 的微博国际版分享地址。
 
 [idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
@@ -59,17 +63,7 @@ python Kuaidi.py 600316811932 199217929998
 python idc.py 11000019890604000
 ````
 
-Pythonista
-===========
-iOS App Pythonista 3 为用户提供了在手机上运行 Python2/3 的可能。将 Kuaidi.py 和 Weibo_Base62.py 优化后，现有未完工的 Kuaidi_Pythonista.py 和 Weibo_Base62_Pythonista.py。
-
-[Kuaidi_Pythonista.py](Kuaidi_Pythonista.py) - 尚未完工，已优化代码输出结果，正设计 UI 将其展示在 iOS 系统的 Widget 页面中。
-
-[Weibo_Base62_Pythonista.py](Weibo_Base62_Pythonista.py) - [Weibo_Base62.py](Weibo_Base62.py) 的 iOS 优化版本，复制完整的 weibo.com/userid/base62 链接，即可在 Today Widget 获取微博 ID 数字和国际版 fx.weibo.cc 链接，并将链接复制到剪切板。
-
-<div align=center><img src ="/bkP/Pythonista_Ruby.jpg" /></div>
-
-Markdown
+文本
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 首页将重定向至此。
 
