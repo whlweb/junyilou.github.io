@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 import os, urllib2, sys, json, platform
 
-filename = ['wangfujing', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 'thaihotplaza',
+filename = ['xidanjoycity', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 'thaihotplaza',
 			'parccentral', 'westlake', 'parc66jinan', 'kunming', 'nanjingist', 'mixcnanning',
 			'tianyisquare', 'mixcqingdao', 'nanjingeast', 'zhongjiejoycity', 'holidayplazashenzhen',
 			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
