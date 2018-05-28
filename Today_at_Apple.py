@@ -2,7 +2,7 @@
 import os, urllib2, sys, json, platform
 
 filename = ['xidanjoycity', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 'thaihotplaza',
-			'parccentral', 'westlake', 'parc66jinan', 'kunming', 'nanjingist', 'mixcnanning',
+			'parccentral', 'westlake', 'parc66jinan', 'kunming', 'nanjingjinmaoplace', 'mixcnanning',
 			'tianyisquare', 'mixcqingdao', 'nanjingeast', 'zhongjiejoycity', 'holidayplazashenzhen',
 			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
 cityname = ['北京', '成都', '重庆', '大连', '福州', '广州', '杭州', '济南', '昆明', '南京', 
