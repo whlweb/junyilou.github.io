@@ -1,19 +1,23 @@
 #-*- coding:utf-8 -*-
 import os, urllib2, sys, json, platform
 
-filename = ['xidanjoycity', 'taikoolichengdu', 'jiefangbei', 'olympia66dalian', 'thaihotplaza',
-			'parccentral', 'westlake', 'parc66jinan', 'kunming', 'nanjingjinmaoplace', 'mixcnanning',
-			'tianyisquare', 'mixcqingdao', 'nanjingeast', 'zhongjiejoycity', 'holidayplazashenzhen',
-			'riverside66tianjin', 'center66wuxi', 'xiamenlifestylecenter', 'mixczhengzhou']
-cityname = ['北京', '成都', '重庆', '大连', '福州', '广州', '杭州', '济南', '昆明', '南京', 
-			'南宁', '宁波', '青岛', '上海', '沈阳', '深圳', '天津', '无锡', '厦门', '郑州']
-fullCity = ""; num = len(filename); checksum = list(range(num))
+filename = ['qibao', 'shanghaiiapm', 'wujiaochang', 'nanjingeast', 'pudong', 'globalharbor',
+			 'hongkongplaza', 'kunming', 'sanlitun', 'chinacentralmall', 'chaoyangjoycity', 
+			 'wangfujing', 'xidanjoycity', 'mixcchengdu', 'taikoolichengdu', 'tianjinjoycity',
+			 'riverside66tianjin', 'galaxymall', 'parc66jinan', 'mixcqingdao', 'parccentral',
+			 'zhujiangnewtown', 'holidayplazashenzhen', 'mixcnanning', 'nanjingist', 'nanjingjinmaoplace', 
+			 'wondercity', 'center66wuxi', 'mixczhengzhou', 'tianyisquare', 'mixchangzhou', 
+			 'westlake', 'xiamenlifestylecenter', 'thaihotplaza', 'olympia66dalian', 'parkland', 
+			 'zhongjiejoycity', 'mixcshenyang', 'jiefangbei', 'mixcchongqing', 'paradisewalkchongqing']
+cityname = ['上海', '上海', '上海', '上海', '上海', '上海', '上海', '昆明', '北京', '北京', '北京',
+			'北京', '北京', '成都', '成都', '天津', '天津', '天津', '济南', '青岛', '广州', '广州',
+			'深圳', '南宁', '南京', '南京', '南京', '无锡', '郑州', '宁波', '杭州', '杭州', '厦门',
+			'福州', '大连', '大连', '沈阳', '沈阳', '重庆', '重庆', '重庆']
+num = len(filename); checksum = list(range(num))
 for u in range(0, num): checksum[u] = 0
 
 if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
 if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
-for f in range(0, num): fullCity = fullCity + cityname[f] + "、"
-fullCity = fullCity.replace(cityname[num - 1] + "、", cityname[num - 1])
 masterKey = "bKwiDtPPRP6sY943piQKbd"
 
 def down(fname): os.system("wget -t 0 -T 3 -O " + rpath + fname + ".json --no-check-certificate https://www.apple.com/cn/today/static/data/store/" + fname + ".json")
@@ -33,7 +37,6 @@ def home():
 					for ect in range(0, len(eJson)):
 						if eJson[ect]["shortName"] == singleName and not cityname[r] in citAns:
 							citAns += "、" + cityname[r]
-				if fullCity in citAns: citAns = "全中国大陆"
 				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; pushed = 0
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for pc in range(0, num):
