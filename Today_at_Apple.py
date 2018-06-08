@@ -48,8 +48,10 @@ def home():
 				# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "Event.md", "w"); mWrite.write(mark + wAns); mWrite.close()
 
-reload(sys); sys.setdefaultencoding('utf-8'); home()
+reload(sys); sys.setdefaultencoding('utf-8'); home(); pcf = ""
 for f in range(0, num): 
-	if checksum[f] == 0: print "Apple 在" + cityname[f] + "没有新活动。"
+	if checksum[f] == 0 and not cityname[f] in pcf: 
+		print "Apple 在" + cityname[f] + "没有新活动。"
+		pcf += cityname[f]
 	os.system("rm " + rpath + filename[f] + ".json")
 os.system("rm -f " + masterKey + "*")
