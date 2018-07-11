@@ -45,9 +45,9 @@ python Kuaidi.py 600316811932 199217929998
 
 **更多内容详见 Repository 的 Wiki 页面。**
 
-[Today_at_Apple.py](Today_at_Apple.py) - 基于 IFTTT 获取中国 Apple Store Today at Apple 新活动的工具。
+[Today.py](Today.py) - 基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有中国大陆 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
 
 <div align=center><img src ="/bkP/TaA_2018_reb.png" /></div>
 
