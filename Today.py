@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, urllib2, sys, json, platform, time
+import os, urllib2, sys, json, time
 
 filename = ['qibao', 'shanghaiiapm', 'wujiaochang', 'nanjingeast', 'pudong', 'globalharbor',
 			 'hongkongplaza', 'kunming', 'sanlitun', 'chinacentralmall', 'chaoyangjoycity', 

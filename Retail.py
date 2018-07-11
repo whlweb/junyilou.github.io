@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, sys, datetime, json, time, platform
+import os, sys, datetime, json, time
 
 def down(rtl):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
@@ -29,8 +29,7 @@ def down(rtl):
 
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
-if "Linux" in platform.platform(): rpath = os.path.expanduser('~') + "/Retail/"
-if "Darwin" in platform.platform(): rpath = os.path.expanduser('~') + "/Downloads/Apple/Raspberry/"
+rpath = os.path.expanduser('~') + "/Retail/"
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
 nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
 
