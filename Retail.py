@@ -13,7 +13,7 @@ def down(rtl):
 	if newsize != oldsize and newsize > 1:
 		try: rname = storejson[0][rtl]
 		except KeyError: rname = "Store"
-		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated, the size of the picture is " + str(newsize / 1024) + " KB."
+		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated,\nthe size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
 		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
 		for pg in range(0, len(keyList)):
@@ -40,8 +40,8 @@ while True:
 		print "Starting special watchlist refreshing..."
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
-	if not (rTime % 36):
+	if not (rTime % 72):
 		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
-	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(600)

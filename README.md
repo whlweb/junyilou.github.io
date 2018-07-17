@@ -39,7 +39,7 @@ python Kuaidi.py 600316811932 199217929998
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
-利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。
+利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。9to5Mac Apple Store 栏目编辑也关注了果铺知道 Telegram Channel 获得最快推送。
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
