@@ -40,8 +40,8 @@ while True:
 		print "Starting special watchlist refreshing..."
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
-	if not (rTime % 72):
+	if not (rTime % 18):
 		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
-	time.sleep(600)
+	time.sleep(1200)
