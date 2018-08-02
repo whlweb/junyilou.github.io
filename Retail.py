@@ -20,6 +20,9 @@ def down(rtl):
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
 				+ "&value2=Apple Store 零售店图片&value3=" + dieter + spr + "?output-format=jpg"
 				+ "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
+			if not pg:
+				os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+					+ "&value3=" + dieter + spr + "?output-format=jpg' https://maker.ifttt.com/trigger/tgc/with/key/" + keyList[0])
 			os.system("rm -f " + keyList[pg] + "*")
 	else: 
 		try: pname = "R" + rtl + ": " + storejson[0][rtl]

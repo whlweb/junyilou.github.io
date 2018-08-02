@@ -53,6 +53,8 @@ def home():
 				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
 					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
 					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+				os.system("wget -t 0 -T 3 --no-check-certificate --post-data 'value1=" +
+					pushAns + "&value3=" + rJson[lct]["image"] + "?output-format=jpg' https://maker.ifttt.com/trigger/tgc/with/key/" + masterKey)
 				os.system("rm -f " + masterKey + "*")
 				# GitHub users please notice: IFTTT Key only uses for private.
 	mWrite = open(rpath + "savedEvent", "w"); mWrite.write(mark + wAns); mWrite.close()
