@@ -48,7 +48,7 @@ while True:
 		orgListSize = os.path.getsize(listLoc)
 		os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 		newListSize = os.path.getsize(listLoc)
-		if orgListSize != newListSize and newListSize > 1024:
+		if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
 				+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
 				+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
