@@ -8,8 +8,6 @@ def down(rtl):
 	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
-	keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
-	# GitHub users please notice: IFTTT key only uses for private.
 	if newsize != oldsize and newsize > 1:
 		try: rname = storejson[0][rtl]
 		except KeyError: rname = "Store"
@@ -33,6 +31,8 @@ def down(rtl):
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
+listLoc = rpath + "storeList.json"
+keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
 nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
 
@@ -45,6 +45,13 @@ while True:
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
 	if not (rTime % 18):
 		for j in range(1, 730): down("%03d" % j)
+		orgListSize = os.path.getsize(listLoc)
+		os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
+		newListSize = os.path.getsize(listLoc)
+		if orgListSize != newListSize and newListSize > 1024:
+			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
+				+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
+				+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
