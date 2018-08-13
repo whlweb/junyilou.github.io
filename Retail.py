@@ -44,7 +44,7 @@ while True:
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
 	if not (rTime % 18):
-		for j in range(1, 730): down("%03d" % j)
+		print "Comparing ASA remote file..."
 		orgListSize = os.path.getsize(listLoc)
 		os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 		newListSize = os.path.getsize(listLoc)
@@ -52,6 +52,9 @@ while True:
 			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
 				+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
 				+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
+			os.system("rm -f " + keyList[0] + "*")
+		else: print "Nothing changed, continue.\n"
+		for j in range(1, 730): down("%03d" % j)
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
