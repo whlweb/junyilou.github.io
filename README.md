@@ -8,6 +8,8 @@ kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](htt
 
 <div align=center><img src ="/bkP/wf_relative_reb.png" /></div>
 
+待 Siri Shortcut App 公开后，将进行重新适配发布 Siri 版本。
+
 Python
 ===========
 **请注意，自用 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。使用有关 IFTTT 的 Python 之前，请先将代码中 bKwiDt 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。**
@@ -27,7 +29,7 @@ python Kuaidi.py 600316811932 199217929998
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
-利用该脚本，果铺知道较官网宣布和其他媒体发布消息早 3 小时收到图片更新，并预告韩国零售店 Garosugil 开幕消息，奥地利零售店 Kaerntner Strasse 则比主流媒体快了约 6 小时。9to5Mac Apple Store 栏目编辑也关注了果铺知道 Telegram Channel 获得最快推送。
+9to5Mac Apple Store 栏目编辑也关注了果铺知道 Telegram Channel 获得最快推送。
 
 <div align=center><img src ="/bkP/Kaerntner_2018_reb.png" /></div>
 
@@ -35,23 +37,11 @@ python Kuaidi.py 600316811932 199217929998
 
 [Today.py](Today.py) - 基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。需要有 Event.md 来保存已有的活动以判断是否为新活动。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。
 
 <div align=center><img src ="/bkP/TaA_2018_reb.png" /></div>
 
 **更多内容详见 Repository 的 Wiki 页面。**
-
-[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
-
-[Weibo_Base62.py](Weibo_Base62.py) - 修改自[脚本之家](http://www.jb51.net/article/49353.htm)所展示的 Python 代码，利用 Python Flask，将微博 62 进制 URL 链接（示例：G56yQ4FFi）转换为 10 进制 Weibo ID 数字，并生成微博国际版（overseas.weibo.cc 和 fx.weibo.cc）分享链接。
-
-挂载 Flask 环境后，只需访问 IP地址:8080/<62进制>，如 192.168.24.74:8080/G56yQ4FFi，即可获得 fx.weibo.cc 的微博国际版分享地址。
-
-[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
-
-````bash
-python idc.py 11000019890604000
-````
 
 文本
 ===========
@@ -61,6 +51,14 @@ python idc.py 11000019890604000
 
 previous 文件夹
 ==========
+[idc.py](idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
+
+````bash
+python idc.py 11000019890604000
+````
+
+[Apple_Jobs.py](Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
+
 [iReserve.py](/previous/iReserve.py) 自动获取指定型号，指定中国大陆零售店 iPhone X 手机的可预约购买情况，并在用户指定型号可预约购买（或不可预约购买，可设置仅在可预约购买时提醒）发送 IFTTT 通知至 iOS。该源代码将在下一代 iPhone 发布时重新使用。
 
 ![运行截图](/bkP/iPX_RCsc.png)
