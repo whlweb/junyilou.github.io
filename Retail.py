@@ -54,7 +54,7 @@ while True:
 				+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
 			os.system("rm -f " + keyList[0] + "*")
 		else: print "Nothing changed, continue.\n"
-		for j in range(1, 730): down("%03d" % j)
+		for j in range(1, 740): down("%03d" % j)
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
