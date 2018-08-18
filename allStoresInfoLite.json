@@ -3165,8 +3165,8 @@
 				"storeNumber": "R237",
 				"countryCode": "US",
 				"storeName": "Orland Square Mall",
-				"latitude": "41.61971",
-				"longitude": "-87.84829",
+				"latitude": "41.6193",
+				"longitude": "-87.8479",
 				"storeRadius": "70",
 				"accuracyThreshold": "500",
 				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R237.png"],
@@ -3175,7 +3175,7 @@
 				"timeZone": "America/Chicago",
 				"scanAndBuy": "SNB",
 				"enableInStoreMode": true,
-				"storeAddress": "428 Orland Square\nOrland Park,IL 60462 ",
+				"storeAddress": "288 Orland Square Drive\nOrland Park,IL 60462 ",
 				"phoneNumber": "(708) 645-5401"
 			}, {
 				"storeNumber": "R018",
