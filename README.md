@@ -49,7 +49,7 @@ python Kuaidi.py 600316811932 199217929998
 
 [name.json](name.json) - Apple 零售店编号和对应名称。
 
-[storeListOriginal.json](storeListOriginal.json) - 未经格式化的 Apple Store app 零售店信息文件，包括零售店号、地址等各类信息。用于 Retail.py 对比以确认是否更改。
+[storeList.json](storeList.json) - 经格式化的 Apple Store app 零售店信息文件，包括零售店号、地址等各类信息。用于 Retail.py 对比以确认是否更改。
 
 previous 文件夹
 ==========
@@ -71,7 +71,7 @@ python idc.py 11000019890604000
 
 [shrink.py](/previous/shrink.py) - 通过 TinyPNG 的 API 压缩图片并返回图片地址的源代码。曾尝试（没有 Commit 出来）用于 Today at Apple 和 Retail 两个文件中，但 Apple 的服务器自带了压缩功能，故代码闲置。
 
-[Base62_Pythonista.py](/previous/Base62_Pythonista.py) - 输入 Base62 的微博 ID 可自动转换为数字微博 ID，并声称微博国际版分享链接。适用于 iOS App Pythonista 的 Python 3 环境。
+[Base62_Pythonista.py](/previous/Base62_Pythonista.py) - 输入 Base62 的微博 ID 可自动转换为数字微博 ID，并生成微博国际版分享链接。适用于 iOS App Pythonista 的 Python 3 环境。
 
 kuaidi20171031.wflow - 旧版本，对比 kuaidi20171105.wflow 新版增加了对总用时的计算，将自动判断是否签收，以确定是从最早的一条物流计算到查询时间，还是计算到最后一条物流时间。
 
