@@ -49,6 +49,8 @@ python Kuaidi.py 600316811932 199217929998
 
 [name.json](name.json) - Apple 零售店编号和对应名称。
 
+[storeListOriginal.json](storeListOriginal.json) - 未经格式化的 Apple Store app 零售店信息文件，包括零售店号、地址等各类信息。用于 Retail.py 对比以确认是否更改。
+
 previous 文件夹
 ==========
 [idc.py](/previous/idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
@@ -66,12 +68,6 @@ python idc.py 11000019890604000
 [Event_IFTTT.py](/previous/Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
 
 [EXIF.py](/previous/EXIF.py) - 获取 Apple 零售店图片的处理软件（Adobe Photoshop）版本。
-
-[format.py](/previous/format.py) - 通过 Python json.dumps 以显示 JSON 格式化结果，可一次性输出多个文件，将文件拖入终端即可。
-
-````bash
-python format.py ~/states.json
-````
 
 [shrink.py](/previous/shrink.py) - 通过 TinyPNG 的 API 压缩图片并返回图片地址的源代码。曾尝试（没有 Commit 出来）用于 Today at Apple 和 Retail 两个文件中，但 Apple 的服务器自带了压缩功能，故代码闲置。
 

@@ -1,5 +1,24 @@
 #-*- coding:utf-8 -*-
 import os, sys, datetime, json, time
+from collections import OrderedDict
+
+def asa():
+	print "Comparing ASA remote file..."
+	listLoc = rpath + "storeListOriginal.json"
+	orgListSize = os.path.getsize(listLoc)
+	os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' " + 
+		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
+	newListSize = os.path.getsize(listLoc)
+	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:
+		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
+			+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
+			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
+		os.system("rm -f " + keyList[0] + "*")
+		oldRead = open(listLoc); oldJSON = oldRead.read(); oldRead.close()
+		newJSON = json.dumps(json.loads(oldJSON, object_pairs_hook = OrderedDict), ensure_ascii = False, indent = 2)
+		newSave = open(listLoc.replace("Original.json", ".json"), "w"); newSave.write(newJSON); newSave.close()
+
+	else: print "Nothing changed, continue.\n"
 
 def down(rtl):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
@@ -31,7 +50,6 @@ def down(rtl):
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
-listLoc = rpath + "storeList.json"
 keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
 nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
@@ -44,16 +62,7 @@ while True:
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
 	if not (rTime % 18):
-		print "Comparing ASA remote file..."
-		orgListSize = os.path.getsize(listLoc)
-		os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
-		newListSize = os.path.getsize(listLoc)
-		if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:
-			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
-				+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
-				+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
-			os.system("rm -f " + keyList[0] + "*")
-		else: print "Nothing changed, continue.\n"
+		asa()
 		for j in range(1, 740): down("%03d" % j)
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
