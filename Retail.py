@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, sys, datetime, json, time
+import os, sys, json, time
 from collections import OrderedDict
 
 def asa():
