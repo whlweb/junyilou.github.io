@@ -54,7 +54,7 @@ def home(readid):
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = netTry(urlb)
 		if tryb != "False":
 			ansj = json.loads(tryb)
-			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东', 'ems': '邮政 EMS'}
+			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东', 'ems': '邮政 EMS', 'zhaijisong': '宅急送'}
 			if ansj["status"] == "200":
 				maxnum = tryb.count("location")
 				if maxnum > orgCounter:
@@ -66,7 +66,7 @@ def home(readid):
 					fContent = result[0]["context"].replace(" 【", "【").replace("】 ", "】").replace(" （", "（").replace(" ）", ")")
 					fContent = fContent.replace("( ", "(").replace(" )", ")").replace('"(点击查询电话)"', "")
 					signCount = fContent.count("签收") + fContent.count("感谢") + fContent.count("代收") + fContent.count("取件")
-					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在")
+					sendCount = fContent.count("派送") + fContent.count("派件") + fContent.count("准备") + fContent.count("正在") + fContent.count("发往")
 					if signCount > 0 and (signCount - sendCount) > 0: es = "[签收] "; exsc = maxnum;
 					fileRefresh = open(idt, 'w'); fileRefresh.write(comp + ", " + str(maxnum) + ", " + fTime); fileRefresh.close()
 					end = es + fTime + " " + fContent; realComp = realComp.replace("EMS快递", "EMS"); pushImage = ""
