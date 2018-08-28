@@ -16,36 +16,33 @@ Python
 ===========
 **请注意，自用 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。使用有关 IFTTT 的 Python 之前，请先将代码中 bKwiDt 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。**
 
-[Kuaidi.py](Kuaidi.py) 基于 IFTTT 的快递实时推送工具，运行该 Python 需要给予参数，在后面直接跟运单号码即可，如：
+* [Kuaidi.py](Kuaidi.py)
+
+基于 IFTTT 的快递实时推送工具，运行该 Python 需要给予参数，在后面直接跟运单号码即可。可配合 nohup 或 screen 使用，需要将代码一直保持在前台。**更多内容详见 Repository 的 Wiki 页面。**
+
 ````bash
 python Kuaidi.py 600316811932 199217929998
 ````
 
-可配合 nohup 或 screen 使用，需要将代码一直保持在前台。
-
 <img src="/bkP/kuaidi_1808.jpg" width="400px"/></div>
 
-**更多内容详见 Repository 的 Wiki 页面。**
+* [Retail.py](Retail.py)
 
-[Retail.py](Retail.py) - 基于 IFTTT 获取 Apple Store 图片更新工具。
+基于 IFTTT 获取 Apple Store 图片更新工具。
 
 <img src ="/bkP/rtl_1808.jpg" width="400px"/></div>
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
-
-**9to5Mac Apple Store 栏目编辑**也关注了果铺知道 Telegram Channel 获得最快推送。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。**9to5Mac Apple Store 栏目编辑**也关注了果铺知道 Telegram Channel 获得最快推送。**更多内容详见 Repository 的 Wiki 页面。**
 
 <img src ="/bkP/trt_1808.jpg" width="400px"/></div>
 
-**更多内容详见 Repository 的 Wiki 页面。**
+* [Today.py](Today.py)
 
-[Today.py](Today.py) - 基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
+基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。**更多内容详见 Repository 的 Wiki 页面。**
 
 <img src ="/bkP/tgc_1808.jpg" width="400px"/></div>
-
-**更多内容详见 Repository 的 Wiki 页面。**
 
 文本
 ===========
