@@ -21,29 +21,27 @@ python Kuaidi.py 600316811932 199217929998
 
 可配合 nohup 或 screen 使用，需要将代码一直保持在前台。
 
-<div align=center><img src="/bkP/kuaidi1808.png" /></div>
+<div align=center><img src="/bkP/kuaidi1808.png" width="256px"/></div>
 
 <br>**更多内容详见 Repository 的 Wiki 页面。**
 
 [Retail.py](Retail.py) - 基于 IFTTT 获取 Apple Store 图片更新工具。
 
-<div align=center><img src ="/bkP/rtl1808.png" /></div>
+<div align=center><img src ="/bkP/rtl1808.png" width="256px"/></div>
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
 9to5Mac Apple Store 栏目编辑也关注了果铺知道 Telegram Channel 获得最快推送。
 
-<div align=center><img src ="/bkP/trt1808.png" /></div>
+<div align=center><img src ="/bkP/trt1808.png" width="256px"/></div>
 
 **更多内容详见 Repository 的 Wiki 页面。**
 
 [Today.py](Today.py) - 基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
 
-<div align=center><img src ="/bkP/rich_today.jpg" /></div>
-
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。
 
-<div align=center><img src ="/bkP/tgc1808.png" /></div>
+<div align=center><img src ="/bkP/tgc1808.png" width="256px"/></div>
 
 **更多内容详见 Repository 的 Wiki 页面。**
 
