@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-import os, sys, json, time
+import os, sys, json, time, datetime
 from collections import OrderedDict
 
 def asa():
@@ -17,14 +17,13 @@ def asa():
 		oldRead = open(listLoc); oldJSON = oldRead.read(); oldRead.close()
 		newJSON = json.dumps(json.loads(oldJSON, object_pairs_hook = OrderedDict), ensure_ascii = False, indent = 2)
 		newSave = open(listLoc.replace("Original.json", ".json"), "w"); newSave.write(newJSON); newSave.close()
+	else: print "Nothing changed."
 
-	else: print "Nothing changed, continue.\n"
-
-def down(rtl):
+def down(rtl, isSpecial):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	os.system("wget -t 0 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
+	os.system("wget -t 100 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
 	if newsize != oldsize and newsize > 1:
@@ -33,20 +32,22 @@ def down(rtl):
 		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated,\nthe size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
 		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
+		imageURL = dieter + spr + "?output-format=jpg&output-quality=" + str(datetime.date.today().day + 60)
 		for pg in range(0, len(keyList)):
-			os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-				+ "&value2=Apple Store 零售店图片&value3=" + dieter + spr + "?output-format=jpg"
-				+ "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
+			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+				+ "&value2=Apple Store 零售店图片&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
 			if not pg:
-				os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-					+ "&value3=" + dieter + spr + "?output-format=jpg' https://maker.ifttt.com/trigger/tgc/with/key/" + keyList[0])
+				os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+					+ "&value3=" + imageURL + "' https://maker.ifttt.com/trigger/tgc/with/key/" + keyList[0])
 			os.system("rm -f " + keyList[pg] + "*")
 	else: 
-		try: pname = "R" + rtl + ": " + storejson[0][rtl]
-		except KeyError: pname = "R" + rtl
-		if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
-		else: print pid + " Checked R" + rtl + " has no update, ignore."
+		if(isSpecial):
+			try: pname = "R" + rtl + ": " + storejson[0][rtl]
+			except KeyError: pname = "R" + rtl
+			if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
+			else: print pid + " Checked "+ pname + " has no update, ignore."
 
+totalStore = 740
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
@@ -60,10 +61,14 @@ while True:
 	if arg - eCount:
 		print "Starting special watchlist refreshing..."
 		for s in range(1, arg + 1): 
-			if not sys.argv[s] in exce: down("%03d" % int(sys.argv[s]))
+			if not sys.argv[s] in exce: down(sys.argv[s], True)
+		print
 	if not (rTime % 18):
-		asa()
-		for j in range(1, 740): down("%03d" % j)
+		for j in range(1, totalStore): 
+			down("%03d" % j, False)
+			print pid + " Compare in Progress: " + str((j + 1) * 100 / totalStore) + "% on R" + "%03d" % j + "\r",
+			sys.stdout.flush()
+		print; asa()
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
