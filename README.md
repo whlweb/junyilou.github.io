@@ -25,7 +25,7 @@ python Kuaidi.py 600316811932 199217929998
 
 <img src="/bkP/kuaidi_1808.jpg" width="400px"/></div>
 
-<br>**更多内容详见 Repository 的 Wiki 页面。**
+**更多内容详见 Repository 的 Wiki 页面。**
 
 [Retail.py](Retail.py) - 基于 IFTTT 获取 Apple Store 图片更新工具。
 
@@ -33,7 +33,7 @@ python Kuaidi.py 600316811932 199217929998
 
 你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。
 
-9to5Mac Apple Store 栏目编辑也关注了果铺知道 Telegram Channel 获得最快推送。
+**9to5Mac Apple Store 栏目编辑**也关注了果铺知道 Telegram Channel 获得最快推送。
 
 <img src ="/bkP/trt_1808.jpg" width="400px"/></div>
 
@@ -68,8 +68,6 @@ python idc.py 11000019890604000
 [Apple_Jobs.py](/previous/Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
 
 [iReserve.py](/previous/iReserve.py) 自动获取指定型号，指定中国大陆零售店 iPhone X 手机的可预约购买情况，并在用户指定型号可预约购买（或不可预约购买，可设置仅在可预约购买时提醒）发送 IFTTT 通知至 iOS。该源代码将在下一代 iPhone 发布时重新使用。
-
-![运行截图](/bkP/iPX_RCsc.png)
 
 [Event_IFTTT.py](/previous/Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
 
