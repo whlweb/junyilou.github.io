@@ -53,6 +53,8 @@ python Kuaidi.py 600316811932 199217929998
 
 previous 文件夹
 ==========
+[pngConvert.py](/previous/pngConvert.py) - macOS 下批量转换 png 为 jpg 格式文件。
+
 [idc.py](/previous/idc.py) - 根据身份证前 17 位计算末尾校验码，返回样例「IDC: 11000019890604000 has recaptcha 1」
 
 ````bash
