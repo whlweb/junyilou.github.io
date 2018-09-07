@@ -59,7 +59,7 @@ while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
 	sTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()); eCount = exce.count(", ")
 	if arg - eCount:
-		print "Starting special watchlist refreshing... " + str(rTime % 18 + 1) + "/18"
+		print "Specialist Refreshing: " + str(rTime % 18 + 1) + "/18"
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down(sys.argv[s], True)
 		print
