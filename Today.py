@@ -18,9 +18,6 @@ cityname = ['上海', '上海', '上海', '上海', '上海', '上海', '上海'
 			"香港特别行政区", "香港特别行政区", "香港特别行政区", "香港特别行政区", "澳门特别行政区", "澳门特别行政区", "台湾"]
 num = len(filename)
 
-rpath = os.path.expanduser('~') + "/Retail/"
-masterKey = "bKwiDtPPRP6sY943piQKbd"
-
 def down(fname, region): 
 	os.system("wget -q -t 100 -T 3 -O " + rpath + fname + ".json --no-check-certificate " +
 	"https://www.apple.com/"+ region + "/today/static/data/store/" + fname + ".json")
@@ -56,10 +53,16 @@ def home():
 				os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
 					pushAns + "&value3=" + rJson[lct]["image"] + "?output-format=jpg' https://maker.ifttt.com/trigger/tgc/with/key/" + masterKey)
 				os.system("rm -f " + masterKey + "*")
-				# GitHub users please notice: IFTTT Key only uses for private.
 		print "Compare in Progress: " + str((i + 1) * 100 / num) + "%\r",
 		sys.stdout.flush()
 	mWrite = open(rpath + "savedEvent", "w"); mWrite.write(mark + wAns); mWrite.close(); print
+
+rpath = os.path.expanduser('~') + "/Retail/"
+isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
+if not isKey:
+	print ("Please provide your IFTTT key in ~/key.txt" + endl +
+	"This location of the txt can be edited in the source code."); exit()
+else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.read(); kOpen.close()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8'); home()

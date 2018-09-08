@@ -1,20 +1,8 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, signal, exceptions
 
-arg = signCheck = siging = brew = tti = forTime = 0; nt = ""; keyBool = True
-endl = "\n"; argv = list(range(10)); masterKey = "bKwiDtPPRP6sY943piQKbd"
-
-def keyNotice():
-	osLogName = os.environ.get("LOGNAME"); global keyBool
-	if osLogName != "junyi_lou" and osLogName != "pi" and masterKey == "bKwiDtPPRP6sY943piQKbd" and not keyBool:
-		print (endl +"===========================================" + endl +
-		"警告: 这似乎不是 Junyi Lou 的电脑，但 IFTTT Key 并未在源代码中修改。" + endl +
-		"为个人方便未在源代码中删除自用 IFTTT Key，继续将会把消息推送至我的设备。" + endl +
-		"您不仅无法体验本文件的功能，同时还将对我造成困扰。如需注册 IFTTT Key，" + endl +
-		"请打开 README.md (https://junyilou.github.io) 并参照加粗文字。" + endl +
-		"===========================================" + endl)
-		keyBool = input("确定要继续么？",)
-	if not keyBool: exit()
+arg = signCheck = siging = brew = tti = forTime = 0; nt = ""
+endl = "\n"; argv = list(range(50))
 
 def blanker(bid, notice): 
 	print (str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -39,7 +27,7 @@ def autocomp(readid):
 	else: return "custom_network"
 
 def home(readid):
-	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + '/' + readid + ".txt"; comp = "auto"; linetime = "N/A"
+	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + readid + ".txt"; comp = "auto"; linetime = "N/A"
 	if not os.path.isfile(idt): os.system("cd >" + idt); es = "[新增]"
 	dtRead = open(idt); dt = dtRead.read()
 	if len(dt) > 2:
@@ -87,7 +75,6 @@ def home(readid):
 	os.system("rm -f " + FileLocation + masterKey + "*")
 	global tti; tti += 1; return exsc
 
-keyNotice()
 for m in sys.argv[1:]: arg += 1; brew = arg
 TimeInterval = 600
 FileLocation = os.path.expanduser('~') + "/"
@@ -95,6 +82,12 @@ for r in range (1, arg + 1): argv[r] = sys.argv[r]
 print (endl + "Start with PID " + str(os.getpid()) + "." +
 	endl + "Time interval will be 10 minutes." + endl)
 bkPloc = "https://junyilou.github.io/bkP/c_"
+
+isKey = os.path.isfile(FileLocation + "key.txt")
+if not isKey:
+	print ("Please provide your IFTTT key in ~/key.txt" + endl +
+	"This location of the txt can be edited in the source code."); exit()
+else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.read(); kOpen.close()
 
 while True:
 	checkbrew = str(argv).count("-")
@@ -104,7 +97,7 @@ while True:
 		else: stat = 0
 		if stat:
 			print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + "."
-			argv[n] = "-"; os.system("rm " + FileLocation + '/' + readid + ".txt")
+			argv[n] = "-"; os.system("rm " + FileLocation + readid + ".txt")
 	if checkbrew == brew: break
 	time.sleep(TimeInterval)
 

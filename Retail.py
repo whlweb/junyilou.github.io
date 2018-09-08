@@ -12,7 +12,7 @@ def asa():
 	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:
 		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
 			+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
-			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[0])
+			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 		os.system("rm -f " + keyList[0] + "*")
 		oldRead = open(listLoc); oldJSON = oldRead.read(); oldRead.close()
 		newJSON = json.dumps(json.loads(oldJSON, object_pairs_hook = OrderedDict), ensure_ascii = False, indent = 2)
@@ -33,13 +33,11 @@ def down(rtl, isSpecial):
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
 		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
 		imageURL = dieter + spr + "?output-quality=" + str(datetime.date.today().day + 60)
-		for pg in range(0, len(keyList)):
-			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-				+ "&value2=Apple Store 零售店图片&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
-			if not pg:
-				os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-					+ "&value3=" + imageURL + "' https://maker.ifttt.com/trigger/tgc/with/key/" + keyList[0])
-			os.system("rm -f " + keyList[pg] + "*")
+		os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+			+ "&value2=Apple Store 零售店图片&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+		os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+			+ "&value3=" + imageURL + "' https://maker.ifttt.com/trigger/tgc/with/key/" + masterKey)
+		os.system("rm -f " + masterKey + "*")
 	else: 
 		if(isSpecial):
 			try: pname = "R" + rtl + ": " + storejson[0][rtl]
@@ -51,7 +49,11 @@ totalStore = 740
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
-keyList = ["bKwiDtPPRP6sY943piQKbd", "bOGI8iEAyvjh782UYFKbRa"]
+isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
+if not isKey:
+	print ("Please provide your IFTTT key in ~/key.txt" + endl +
+	"This location of the txt can be edited in the source code."); exit()
+else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.read(); kOpen.close()
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
 nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
 

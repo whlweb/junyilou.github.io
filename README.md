@@ -14,7 +14,7 @@ kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](htt
 
 Python
 ===========
-**请注意，自用 IFTTT Maker Key 在源代码中有明文保存，请不要恶意使用，[IFTTT Maker](https://maker.ifttt.com) 是 IFTTT 提供的服务。使用有关 IFTTT 的 Python 之前，请先将代码中 bKwiDt 开头的 IFTTT Maker Key 改为你自己的 Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。**
+**使用有关 IFTTT 的 Python 之前，需要提供 IFTTT Maker Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。将仅有 Key 的文本文档命名为 key.txt 放在 ~ 目录 (即用户目录) 下即可。**
 
 * [Kuaidi.py](Kuaidi.py)
 
