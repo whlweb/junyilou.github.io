@@ -32,7 +32,7 @@ def down(rtl, isSpecial):
 		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated,\nthe size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
 		tellRaw = "Apple " + rname + "，零售店编号 R" + rtl + "，刚刚更新。新图片大小为 " + str(newsize / 1024) + " KB。"
-		imageURL = dieter + spr + "?output-quality=" + str(datetime.date.today().day + 35)
+		imageURL = dieter + spr + "?output-quality=" + str(datetime.date.today().day + 60)
 		for pg in range(0, len(keyList)):
 			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
 				+ "&value2=Apple Store 零售店图片&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + keyList[pg])
