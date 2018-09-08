@@ -87,7 +87,7 @@ isKey = os.path.isfile(FileLocation + "key.txt")
 if not isKey:
 	print ("Please provide your IFTTT key in ~/key.txt" + endl +
 	"This location of the txt can be edited in the source code."); exit()
-else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.read(); kOpen.close()
+else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.readline().replace(endl, ""); kOpen.close()
 
 while True:
 	checkbrew = str(argv).count("-")

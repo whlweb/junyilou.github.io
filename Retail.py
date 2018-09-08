@@ -51,9 +51,9 @@ for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
 isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
 if not isKey:
-	print ("Please provide your IFTTT key in ~/key.txt" + endl +
+	print ("Please provide your IFTTT key in ~/key.txt\n" +
 	"This location of the txt can be edited in the source code."); exit()
-else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.read(); kOpen.close()
+else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
 sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
 nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
 
