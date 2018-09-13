@@ -1,12 +1,12 @@
 # -*- coding:utf-8 -*-
 import sys, json, urllib2, time, datetime, os, signal, exceptions
 
-arg = signCheck = siging = brew = tti = forTime = 0; nt = ""
+arg = signCheck = brew = tti = 0; nt = ""
 endl = "\n"; argv = list(range(50))
 
 def blanker(bid, notice): 
-	print (str(os.getpid()) + " " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-	+ " Checked " + bid + " " + notice + ", ignore.")
+	print "[" + str(os.getpid()) + "] " + datetime.datetime.now().strftime("%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ".\r",
+	sys.stdout.flush()
 
 def netTry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
@@ -89,6 +89,7 @@ if not isKey:
 	"This location of the txt can be edited in the source code."); exit()
 else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.readline().replace(endl, ""); kOpen.close()
 
+print "Latest update:"
 while True:
 	checkbrew = str(argv).count("-")
 	for n in range(1, arg + 1): 
@@ -96,7 +97,7 @@ while True:
 		if readid != "-": stat = home(readid)
 		else: stat = 0
 		if stat:
-			print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded, refreshed " + str(tti) + "."
+			print "Checked " + str(readid) + " signed, " + str(stat) + " updates in total recorded."
 			argv[n] = "-"; os.system("rm " + FileLocation + readid + ".txt")
 	if checkbrew == brew: break
 	time.sleep(TimeInterval)

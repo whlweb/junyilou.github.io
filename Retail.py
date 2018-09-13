@@ -13,7 +13,7 @@ def asa():
 		os.system("wget -t 0 -T 8 --no-check-certificate --post-data 'value1=看起来 Apple Store app " 
 			+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
 			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
-		os.system("rm -f " + keyList[0] + "*")
+		os.system("rm -f " + masterKey + "*")
 		oldRead = open(listLoc); oldJSON = oldRead.read(); oldRead.close()
 		newJSON = json.dumps(json.loads(oldJSON, object_pairs_hook = OrderedDict), ensure_ascii = False, indent = 2)
 		newSave = open(listLoc.replace("Original.json", ".json"), "w"); newSave.write(newJSON); newSave.close()
