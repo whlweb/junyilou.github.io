@@ -44,6 +44,10 @@ python Kuaidi.py 600316811932 199217929998
 
 <img src ="/bkP/tgc_1808.jpg" width="400px"/></div>
 
+* [m3u8.py](m3u8.py)
+
+这是一个秘密项目，用来解析某视频网站的 m3u8 列表并下载合并为 mp4 文件。
+
 文本
 ===========
 [README.md](http://junyilou.github.io) - 本文件，访问 GitHub Pages 首页将重定向至此。
