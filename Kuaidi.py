@@ -86,7 +86,7 @@ bkPloc = "https://junyilou.github.io/bkP/c_"
 isKey = os.path.isfile(FileLocation + "key.txt")
 if not isKey:
 	print ("Please provide your IFTTT key in ~/key.txt" + endl +
-	"This location of the txt can be edited in the source code."); exit()
+	"Location of the txt can be edited in the source code."); exit()
 else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.readline().replace(endl, ""); kOpen.close()
 
 print "Latest update:"

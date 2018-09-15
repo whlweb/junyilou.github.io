@@ -61,7 +61,7 @@ rpath = os.path.expanduser('~') + "/Retail/"
 isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
 if not isKey:
 	print ("Please provide your IFTTT key in ~/key.txt" + endl +
-	"This location of the txt can be edited in the source code."); exit()
+	"Location of the txt can be edited in the source code."); exit()
 else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
 
 while True:
