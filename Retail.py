@@ -5,6 +5,7 @@ def asa():
 	print "Comparing ASA remote file..."
 	listLoc = rpath + "storeList.json"
 	orgListSize = os.path.getsize(listLoc)
+	os.system("mv " + listLoc + " " + listLoc.replace(".json", "_old.json"))
 	os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' " + 
 		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 	newListSize = os.path.getsize(listLoc)
@@ -13,7 +14,9 @@ def asa():
 			+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
 			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 		os.system("rm -f " + masterKey + "*")
-	else: print "Nothing changed."
+	else: 
+		os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
+		print "No changes found."
 
 def down(rtl, isSpecial):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
