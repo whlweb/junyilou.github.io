@@ -1,10 +1,9 @@
 #-*- coding:utf-8 -*-
 import os, sys, json, time, datetime
-from collections import OrderedDict
 
 def asa():
 	print "Comparing ASA remote file..."
-	listLoc = rpath + "storeListOriginal.json"
+	listLoc = rpath + "storeList.json"
 	orgListSize = os.path.getsize(listLoc)
 	os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' " + 
 		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
@@ -14,9 +13,6 @@ def asa():
 			+ "的零售店列表文件更新了&value2=Apple Store 零售店图片&value3=https://junyilou."
 			+ "github.io/bkP/ASA.jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 		os.system("rm -f " + masterKey + "*")
-		oldRead = open(listLoc); oldJSON = oldRead.read(); oldRead.close()
-		newJSON = json.dumps(json.loads(oldJSON, object_pairs_hook = OrderedDict), ensure_ascii = False, indent = 2)
-		newSave = open(listLoc.replace("Original.json", ".json"), "w"); newSave.write(newJSON); newSave.close()
 	else: print "Nothing changed."
 
 def down(rtl, isSpecial):
