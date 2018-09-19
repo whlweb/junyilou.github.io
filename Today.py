@@ -6,15 +6,15 @@ filename = ['qibao', 'shanghaiiapm', 'wujiaochang', 'nanjingeast', 'pudong', 'gl
 			 'wangfujing', 'xidanjoycity', 'mixcchengdu', 'taikoolichengdu', 'tianjinjoycity',
 			 'riverside66tianjin', 'galaxymall', 'parc66jinan', 'mixcqingdao', 'parccentral',
 			 'zhujiangnewtown', 'holidayplazashenzhen', 'mixcnanning', 'nanjingist', 'nanjingjinmaoplace', 
-			 'wondercity', 'center66wuxi', 'mixczhengzhou', 'tianyisquare', 'mixchangzhou', 
+			 'wondercity', 'center66wuxi', 'suzhou', 'mixczhengzhou', 'tianyisquare', 'mixchangzhou', 
 			 'westlake', 'xiamenlifestylecenter', 'thaihotplaza', 'olympia66dalian', 'parkland', 
 			 'zhongjiejoycity', 'mixcshenyang', 'jiefangbei', 'mixcchongqing', 'paradisewalkchongqing',
 			 'apmhongkong', 'cantonroad', 'causewaybay', 'festivalwalk', 'ifcmall', 'newtownplaza',
 			 'galaxymacau', 'cotaicentral', 'taipei101']
 cityname = ['上海', '上海', '上海', '上海', '上海', '上海', '上海', '昆明', '北京', '北京', '北京',
 			'北京', '北京', '成都', '成都', '天津', '天津', '天津', '济南', '青岛', '广州', '广州',
-			'深圳', '南宁', '南京', '南京', '南京', '无锡', '郑州', '宁波', '杭州', '杭州', '厦门',
-			'福州', '大连', '大连', '沈阳', '沈阳', '重庆', '重庆', '重庆', "香港特别行政区", "香港特别行政区",
+			'深圳', '南宁', '南京', '南京', '南京', '无锡', '苏州', '郑州', '宁波', '杭州', '杭州',
+			'厦门', '福州', '大连', '大连', '沈阳', '沈阳', '重庆', '重庆', '重庆', "香港特别行政区", "香港特别行政区",
 			"香港特别行政区", "香港特别行政区", "香港特别行政区", "香港特别行政区", "澳门特别行政区", "澳门特别行政区", "台湾"]
 num = len(filename)
 
