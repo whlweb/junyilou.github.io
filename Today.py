@@ -26,10 +26,10 @@ def home():
 	for d in range(0, num):
 		cdsize = 0
 		while cdsize == 0:
-			if d < 41: down(filename[d], "cn")
-			elif d > 40 and d < 47: down(filename[d], "hk")
-			elif d > 46 and d < 49: down(filename[d], "mo")
-			elif d == 49: down(filename[d], "tw")
+			if d < 42: down(filename[d], "cn")
+			elif d > 41 and d < 48: down(filename[d], "hk")
+			elif d > 47 and d < 50: down(filename[d], "mo")
+			elif d == 50: down(filename[d], "tw")
 			cdsize = os.path.getsize(rpath + filename[d] + ".json")
 		print "Download in Progress: " + str((d + 1) * 100 / num) + "%\r",
 		sys.stdout.flush()
