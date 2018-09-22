@@ -2,15 +2,13 @@
 ===========
 **其实主要是瞎搞，能拿出来供 Public 使用的不太多。请参阅 Repository 的 Wiki 了解部分代码的细节。**
 
-Workflow
+Workflow & Siri Shortcuts
 ===========
-kuaidi20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](https://sspai.com)推荐。
+Siri 查快递 20180922.shortcut - 使用 iOS 12 的捷径 (Shortcuts) App，设置 Siri 激活口令后，即可直接在 Siri 中以特定口令通过 Siri 查快递的捷径。**有关使用方法及更多内容，请参阅 Wiki 中的使用说明。**
 
-本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。
+快递查询 20171105.wflow -  iOS App Workflow 快递查询工具，获[少数派](https://sspai.com)推荐。捷径 App 同样支持导入 wflow 文件并将自动转换为 shortcut 格式，本文件最后更新于 2017 年 11 月 5 日，更新记录见文章底部。
 
-<img src ="/bkP/wf_1808.jpg" width="400px"/></div>
-
-待 Siri Shortcut App 公开后，将进行重新适配发布 Siri 版本。
+<img src ="/bkP/shortcut_1808.jpg" width="400px"/></div>
 
 Python
 ===========
