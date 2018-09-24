@@ -12,7 +12,7 @@ Siri 查快递 20180922.shortcut - 使用 iOS 12 的捷径 (Shortcuts) App，设
 
 您也可以在下方查看上述两个 Workflow 的视频使用教程：
 
-[![YouTube 教程](https://img.youtube.com/vi/30s_alJWIGo/0.jpg)](http://www.youtube.com/watch?v=30s_alJWIGo)
+[![YouTube 教程]("/bkP/video_tet.png")](http://www.youtube.com/watch?v=30s_alJWIGo)
 
 Python
 ===========
