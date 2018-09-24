@@ -10,6 +10,8 @@ Siri 查快递 20180922.shortcut - 使用 iOS 12 的捷径 (Shortcuts) App，设
 
 <img src ="/bkP/shortcut_1809.jpg" width="750px"/></div>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/30s_alJWIGo?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 Python
 ===========
 **使用有关 IFTTT 的 Python 之前，需要提供 IFTTT Maker Key，有关申请方法，请参考[此处](https://sspai.com/post/39243)。将仅有 Key 的文本文档命名为 key.txt 放在 ~ 目录 (即用户目录) 下即可。**
