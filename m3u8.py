@@ -18,6 +18,7 @@ for k in range(dNum * 2, item):
 
 output(a, "[1]"); output(b, "[2]"); output(c, "[3]")
 
+d += "wget --user-agent='Mozilla' --header='Referer: https://avgle.com' -i\n\n"
 for l in range(1, item): d += "seg-" + str(l) + "-v1-a1.ts "
 d += "> comb.ts\n\n"
 d += "ffmpeg -i comb.ts -acodec copy -vcodec copy -f mp4 comb.mp4\n"
