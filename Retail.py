@@ -8,7 +8,7 @@ def asa():
 	listLoc = rpath + "storeList.json"
 	orgListSize = os.path.getsize(listLoc)
 	os.system("mv " + listLoc + " " + listLoc.replace(".json", "_old.json"))
-	os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.0' " + 
+	os.system("wget -q -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.1' " + 
 		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 	newListSize = os.path.getsize(listLoc)
 	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:

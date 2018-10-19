@@ -4493,11 +4493,11 @@
 				"accuracyThreshold": "500",
 				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R031.png"],
 				"secureImageURL": [],
-				"locationText": "Phoenix, AZ",
+				"locationText": "Scottsdale, AZ",
 				"timeZone": "US/Arizona",
 				"scanAndBuy": "SNB",
 				"enableInStoreMode": true,
-				"storeAddress": "7014 East Camelback Road\nPhoenix,AZ 85251 ",
+				"storeAddress": "7014 East Camelback Road\nScottsdale,AZ 85251 ",
 				"phoneNumber": "(602) 606-1470"
 			}, {
 				"storeNumber": "R292",
@@ -8205,6 +8205,22 @@
 				"enableInStoreMode": true,
 				"storeAddress": "神宮前4-2-13\n渋谷区,150-0001",
 				"phoneNumber": "03-6757-4400"
+			}, {
+				"storeNumber": "R119",
+				"countryCode": "JP",
+				"storeName": "渋谷",
+				"latitude": "35.66196",
+				"longitude": "139.69978",
+				"storeRadius": "70",
+				"accuracyThreshold": "500",
+				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R119.png"],
+				"secureImageURL": [],
+				"locationText": "渋谷区",
+				"timeZone": "Asia/Tokyo",
+				"scanAndBuy": "SNB",
+				"enableInStoreMode": true,
+				"storeAddress": "神南1-20-9 \n公園通りビル\n渋谷区,150-0041",
+				"phoneNumber": "03-6670-1800"
 			}, {
 				"storeNumber": "R079",
 				"countryCode": "JP",
