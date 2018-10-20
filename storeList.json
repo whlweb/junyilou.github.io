@@ -620,7 +620,7 @@
 				"longitude": "118.765699",
 				"storeRadius": "70",
 				"accuracyThreshold": "500",
-				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R643.png"],
+				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R643.png?interpolation=progressive-bicubic&output-quality=85&output-format=jpg&resize=312:*"],
 				"secureImageURL": [],
 				"locationText": "南京",
 				"timeZone": "Asia/Shanghai",
