@@ -46,6 +46,10 @@ python Kuaidi.py 600316811932 199217929998
 
 <img src ="/bkP/tgc_1808.jpg" width="400px"/></div>
 
+* [Recruitment.py](Recruitment.py)
+
+获取全球 Apple 招聘信息的工具。该工具将刷新全球 Specialist 的招聘店，并判断该店是否为已经在营业的零售店从而了解 Apple 未来招聘和开店计划。
+
 * [m3u8.py](m3u8.py)
 
 这是一个秘密项目，用来解析某视频网站的 m3u8 列表并下载合并为 mp4 文件。
@@ -68,15 +72,9 @@ previous 文件夹
 python idc.py 11000019890604000
 ````
 
-[Apple_Jobs.py](/previous/Apple_Jobs.py) - 获取中国大陆 Apple 招聘信息的工具，它将刷新本地下载的文件并判定远程 Apple 文件有无修改招聘信息。通过该工具可以了解 Apple 未来开店计划和招聘信息更新等。
+[Apple_Jobs.py](/previous/Apple_Jobs.py) - 作用与 Recruitment.py 相似。2018 年 10 月 Apple Jobs 页面改版后，该 Python 已经无法使用，被 Recruitment.py 取代。
 
-[iReserve.py](/previous/iReserve.py) 自动获取指定型号，指定中国大陆零售店 iPhone X 手机的可预约购买情况，并在用户指定型号可预约购买（或不可预约购买，可设置仅在可预约购买时提醒）发送 IFTTT 通知至 iOS。该源代码将在下一代 iPhone 发布时重新使用。
-
-[Event_IFTTT.py](/previous/Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today_IFTTT.py 替代。
-
-[EXIF.py](/previous/EXIF.py) - 获取 Apple 零售店图片的处理软件（Adobe Photoshop）版本。
-
-[shrink.py](/previous/shrink.py) - 通过 TinyPNG 的 API 压缩图片并返回图片地址的源代码。曾尝试（没有 Commit 出来）用于 Today at Apple 和 Retail 两个文件中，但 Apple 的服务器自带了压缩功能，故代码闲置。
+[Event_IFTTT.py](/previous/Event_IFTTT.py) - 基于 IFTTT Maker 获取中国 Apple Store 零售店特别活动的推送工具，2017 年 5 月 17 日 Today at Apple 项目公布后，该 Python 已经无法使用，被 Today.py 替代。
 
 [Base62_Pythonista.py](/previous/Base62_Pythonista.py) - 输入 Base62 的微博 ID 可自动转换为数字微博 ID，并生成微博国际版分享链接。适用于 iOS App Pythonista 的 Python 3 环境。
 
@@ -85,8 +83,6 @@ kuaidi20171031.wflow - 旧版本，对比 kuaidi20171105.wflow 新版增加了�
 kuaidi20170105.wflow - 旧版本，对比 kuaidi20171031.wflow 新版修复了「今天」「昨天」Relative 词语的使用问题。
 
 kuaidi20161210.wflow - 旧版本，请访问 [Workflow 通知中心查快递 4](http://matrix.sspai.com/p/d384dd60) 了解。
-
-rss-kuaidi.py - 通过 Pip Flask 结合 RSS 实现自动推送物流信息 请访问 [利用 Flask 和 VPS 搭建物流更新自动推送 RSS](http://matrix.sspai.com/p/da505de0) 了解。
 
 联系
 =======
