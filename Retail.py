@@ -17,7 +17,7 @@ def asa():
 		if deltaListSize > 0: dlts = "+" + str(deltaListSize)
 		else: dlts = str(deltaListSize)
 		os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
-			+ "的列表文件又双叒叕更新了，时间戳 " str(int(time.time())) + "，文件大小差异 " + dlts + " "
+			+ "的列表文件又双叒叕更新了，时间戳 " + str(int(time.time())) + "，文件大小差异 " + dlts + " "
 			+ "字节。' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
 		os.system("rm -f " + masterKey + "*")
 	else: 
@@ -74,12 +74,12 @@ while True:
 		for s in range(1, arg + 1): 
 			if not sys.argv[s] in exce: down(sys.argv[s], True)
 	else: print "No store was specified to watch: " + str(rTime % 18 + 1) + "/18"
-	print; asa()
 	if not (rTime % 18):
 		for j in range(1, totalStore): 
 			down("%03d" % j, False)
 			print pid + " Compare in Progress: " + str((j + 1) * 100 / totalStore) + "% on R" + "%03d" % j + "\r",
 			sys.stdout.flush()
+	print; asa()
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
