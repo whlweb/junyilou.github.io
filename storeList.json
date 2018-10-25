@@ -8724,5 +8724,29 @@
 				"phoneNumber": "01 206092544"
 			}]
 		}]
+	}, {
+		"countryCode": "TH",
+		"countryName": "Thailand",
+		"countryFlag": "https://rtlimages.apple.com/cmc/dieter/flags/TH",
+		"states": [{
+			"stateName": "",
+			"stores": [{
+				"storeNumber": "R728",
+				"countryCode": "TH",
+				"storeName": "Iconsiam",
+				"latitude": "13.726822",
+				"longitude": "100.511255",
+				"storeRadius": "70",
+				"accuracyThreshold": "500",
+				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R728.png"],
+				"secureImageURL": [],
+				"locationText": "กรุงเทพมหานคร",
+				"timeZone": "Asia/Bangkok",
+				"scanAndBuy": "OFF",
+				"enableInStoreMode": false,
+				"storeAddress": "299 ถนนเจริญนคร\nแขวงคลองต้นไทร เขตคลองสาน\nกรุงเทพมหานคร, 10600",
+				"phoneNumber": "02 055 9600"
+			}]
+		}]
 	}]
 }
