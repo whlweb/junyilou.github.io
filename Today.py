@@ -51,7 +51,8 @@ def home():
 					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
 					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 				os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
-					pushAns + "&value3=" + rJson[lct]["image"] + "?output-format=jpg' https://maker.ifttt.com/trigger/tgc/with/key/" + masterKey)
+					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] + 
+					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 				os.system("rm -f " + masterKey + "*")
 		print "Compare in Progress: " + str((i + 1) * 100 / num) + "%\r",
 		sys.stdout.flush()
