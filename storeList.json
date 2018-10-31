@@ -7130,6 +7130,25 @@
 				"storeAddress": "Centre Commercial Rosny 2 \nAvenue du Général-de-Gaulle\n93110 Rosny-Sous-Bois",
 				"phoneNumber": "01 73 30 89 00"
 			}]
+		}, {
+			"stateName": "",
+			"stores": [{
+				"storeNumber": "R675",
+				"countryCode": "FR",
+				"storeName": "Champs-Élysées",
+				"latitude": "48.856788",
+				"longitude": "2.351077",
+				"storeRadius": "70",
+				"accuracyThreshold": "500",
+				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R675.png"],
+				"secureImageURL": [],
+				"locationText": "Paris",
+				"timeZone": "Europe/Paris",
+				"scanAndBuy": "OFF",
+				"enableInStoreMode": false,
+				"storeAddress": "114 Av. des Champs-Élysées\n75008 Paris",
+				"phoneNumber": "01 70 98 09 00"
+			}]
 		}]
 	}, {
 		"countryCode": "DE",
@@ -8742,8 +8761,8 @@
 				"secureImageURL": [],
 				"locationText": "กรุงเทพมหานคร",
 				"timeZone": "Asia/Bangkok",
-				"scanAndBuy": "OFF",
-				"enableInStoreMode": false,
+				"scanAndBuy": "SCAN",
+				"enableInStoreMode": true,
 				"storeAddress": "299 ถนนเจริญนคร\nแขวงคลองต้นไทร เขตคลองสาน\nกรุงเทพมหานคร, 10600",
 				"phoneNumber": "02 055 9600"
 			}]
