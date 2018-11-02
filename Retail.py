@@ -3,7 +3,7 @@ import os, sys, json, time
 
 # Stay foolish.
 
-def asa():
+def asa(et):
 	print "Comparing ASA remote file..."
 	listLoc = rpath + "storeList.json"
 	orgListSize = os.path.getsize(listLoc)
@@ -11,31 +11,30 @@ def asa():
 	os.system("wget -q -U ASA/5.1.1 -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.1' " + 
 		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 	newListSize = os.path.getsize(listLoc)
-	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024:
-		os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc.replace(".json", "_" + str(int(time.time())) + ".json"))
+	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024 :
 		deltaListSize = newListSize - orgListSize
-		if deltaListSize > 0: dlts = "+" + str(deltaListSize)
-		else: dlts = str(deltaListSize)
-		os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
-			+ "的列表文件又双叒叕更新了，时间戳 " + str(int(time.time())) + "，文件大小差异 " + dlts + " "
-			+ "字节。' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
-		os.system("rm -f " + masterKey + "*")
+		if deltaListSize % 83:
+			os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc.replace(".json", "_" + str(int(time.time())) + ".json"))
+			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
+				+ "的列表文件又双叒叕更新了，时间戳 " + str(int(time.time())) + "，文件大小差异 " + str(deltaListSize) + " "
+				+ "字节。' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
+			os.system("rm -f " + masterKey + "*")
+		else:
+			os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
+			et += 1; print "Found an eighty-three update, all " + str(et) + ", ignore."; 
 	else: 
 		os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
 		print "No changes found."
 	if newListSize == 0: print "ASA file has failed to download\nIs the current REL still signing?"
+	return et
 
 def down(rtl, isSpecial):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
-	if os.path.isfile(sx): 
-		oldsize = os.path.getsize(sx)
-	else: 
-		oldsize = 0
+	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
+	else: oldsize = 0
 	os.system("wget -U ASA/5.1.1 -t 100 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
-	if os.path.isfile(sx): 
-		newsize = os.path.getsize(sx)
-	else: 
-		newsize = 0
+	if os.path.isfile(sx): newsize = os.path.getsize(sx)
+	else: newsize = 0
 	if newsize != oldsize and newsize > 1:
 		try: rname = storejson[0][rtl]
 		except KeyError: rname = "Store"
@@ -54,7 +53,7 @@ def down(rtl, isSpecial):
 			else: print pid + " Checked "+ pname + " has no update, ignore."
 
 totalStore = 740
-global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = 0
+global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = et = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
 isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
@@ -79,7 +78,7 @@ while True:
 			down("%03d" % j, False)
 			print pid + " Compare in Progress: " + str((j + 1) * 100 / totalStore) + "% on R" + "%03d" % j + "\r",
 			sys.stdout.flush()
-	print; asa()
+	print; et = asa(et)
 	rTime += 1
 	print upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1200)
