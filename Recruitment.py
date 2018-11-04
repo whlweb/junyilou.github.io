@@ -1,36 +1,73 @@
 #-*- coding:utf-8 -*-
 import json, os, sys
 
-rpath = os.path.expanduser('~') + "/Retail/Jobs/"
+rpath = os.path.expanduser('~') + "/Retail/Jobs/"; wAns = ""
+imageURL = "https://www.apple.com/jobs/images/retail/hero/desktop.jpg"
+
 stateCHN = ["新加坡", "土耳其", "阿联酋", "英国", "德国", "台湾", "美国", "墨西哥",
 			"瑞士", "比利时", "荷兰", "泰国", "西班牙", "香港", "瑞典", "中国", "法国",
 			"澳大利亚", "意大利", "奥地利", "澳门", "巴西", "日本", "韩国", "加拿大"]
 stateCode = ["SG", "TR", "AE", "UK", "DE", "TW", "US", "MX",
 			"CH", "BE", "NL", "TH", "ES", "HK", "SE", "CN", "FR",
 			"AU", "IT", "AT", "MO", "BR", "JP", "KR", "CA"]
+stateEmoji = ["🇸🇬", "🇹🇷", "🇦🇪", "🇬🇧", "🇩🇪", "🇼🇸", "🇺🇸", "🇲🇽",
+			"🇨🇭", "🇧🇪", "🇳🇱", "🇹🇭", "🇪🇸", "🇭🇰", "🇸🇪", "🇨🇳", "🇫🇷",
+			"🇦🇺", "🇮🇹", "🇦🇹", "🇲🇴", "🇧🇷", "🇯🇵", "🇰🇷", "🇨🇦"]
 specialistCode = [8238, 8164, 8225, 8145, 8043, 8311, 8158, 8297,
 				8017, 8251, 8119, 8346, 8056, 8082, 8132, 8030, 8069,
 				7991, 8095, 8333, 8282, 8176, 8107, 8326, 8004]
+#stateCHN = ["新加坡"]; stateCode = ["SG"]; stateEmoji = ["🇸🇬"]; specialistCode = [8238] #Debug
 
-for adpre in range(0, len(specialistCode)): 
+mOpen = open(rpath + "savedJobs"); mark = mOpen.read(); mOpen.close()
+
+if not os.path.isfile(os.path.expanduser('~') + "/key.txt"):
+	print ("Please provide your IFTTT Maker key in ~/key.txt\n" +
+	"Location of the txt can be edited in the source code."); exit()
+else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
+
+for adpre in range(0, len(specialistCode)):
+	reload(sys); sys.setdefaultencoding('utf-8')
 	realCode = "11443" + str(specialistCode[adpre])
-	savename = rpath + stateCode[adpre] + "/state.json"
-	os.system("wget -q -t 100 -T 5 -O " + savename + " https://jobs.apple.com/api" + 
+	savename = rpath + stateCode[adpre] + "/state.json"; whileCount = True
+	while whileCount:
+		os.system("wget -q -t 100 -T 5 -O " + savename + " https://jobs.apple.com/api" + 
 		"/v1/jobDetails/PIPE-" + realCode + "/stateProvinceList")
+		if os.path.getsize(savename) > 0: whileCount = False
 	jOpen = open(savename); stateJSON = json.loads(jOpen.read())["searchResults"]; jOpen.close()
+	oldsize = [0] * 100; newsize = [0] * 100
 	for i in range(0, len(stateJSON)): 
 		dID = stateJSON[i]["id"]
 		savename = rpath + stateCode[adpre] + "/location_" + dID.replace("postLocation-", "") + ".json"
-		print "正在下载" + stateCHN[adpre] + "的城市文件, 进度 " + str((i + 1) * 100 / len(stateJSON)) + "%\r",
-		sys.stdout.flush()
-		os.system("wget -q -t 100 -T 5 -O " + savename + " 'https://jobs.apple.com/api/v1/jobDetails/PIPE-" 
+		if os.path.isfile(savename): oldsize[i] = os.path.getsize(savename)
+		else: oldsize = 0
+		header = str(os.getpid()) + " " + str(i + 1) + "/" + str(len(stateJSON)) + " "
+		statusBar = "正在下载" + stateCHN[adpre] + "的城市文件, 进度 " + str((i + 1) * 100 / len(stateJSON))
+		print header + statusBar + "%\r",
+		sys.stdout.flush(); whileCount = True
+		while whileCount:
+			os.system("wget -q -t 100 -T 5 -O " + savename + " 'https://jobs.apple.com/api/v1/jobDetails/PIPE-" 
 			+ realCode + "/storeLocations?searchField=stateProvince&fieldValue=" + dID + "'")
-	print "\n" + stateCHN[adpre] + "已招聘零售店:"
+			if os.path.getsize(savename) > 0: whileCount = False
 	for j in range(0, len(stateJSON)): 
 		oID = stateJSON[j]["id"]
 		savename = rpath + stateCode[adpre] + "/location_" + oID.replace("postLocation-", "") + ".json"
+		newsize[j] = os.path.getsize(savename); stn = 0
 		cityJSON = json.loads(open(savename).read().decode('utf-8-sig'))
 		for c in range(0, len(cityJSON)):
 			rolloutCode = cityJSON[c]["code"]
-			print rolloutCode + ",",
+			if not rolloutCode in mark:
+				wAns += stateEmoji[adpre] + rolloutCode + ", "; stn += 1
+				mWrite = open(rpath + "savedJobs", "w"); mWrite.write(mark + wAns); mWrite.close()
+				pushAns = "新店新机遇：" + stateCHN[adpre] + "新增招聘地点 " + rolloutCode + "，名称「" 
+				pushAns += cityJSON[c]["name"] + "」，文件名 " + oID.replace("postLocation-", "") + ".json"
+				os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + pushAns
+					+ "&value2=Apple 招贤纳才&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+		if oldsize[j] != newsize[j] and oldsize[j] != 0 and newsize[j] != 0 and stn == 0:
+			allOnstage = ""
+			for n in range(0, len(cityJSON)): allOnstage += "[" + cityJSON[n]["name"] + "], "
+			pushAns = stateCHN[adpre] + "「" + stateJSON[j]["name"] + "」的招聘文件更新，目前招聘零售店有 "
+			pushAns += allOnstage + "文件名 " + oID.replace("postLocation-", "") + ".json"
+			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=" + pushAns 
+			+ "' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
 	print "\n"
+	os.system("rm -f " + masterKey + "*")
