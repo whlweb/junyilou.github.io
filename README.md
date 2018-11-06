@@ -50,6 +50,8 @@ python Kuaidi.py 600316811932 199217929998
 
 获取全球 Apple 招聘信息的工具。该工具将刷新全球 Specialist 的招聘店，并判断该店是否为已经在营业的零售店从而了解 Apple 未来招聘和开店计划。
 
+<img src ="/bkP/recruitment_sgep.jpg" width="400px"/></div>
+
 * [m3u8.py](m3u8.py)
 
 这是一个秘密项目，用来解析某视频网站的 m3u8 列表并下载合并为 mp4 文件。
