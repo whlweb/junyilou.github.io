@@ -8,8 +8,8 @@ def asa(et):
 	listLoc = rpath + "storeList.json"
 	orgListSize = os.path.getsize(listLoc)
 	os.system("mv " + listLoc + " " + listLoc.replace(".json", "_old.json"))
-	os.system("wget -q -U ASA/5.1.1 -O " + listLoc + " --header 'x-ma-pcmh: REL-5.1.1' " + 
-		"https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
+	os.system("wget -q -U ASA/" + asaVersion + " -O " + listLoc + " --header 'x-ma-pcmh: REL-" + 
+		asaVersion + "' " + "https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 	newListSize = os.path.getsize(listLoc)
 	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024 :
 		deltaListSize = newListSize - orgListSize
@@ -32,7 +32,7 @@ def down(rtl, isSpecial):
 	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
 	else: oldsize = 0
-	os.system("wget -U ASA/5.1.1 -t 100 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
+	os.system("wget -U ASA/" + asaVersion + " -t 100 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
 	if os.path.isfile(sx): newsize = os.path.getsize(sx)
 	else: newsize = 0
 	if newsize != oldsize and newsize > 1:
@@ -52,7 +52,7 @@ def down(rtl, isSpecial):
 			if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
 			else: print pid + " Checked "+ pname + " has no update, ignore."
 
-totalStore = 740
+totalStore = 740; asaVersion = "5.1.2"
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = et = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
