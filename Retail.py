@@ -9,7 +9,7 @@ def asa(et):
 	orgListSize = os.path.getsize(listLoc)
 	os.system("mv " + listLoc + " " + listLoc.replace(".json", "_old.json"))
 	os.system("wget -q -U ASA/" + asaVersion + " -O " + listLoc + " --header 'x-ma-pcmh: REL-" + 
-		asaVersion + "' " + "https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
+		asaVersion + "' https://mobileapp.apple.com/mnr/p/cn/retail/allStoresInfoLite")
 	newListSize = os.path.getsize(listLoc)
 	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024 :
 		deltaListSize = newListSize - orgListSize
@@ -45,8 +45,7 @@ def down(rtl, isSpecial):
 		os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
 			+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
 		os.system("rm -f " + masterKey + "*")
-	else: 
-		if(isSpecial):
+	elif isSpecial:
 			try: pname = "R" + rtl + ": " + storejson[0][rtl]
 			except KeyError: pname = "R" + rtl
 			if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
