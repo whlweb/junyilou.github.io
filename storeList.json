@@ -2631,6 +2631,22 @@
 				"enableInStoreMode": true,
 				"storeAddress": "1823 4th Street\nBerkeley,CA 94710 ",
 				"phoneNumber": "(510) 898-3341"
+			}, {
+				"storeNumber": "R900",
+				"countryCode": "US",
+				"storeName": "Mock Store",
+				"latitude": "8.349934",
+				"longitude": "-141.888559",
+				"storeRadius": "0",
+				"accuracyThreshold": "0",
+				"imageURL": ["https://rtlimages.apple.com/cmc/dieter/store/16_9/R900.png"],
+				"secureImageURL": [],
+				"locationText": "Cupertino, CA",
+				"timeZone": "America/Los_Angeles",
+				"scanAndBuy": "SNB",
+				"enableInStoreMode": true,
+				"storeAddress": "Bubb Road\nCupertino,CA 9014 ",
+				"phoneNumber": "(408) 123-4567"
 			}]
 		}, {
 			"stateName": "Hawaii",
