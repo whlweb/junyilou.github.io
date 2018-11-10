@@ -408,6 +408,7 @@
     "490": "Bayshore Shopping Centre", 
     "492": "Cielo Vista Mall", 
     "493": "Nanjing IST", 
+    "494": "Store in Sweden",
     "496": "Bromley", 
     "499": "Canton Road", 
     "502": "MixC Chengdu", 
@@ -528,6 +529,7 @@
     "728": "Iconsiam",
     "733": "Central World",
     "736": "Singapore Jewel",
-    "824": "Park Visitor Center"
+    "824": "Park Visitor Center",
+    "900": "Mock Store"
   }
 ]

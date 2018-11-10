@@ -1,7 +1,20 @@
 #-*- coding:utf-8 -*-
 import os, sys, json, time
+import json_tools # 'json_tools' required
 
-# Stay foolish.
+def fileOpen(fileloc):
+	defOpen = open(fileloc); defReturn = defOpen.read(); defOpen.close()
+	return defReturn
+
+def pastebin(cin, cout, dev = "47477216df13753adb7dcbd2600fc225", 
+	usr = "68978343239b4f6189909e34e5e8b0a3"):
+	print "Querying Pastebin API..."
+	os.system("wget -q -t 100 -T 5 --no-check-certificate --post-data 'api_dev_key="
+		+ dev + "&api_user_key=" + usr + "&api_paste_code=" + cin + "&api_paste_name="
+		+ cout + "&api_paste_expire_date=1W&api_option=paste&api_paste_format=json' "
+		+ "-O " + rpath + "pasteTemp https://pastebin.com/api/api_post.php")
+	pasteURL = fileOpen(rpath + "pasteTemp")
+	os.system("rm " + rpath + "pasteTemp"); return pasteURL
 
 def asa(et):
 	print "Comparing ASA remote file..."
@@ -14,10 +27,14 @@ def asa(et):
 	if orgListSize != newListSize and orgListSize > 1024 and newListSize > 1024 :
 		deltaListSize = newListSize - orgListSize
 		if deltaListSize % 83:
-			os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc.replace(".json", "_" + str(int(time.time())) + ".json"))
+			newLocation = listLoc.replace(".json", "_old.json")
+			oldLocation = listLoc.replace(".json", "_" + str(int(time.time())) + ".json")
+			os.system("mv " + newLocation + " " + oldLocation)
+			newJSON = json.loads(fileOpen(listLoc)); oldJSON = json.loads(fileOpen(oldLocation))
+			compareAns = pastebin(str(json.dumps(json_tools.diff(newJSON, oldJSON))), "storeList changelog " + str(int(time.time())))
 			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
-				+ "的列表文件又双叒叕更新了，时间戳 " + str(int(time.time())) + "，文件大小差异 " + str(deltaListSize) + " "
-				+ "字节。' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
+				+ "的列表更新。时间戳 " + str(int(time.time())) + "，文件大小差异 " + str(deltaListSize) + " "
+				+ "字节。更新内容见: " + compareAns + "' + https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
 			os.system("rm -f " + masterKey + "*")
 		else:
 			os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
@@ -29,7 +46,7 @@ def asa(et):
 	return et
 
 def down(rtl, isSpecial):
-	global upb, exce; spr = "/R" + rtl + ".png"; sx = sbn + rtl + ".png"
+	global upb, exce; spr = "R" + rtl + ".png"; sx = sbn + rtl + ".png"
 	if os.path.isfile(sx): oldsize = os.path.getsize(sx)
 	else: oldsize = 0
 	os.system("wget -U ASA/" + asaVersion + " -t 100 -T 5 -q -N -P " + rpath + "Pictures/ " + dieter + spr)
@@ -59,10 +76,10 @@ isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
 if not isKey:
 	print ("Please provide your IFTTT Maker key in ~/key.txt\n" +
 	"Location of the txt can be edited in the source code."); exit()
-else: 
-	kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
-sbn = rpath + "Pictures/R"; dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9"
-nameopen = open(rpath + "name.json"); storejson = json.loads(nameopen.read()); nameopen.close()
+else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
+
+sbn = rpath + "Pictures/R"; storejson = json.loads(fileOpen(rpath + "name.json"))
+dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9/"
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
