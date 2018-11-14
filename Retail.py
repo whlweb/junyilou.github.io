@@ -31,7 +31,7 @@ def asa(et):
 			oldLocation = listLoc.replace(".json", "_" + str(int(time.time())) + ".json")
 			os.system("mv " + newLocation + " " + oldLocation)
 			newJSON = json.loads(fileOpen(listLoc)); oldJSON = json.loads(fileOpen(oldLocation))
-			compareAns = pastebin(str(json.dumps(json_tools.diff(newJSON, oldJSON))), "storeList changelog " + str(int(time.time())))
+			compareAns = pastebin(str(json.dumps(json_tools.diff(newJSON, oldJSON))), "storeList changelog")
 			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
 				+ "的列表更新。时间戳 " + str(int(time.time())) + "，文件大小差异 " + str(deltaListSize) + " "
 				+ "字节。更新内容见: " + compareAns + "' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
