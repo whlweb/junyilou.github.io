@@ -33,8 +33,9 @@ def asa(et):
 			newJSON = json.loads(fileOpen(listLoc)); oldJSON = json.loads(fileOpen(oldLocation))
 			compareAns = pastebin(str(json.dumps(json_tools.diff(newJSON, oldJSON))), "storeList changelog")
 			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
-				+ "的列表更新。时间戳 " + str(int(time.time())) + "，文件大小差异 " + str(deltaListSize) + " "
-				+ "字节。更新内容见: " + compareAns + "' https://maker.ifttt.com/trigger/asa/with/key/" + masterKey)
+				+ "的列表更新了：文件时间戳 " + str(int(time.time())) + "，大小差异为 " + str(deltaListSize) + " "
+				+ "字节。&value2=https://www.apple.com/retail/storelist/images/hero_brussels_large.jpg"
+				+ "&value3=" + compareAns + "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey)
 			os.system("rm -f " + masterKey + "*")
 		else:
 			os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
@@ -80,6 +81,8 @@ else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.read
 
 sbn = rpath + "Pictures/R"; storejson = json.loads(fileOpen(rpath + "name.json"))
 dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9/"
+
+if sys.argv[1] == "asa": asa(0); exit()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
