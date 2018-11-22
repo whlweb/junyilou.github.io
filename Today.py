@@ -47,10 +47,11 @@ def home():
 							citAns += "、" + cityname[r]
 				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; pushed = 0
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
-				os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
+				for msk in range(0, len(masterKey)):
+					os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
 					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
-					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
-				os.system("rm -f " + masterKey + "*")
+					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+					os.system("rm -f " + masterKey[msk] + "*")
 		print "Compare in Progress: " + str((i + 1) * 100 / num) + "%\r",
 		sys.stdout.flush()
 	mWrite = open(rpath + "savedEvent", "w"); mWrite.write(mark + wAns); mWrite.close(); print
@@ -58,13 +59,18 @@ def home():
 rpath = os.path.expanduser('~') + "/Retail/"
 isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
 if not isKey:
-	print ("Please provide your IFTTT key in ~/key.txt" + endl +
+	print ("Please provide your IFTTT key in ~/key.txt\n" +
 	"Location of the txt can be edited in the source code."); exit()
-else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
+else: 
+	kOpen = open(os.path.expanduser('~') + "/key.txt")
+	masterKey = list()
+	for line in open(os.path.expanduser('~') + "/key.txt"):
+		line = kOpen.readline().replace("\n", "")
+		masterKey.append(line)
+	kOpen.close()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8'); home()
 	for rm in range(0, num): os.system("rm " + rpath + filename[rm] + ".json")
 	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-	os.system("rm -f " + masterKey + "*")
 	time.sleep(43200)

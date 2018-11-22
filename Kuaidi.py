@@ -16,7 +16,7 @@ def netTry(tryurl):
 def pushbots(pushRaw, pushTitle, pushURL): 
 	os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
 			pushRaw + "&value2=" + pushTitle + "&value3=" + pushURL +
-			"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
+			"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[0])
 
 def autocomp(readid):
 	aTry = netTry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
@@ -87,7 +87,13 @@ isKey = os.path.isfile(FileLocation + "key.txt")
 if not isKey:
 	print ("Please provide your IFTTT key in ~/key.txt" + endl +
 	"Location of the txt can be edited in the source code."); exit()
-else: kOpen = open(FileLocation + "key.txt"); masterKey = kOpen.readline().replace(endl, ""); kOpen.close()
+else: 
+	kOpen = open(FileLocation + "key.txt")
+	masterKey = list()
+	for line in open(FileLocation + "key.txt"):
+		line = kOpen.readline().replace(endl, "")
+		masterKey.append(line)
+	kOpen.close()
 
 print "Latest update:"
 while True:

@@ -60,9 +60,10 @@ def down(rtl, isSpecial):
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
 		tellRaw = "零售店编号 R" + rtl + "，新图片大小是 " + str(newsize / 1024) + " KB。"
 		imageURL = dieter + spr + "?output-format=jpg"
-		os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-			+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
-		os.system("rm -f " + masterKey + "*")
+		for msk in range(0, len(masterKey)):
+			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
+			+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+			os.system("rm -f " + masterKey[msk] + "*")
 	elif isSpecial:
 			try: pname = "R" + rtl + ": " + storejson[0][rtl]
 			except KeyError: pname = "R" + rtl
@@ -75,9 +76,15 @@ for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
 isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
 if not isKey:
-	print ("Please provide your IFTTT Maker key in ~/key.txt\n" +
+	print ("Please provide your IFTTT key in ~/key.txt\n" +
 	"Location of the txt can be edited in the source code."); exit()
-else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
+else: 
+	kOpen = open(os.path.expanduser('~') + "/key.txt")
+	masterKey = list()
+	for line in open(os.path.expanduser('~') + "/key.txt"):
+		line = kOpen.readline().replace("\n", "")
+		masterKey.append(line)
+	kOpen.close()
 
 sbn = rpath + "Pictures/R"; storejson = json.loads(fileOpen(rpath + "name.json"))
 dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9/"

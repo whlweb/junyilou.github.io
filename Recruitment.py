@@ -20,10 +20,17 @@ specialistCode = [8238, 8164, 8225, 8145, 8043, 8311, 8158, 8297,
 
 mOpen = open(rpath + "savedJobs"); mark = mOpen.read(); mOpen.close()
 
-if not os.path.isfile(os.path.expanduser('~') + "/key.txt"):
-	print ("Please provide your IFTTT Maker key in ~/key.txt\n" +
+isKey = os.path.isfile(os.path.expanduser('~') + "/key.txt")
+if not isKey:
+	print ("Please provide your IFTTT key in ~/key.txt\n" +
 	"Location of the txt can be edited in the source code."); exit()
-else: kOpen = open(os.path.expanduser('~') + "/key.txt"); masterKey = kOpen.readline().replace("\n", ""); kOpen.close()
+else: 
+	kOpen = open(os.path.expanduser('~') + "/key.txt")
+	masterKey = list()
+	for line in open(os.path.expanduser('~') + "/key.txt"):
+		line = kOpen.readline().replace("\n", "")
+		masterKey.append(line)
+	kOpen.close()
 
 for adpre in range(0, len(specialistCode)):
 	reload(sys); sys.setdefaultencoding('utf-8')
@@ -58,6 +65,7 @@ for adpre in range(0, len(specialistCode)):
 				mWrite = open(rpath + "savedJobs", "w"); mWrite.write(mark + wAns); mWrite.close()
 				pushAns = "新店新机遇: " + stateCHN[adpre] + "新增招聘地点 " + rolloutCode + ", 名称「" 
 				pushAns += cityJSON[c]["name"] + "」, 文件名 " + oID.replace("postLocation-", "") + ".json"
-				os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + pushAns
-					+ "&value2=Apple 招贤纳才&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey)
-	os.system("rm -f " + masterKey + "*")
+				for msk in range(0, len(masterKey)):
+					os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + pushAns
+					+ "&value2=Apple 招贤纳才&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+					os.system("rm -f " + masterKey[msk] + "*")
