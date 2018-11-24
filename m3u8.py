@@ -1,4 +1,5 @@
 import os, sys
+import pyperclip
 
 def output(cont, file):
 	w = open(os.path.expanduser("~") + "/Desktop/" + file + ".txt", "w")
@@ -18,11 +19,18 @@ for k in range(dNum * 2, item):
 
 output(a, "[1]"); output(b, "[2]"); output(c, "[3]")
 
-d += "wget --user-agent='Mozilla' --header='Referer: https://avgle.com' -i\n\n"
-for l in range(1, item): d += "seg-" + str(l) + "-v1-a1.ts "
-d += "> comb.ts\n\n"
-d += "ffmpeg -i comb.ts -acodec copy -vcodec copy -f mp4 comb.mp4\n"
-d += "rm *.ts\nrm Desktop/[*.txt"
+pyperclip.copy("surge&&wget --user-agent='Mozilla' --header='Referer: https://avgle.com' -i ")
+pause = input("Waiting for download... ",)
 
-output(d, "[C]")
+for l in range(1, item): d += "seg-" + str(l) + "-v1-a1.ts "
+d += "> comb.ts"
+os.system(d)
+
+os.system("ffmpeg -i comb.ts -acodec copy -vcodec copy -f mp4 comb.mp4")
+
+pause = input("\n\nFinished convert, please check mp4... ",)
+
+os.system("rm *.ts")
+os.system("rm Desktop/[*.txt")
+
 print "Done!"
