@@ -58,11 +58,12 @@ def down(rtl, isSpecial):
 		except KeyError: rname = "Store"
 		pushRaw = "Apple " + rname + " (R" + rtl + ") just updated,\nthe size of the picture is " + str(newsize / 1024) + " KB."
 		upb = upb + pushRaw + "\n"; exce = exce + rtl + ", "; print pushRaw
-		tellRaw = "🔔 Apple " + rname + " 图片更新，零售店编号 R" + rtl + "，新图片大小是 " + str(newsize / 1024) + " KB。"
+		tellRaw = "零售店编号 R" + rtl + "，新图片大小是 " + str(newsize / 1024) + " KB。"
 		imageURL = dieter + spr + "?output-format=jpg"
 		for msk in range(0, len(masterKey)):
 			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-			+ "&value2=" + imageURL + "&value3=" + imageURL + "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey[msk])
+			+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL 
+			+ "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
 			os.system("rm -f " + masterKey[msk] + "*")
 	elif isSpecial:
 			try: pname = "R" + rtl + ": " + storejson[0][rtl]
