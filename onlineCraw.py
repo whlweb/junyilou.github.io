@@ -55,9 +55,7 @@ while True:
 				print "\nNew Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans))
 				picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
 				"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=jpg")
-				pausea = input("等待确认A")
 				hWrite = open(os.path.expanduser('~') + "/MU.txt", "w"); hWrite.write(mRead + ans[a] + "\n"); hWrite.close();
-				pauseb = input("等待确认B")
 				for p in range(0, 2):
 					os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
 					+ title(ans[a]) + " " + ans[a] + " (第" + str(p + 1) + "次推送)" + "&value2=" + picURL + "&value3=" + url 
