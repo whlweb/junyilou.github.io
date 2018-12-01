@@ -52,6 +52,12 @@ python Kuaidi.py 600316811932 199217929998
 
 <img src ="/bkP/recruitment_sgep.jpg" width="400px"/></div>
 
+* [onlineCraw.py](onlineCraw.py)
+
+该代码将刷新 Apple Online Store 页面，枚举 M _ _ _ 2 格式的 Apple 产品部件号，通过页面是否为 404 和已存储的产品部件号判断是否有新品开始发售，并推送通知至 IFTTT Maker。
+
+<img src ="/bkP/onlineCraw_demo.jpg" width="400px"/></div>
+
 * [m3u8.py](m3u8.py)
 
 这是一个秘密项目，用来解析某视频网站的 m3u8 列表并下载合并为 mp4 文件。
