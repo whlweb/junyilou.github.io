@@ -12,8 +12,8 @@ ans = list()
 def title(partno):
 	reload(sys); sys.setdefaultencoding('utf-8')
 	url = "https://www.apple.com/cn/shop/product/" + partno
-	try: soup = BeautifulSoup(urllib2.urlopen(url, timeout = 30))
-	except ssl.SSLError: return "[获取产品名称超时]"
+	try: soup = BeautifulSoup(urllib2.urlopen(url, timeout = 20))
+	except: return "[获取产品名称出现错误]"
 	else: return soup.title.string.replace(" - Apple (中国)", "").replace(" - Apple", "").replace("购买 ", "")
 
 for k in range(0, len(psbhd)):
@@ -47,6 +47,9 @@ while True:
  			sys.stdout.flush()
 		except urllib2.HTTPError: 
 			print runnot + ans[a] + " 404 [" + str(a + 1) + "/" + str(len(ans)) + "]\r",
+			sys.stdout.flush()
+		except urllib2.URLError:
+			print runnot + ans[a] + " 501 [" + str(a + 1) + "/" + str(len(ans)) + "]\r",
 			sys.stdout.flush()
 		else: 
 			if ans[a] in mRead: 
