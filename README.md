@@ -34,7 +34,7 @@ python Kuaidi.py 600316811932 199217929998
 
 <img src ="/bkP/rtl_1808.jpg" width="400px"/></div>
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。**9to5Mac Apple Store 栏目编辑**也关注了果铺知道 Telegram Channel 获得最快推送。**更多内容详见 Repository 的 Wiki 页面。**
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/guopuzd) 直接体验本 Python 运行结果。**9to5Mac Apple Store 栏目编辑**也关注了果铺知道 Telegram Channel 获得最快推送。**更多内容详见 Repository 的 Wiki 页面。**
 
 <img src ="/bkP/trt_1808.jpg" width="400px"/></div>
 
@@ -42,7 +42,7 @@ python Kuaidi.py 600316811932 199217929998
 
 基于 IFTTT 获取大中华 Apple Store 的 Today at Apple 新活动的工具。
 
-你可以在 Telegram Follow [果铺知道 Channel](https://t.me/gpzdtg) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。**更多内容详见 Repository 的 Wiki 页面。**
+你可以在 Telegram Follow [果铺知道 Channel](https://t.me/guopuzd) 直接体验本 Python 运行结果。这条 Python 会寻找所有大中华 Apple Store 开展的 [Today at Apple](https://apple.com/cn/today) 活动，基于活动名称发现新活动后将自动推送到 Telegram Channel。**更多内容详见 Repository 的 Wiki 页面。**
 
 <img src ="/bkP/tgc_1808.jpg" width="400px"/></div>
 

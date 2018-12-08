@@ -36,7 +36,7 @@ else:
 	kOpen.close()
 
 while True:
-	runtim += 1; runnot = "[" + str(runtim) + "] "
+	runtim += 1; runnot = "[" + str(runtim) + "] "; outPlus = ""
 	mOpen = open(os.path.expanduser('~') + "/savedProduct")
 	mRead = mOpen.read(); mOpen.close()
 	for a in range(0, len(ans)):
@@ -59,11 +59,14 @@ while True:
 				uOut = "New Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans)) + "\n"
 				print "\n" + uOut; upb += uOut
 				picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
-				"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=jpg")
-				hWrite = open(os.path.expanduser('~') + "/savedProduct", "w"); hWrite.write(mRead + ans[a] + "\n"); hWrite.close();
+				"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=png")
+				outPlus += ans[a] + ", "
 				os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
 					+ title(ans[a]) + "，产品部件号：" + ans[a] + "。&value2=" + picURL + "&value3=" + url 
 					+ "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey[0])
 				os.system("rm -f " + masterKey[0] + "*")
+	if outPlus != "":
+		mWrite = open(os.path.expanduser('~') + "/savedProduct", "w")
+		mWrite.write(mRead + outPlus); mWrite.close()
 	print "\n" + upb + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\n"
 	time.sleep(1800)

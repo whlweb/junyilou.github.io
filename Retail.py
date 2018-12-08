@@ -43,7 +43,7 @@ def asa(et):
 	else: 
 		os.system("mv " + listLoc.replace(".json", "_old.json") + " " + listLoc)
 		print "No changes found."
-	if newListSize == 0: print "ASA file has failed to download\nIs the current REL still signing?"
+	if newListSize == 0: print "ASA file download failed\nIs the current REL still signing?"
 	return et
 
 def down(rtl, isSpecial):
@@ -71,7 +71,7 @@ def down(rtl, isSpecial):
 			if newsize == 0: print pid + " Checked " + pname + " does not exist, ignore."
 			else: print pid + " Checked "+ pname + " has no update, ignore."
 
-totalStore = 740; asaVersion = "5.1.2"
+totalStore = 740; asaVersion = "5.2.0"
 global upb; arg = 0; pid = str(os.getpid()); upb = exce = ""; rTime = et = 0
 for m in sys.argv[1:]: arg += 1
 rpath = os.path.expanduser('~') + "/Retail/"
