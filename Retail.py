@@ -90,7 +90,7 @@ else:
 sbn = rpath + "Pictures/R"; storejson = json.loads(fileOpen(rpath + "name.json"))
 dieter = "https://rtlimages.apple.com/cmc/dieter/store/16_9/"
 
-if sys.argv[1] == "asa": asa(0); exit()
+if arg == 1 and sys.argv[1] == "asa": asa(0); exit()
 
 while True:
 	reload(sys); sys.setdefaultencoding('utf-8')
