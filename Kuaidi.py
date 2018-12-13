@@ -24,8 +24,8 @@ def autocomp(readid):
 	if aTry != "network":
 		countp = aTry.count("comCode")
 		if countp >= 2: return json.loads(aTry)["auto"][0]["comCode"]
-		else: return "API000"
-	else: return "NET000"
+		else: return "noAnswer"
+	else: return "networkFailed"
 
 def home(readid):
 	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + readid + ".txt"; comp = "auto"; linetime = "N/A"
@@ -39,9 +39,9 @@ def home(readid):
 		except (IndexError, exceptions.ValueError): pass
 	dtRead.close()
 	if comp == "auto": comp = autocomp(readid)
-	if comp != "API000":
+	if comp != "noAnswer":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = netTry(urlb)
-		if tryb != "False":
+		if tryb != "network":
 			ansj = json.loads(tryb)
 			comtext = {'yuantong': '圆通', 'yunda': '韵达', 'shunfeng': '顺丰', 'shentong': '申通', 'zhongtong': '中通', 'jd': '京东', 'ems': '邮政 EMS', 'zhaijisong': '宅急送'}
 			if ansj["status"] == "200":
@@ -68,9 +68,9 @@ def home(readid):
 					if maxnum < orgCounter: blanker(readid, "[lessPut]")
 			else:
 				blanker(readid, "[API " + ansj["status"] + "]")
-				if ansj["status"] == "400": blanker(readid, "[COM " + comp + "]")
-		else: blanker(readid, "[Failed]")
-	else: blanker(readid, "[COM " + comp + "]")
+				if ansj["status"] == "400": blanker(readid, "[COMCODE " + comp + "]")
+		else: blanker(readid, "[NetworkFailed]")
+	else: blanker(readid, "[" + comp + "]")
 	os.system("rm -f " + FileLocation + masterKey[0] + "*")
 	global tti; tti += 1; return exsc
 
