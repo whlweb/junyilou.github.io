@@ -5,12 +5,13 @@ arg = signCheck = brew = tti = 0; nt = ""
 endl = "\n"; argv = list(range(50))
 
 def blanker(bid, notice): 
-	print "[" + str(os.getpid()) + "] " + datetime.datetime.now().strftime("%m-%d %H:%M:%S") + " Checked " + bid + " " + notice + ".\r",
+	insTime = datetime.datetime.now().strftime("%m-%d %H:%M:%S")
+	print "[" + str(os.getpid()) + "] " + insTime + " " + bid + " " + notice + ".\r",
 	sys.stdout.flush()
 
 def netTry(tryurl):
 	try: response = urllib2.urlopen(tryurl)
-	except urllib2.URLError: return "False"
+	except: return "network"
 	else: return response.read()
 
 def pushbots(pushRaw, pushTitle, pushURL): 
@@ -20,11 +21,11 @@ def pushbots(pushRaw, pushTitle, pushURL):
 
 def autocomp(readid):
 	aTry = netTry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
-	if aTry != "False":
+	if aTry != "network":
 		countp = aTry.count("comCode")
 		if countp >= 2: return json.loads(aTry)["auto"][0]["comCode"]
-		else: return "unknown"
-	else: return "custom_network"
+		else: return "API000"
+	else: return "NET000"
 
 def home(readid):
 	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + readid + ".txt"; comp = "auto"; linetime = "N/A"
@@ -38,7 +39,7 @@ def home(readid):
 		except (IndexError, exceptions.ValueError): pass
 	dtRead.close()
 	if comp == "auto": comp = autocomp(readid)
-	if comp != "unknown":
+	if comp != "API000":
 		urlb = "https://www.kuaidi100.com/query?type=" + comp + "&postid=" + readid; tryb = netTry(urlb)
 		if tryb != "False":
 			ansj = json.loads(tryb)
@@ -61,18 +62,16 @@ def home(readid):
 					if "其他" in realComp: pushImage = bkPloc + "other.png"
 					else: pushImage = bkPloc + ansj["com"] + ".png"
 					if noShow == False: print end + endl; pushbots(end, "快递查询: " + realComp + " " + readid, pushImage)
-					else: blanker(readid, "got noShow signal")
+					else: blanker(readid, "[noShow]")
 				else: 
-					if maxnum == orgCounter: blanker(readid, "has no update")
-					if maxnum < orgCounter: blanker(readid, "got lessPut signal")
+					if maxnum == orgCounter: blanker(readid, "[Pass]")
+					if maxnum < orgCounter: blanker(readid, "[lessPut]")
 			else:
-				blanker(readid, "returned code " + ansj["status"])
-				if ansj["status"] == "400": print "[" + readid + " is currently using comp code '" + comp + "'.]"
-		else: blanker(readid, "failed connect")
-	else:
-		blanker(readid, "without company")
-		print "[" + readid + " is currently using comp code '" + comp + "'.]"
-	os.system("rm -f " + FileLocation + masterKey + "*")
+				blanker(readid, "[API " + ansj["status"] + "]")
+				if ansj["status"] == "400": blanker(readid, "[COM " + comp + "]")
+		else: blanker(readid, "[Failed]")
+	else: blanker(readid, "[COM " + comp + "]")
+	os.system("rm -f " + FileLocation + masterKey[0] + "*")
 	global tti; tti += 1; return exsc
 
 for m in sys.argv[1:]: arg += 1; brew = arg
