@@ -41,7 +41,7 @@ for adpre in range(0, len(specialistCode)):
 		"/v1/jobDetails/PIPE-" + realCode + "/stateProvinceList")
 		if os.path.getsize(savename) > 0: whileCount = False
 	jOpen = open(savename); stateJSON = json.loads(jOpen.read())["searchResults"]; jOpen.close()
-	print "..................................................\r", #Pre Scheme
+	print "                                                                \r", #Pre Scheme
 	sys.stdout.flush()
 	for i in range(0, len(stateJSON)): 
 		dID = stateJSON[i]["id"]
