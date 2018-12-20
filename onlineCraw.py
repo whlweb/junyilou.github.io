@@ -56,15 +56,20 @@ while True:
 				print runnot + ans[a] + " 302 [" + str(a + 1) + "/" + str(len(ans)) + "]\r",
 				sys.stdout.flush()
 			else:
-				uOut = "New Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans)) + "\n"
-				print "\n" + uOut; upb += uOut
-				picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
-				"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=png")
-				outPlus += ans[a] + ", "
-				os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
-					+ title(ans[a]) + "，产品部件号：" + ans[a] + "。&value2=" + picURL + "&value3=" + url 
+				productTitle = title(ans[a])
+				if not "DELETE" in productTitle:
+					uOut = "New Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans)) + "\n"
+					print "\n" + uOut; upb += uOut
+					picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
+					"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=png")
+					outPlus += ans[a] + ", "
+					os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
+					+ productTitle + "，产品部件号：" + ans[a] + "。&value2=" + picURL + "&value3=" + url 
 					+ "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey[0])
-				os.system("rm -f " + masterKey[0] + "*")
+					os.system("rm -f " + masterKey[0] + "*")
+				else:
+					print runnot + ans[a] + " 320 [" + str(a + 1) + "/" + str(len(ans)) + "]\r",
+					sys.stdout.flush()
 	if outPlus != "":
 		mWrite = open(os.path.expanduser('~') + "/savedProduct", "w")
 		mWrite.write(mRead + outPlus); mWrite.close()
