@@ -32,9 +32,9 @@ def asa(et):
 			os.system("mv " + newLocation + " " + oldLocation)
 			newJSON = json.loads(fileOpen(listLoc)); oldJSON = json.loads(fileOpen(oldLocation))
 			compareAns = pastebin(str(json.dumps(json_tools.diff(newJSON, oldJSON))), "storeList changelog")
-			os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Store app " 
-				+ "的列表更新了：文件时间戳 " + str(int(time.time())) + "，大小差异为 " + str(deltaListSize) + " "
-				+ "字节。&value2=https://www.apple.com/retail/storelist/images/hero_brussels_large.jpg"
+			os.system("wget -t 100 -T 5 --post-data 'value1=Apple Store app 的列表更新了：文件时间戳 " 
+				+ str(int(time.time())) + "，大小差异为 " + str(deltaListSize) + " 字节。"
+				+ "&value2=https://www.apple.com/retail/storelist/images/hero_brussels_medium_2x.jpg"
 				+ "&value3=" + compareAns + "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey)
 			os.system("rm -f " + masterKey + "*")
 		else:
@@ -61,10 +61,13 @@ def down(rtl, isSpecial):
 		tellRaw = "零售店编号 R" + rtl + "，新图片大小是 " + str(newsize / 1024) + " KB。"
 		imageURL = dieter + spr + "?output-format=jpg"
 		for msk in range(0, len(masterKey)):
-			os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + tellRaw 
-			+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL 
-			+ "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
-			os.system("rm -f " + masterKey[msk] + "*")
+			checkLoc = FileLocation + masterKey[msk]
+			os.system("rm -f " + checkLoc + "*")
+			while not os.path.isfile(checkLoc):
+				os.system("wget -t 100 -T 8 --post-data 'value1=" + tellRaw 
+				+ "&value2=🔔 Apple " + rname + " 图片更新&value3=" + imageURL 
+				+ "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+			os.system("rm -f " + checkLoc)
 	elif isSpecial:
 			try: pname = "R" + rtl + ": " + storejson[0][rtl]
 			except KeyError: pname = "R" + rtl

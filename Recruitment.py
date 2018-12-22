@@ -66,7 +66,11 @@ for adpre in range(0, len(specialistCode)):
 				pushAns = "新店新机遇: " + stateCHN[adpre] + "新增招聘地点 " + rolloutCode + ", 名称「" 
 				pushAns += cityJSON[c]["name"] + "」, 文件名 " + oID.replace("postLocation-", "") + ".json"
 				for msk in range(0, len(masterKey)):
-					os.system("wget -t 100 -T 8 --no-check-certificate --post-data 'value1=" + pushAns
-					+ "&value2=Apple 招贤纳才&value3=" + imageURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
-					os.system("rm -f " + masterKey[msk] + "*")
+					checkLoc = FileLocation + masterKey[msk]
+					os.system("rm -f " + checkLoc + "*")
+					while not os.path.isfile(checkLoc):
+						os.system("wget -t 100 -T 8 --post-data 'value1=" + pushAns
+							 + "&value2=Apple 招贤纳才&value3=" + imageURL + 
+							"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+					os.system("rm -f " + checkLoc)
 print

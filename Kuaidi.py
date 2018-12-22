@@ -15,9 +15,12 @@ def netTry(tryurl):
 	else: return response.read()
 
 def pushbots(pushRaw, pushTitle, pushURL): 
-	os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
-			pushRaw + "&value2=" + pushTitle + "&value3=" + pushURL +
-			"' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[0])
+	checkLoc = FileLocation + masterKey[0]
+	os.system("rm -f " + checkLoc + "*")
+	while not os.path.isfile(checkLoc):
+		os.system("wget -t 100 -T 3 --post-data 'value1=" + pushRaw + "&value2=" + pushTitle 
+			+ "&value3=" + pushURL + "' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[0])
+	os.system("rm -f " + checkLoc)
 
 def autocomp(readid):
 	aTry = netTry("https://www.kuaidi100.com/autonumber/autoComNum?text=" + readid)
@@ -72,7 +75,6 @@ def home(readid):
 				if ansj["status"] == "400": blanker(readid, "[COMCODE " + comp + "]")
 		else: blanker(readid, "[NetworkFailed]")
 	else: blanker(readid, "[" + comp + "]")
-	os.system("rm -f " + FileLocation + masterKey[0] + "*")
 	global tti; tti += 1; return exsc
 
 for m in sys.argv[1:]: arg += 1; brew = arg

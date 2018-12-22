@@ -48,10 +48,13 @@ def home():
 				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; pushed = 0
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for msk in range(0, len(masterKey)):
-					os.system("wget -t 100 -T 3 --no-check-certificate --post-data 'value1=" +
-					pushAns + "&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
-					"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
-					os.system("rm -f " + masterKey[msk] + "*")
+					checkLoc = FileLocation + masterKey[msk]
+					os.system("rm -f " + checkLoc + "*")
+					while not os.path.isfile(checkLoc):
+						os.system("wget -t 100 -T 3 --post-data 'value1=" + pushAns +
+						"&value2=Today at Apple 新活动&value3=" + rJson[lct]["image"] +
+						"?output-format=jpg' https://maker.ifttt.com/trigger/raw/with/key/" + masterKey[msk])
+					os.system("rm -f " + checkLoc)
 		print "Compare in Progress: " + str((i + 1) * 100 / num) + "%\r",
 		sys.stdout.flush()
 	mWrite = open(rpath + "savedEvent", "w"); mWrite.write(mark + wAns); mWrite.close(); print
