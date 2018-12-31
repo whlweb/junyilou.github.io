@@ -48,7 +48,7 @@ def home():
 				pushAns = "Apple 在" + citAns + "有新活动: " + singleName; pushed = 0
 				pushAns = pushAns.replace('"', "").replace("'", "").replace("：", " - ")
 				for msk in range(0, len(masterKey)):
-					checkLoc = os.path.expanduser('~') + masterKey[msk]
+					checkLoc = os.path.expanduser('~') + "/" + masterKey[msk]
 					os.system("rm -f " + checkLoc + "*")
 					while not os.path.isfile(checkLoc):
 						os.system("wget -t 100 -T 3 --post-data 'value1=" + pushAns +

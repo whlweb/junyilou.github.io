@@ -61,7 +61,7 @@ def down(rtl, isSpecial):
 		tellRaw = "零售店编号 R" + rtl + "，新图片大小是 " + str(newsize / 1024) + " KB。"
 		imageURL = dieter + spr + "?output-format=jpg"
 		for msk in range(0, len(masterKey)):
-			checkLoc = os.path.expanduser('~') + masterKey[msk]
+			checkLoc = os.path.expanduser('~') + "/" + masterKey[msk]
 			os.system("rm -f " + checkLoc + "*")
 			while not os.path.isfile(checkLoc):
 				os.system("wget -t 100 -T 8 --post-data 'value1=" + tellRaw 
