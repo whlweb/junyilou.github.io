@@ -47,7 +47,7 @@ def home():
 		for i in range(0, len(stateJSON)): 
 			dID = stateJSON[i]["id"]
 			savename = rpath + stateCode[adpre] + "/location_" + dID.replace("postLocation-", "") + ".json"
-			header = " [" + str(adpre + 1) + "/" + str(len(specialistCode)) + "] "
+			header = "[" + str(adpre + 1) + "/" + str(len(specialistCode)) + "] "
 			statusBar = "正在下载" + stateCHN[adpre] + "的城市文件, 已完成 " + str((i + 1) * 100 / len(stateJSON))
 			print header + statusBar + "% \r",
 			sys.stdout.flush(); whileCount = True

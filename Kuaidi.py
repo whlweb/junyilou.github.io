@@ -31,7 +31,7 @@ def autocomp(readid):
 	else: return "networkFailed"
 
 def home(readid):
-	print "                                                                \r", #Pre Scheme
+	print "                                                    \r", #Pre Scheme
 	noShow = False; orgCounter = exsc = 0; es = ""; idt = FileLocation + readid + ".txt"; comp = "auto"; linetime = "N/A"
 	if not os.path.isfile(idt): os.system("cd >" + idt); es = "[新增]"
 	dtRead = open(idt); dt = dtRead.read()
