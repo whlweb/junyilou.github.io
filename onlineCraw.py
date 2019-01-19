@@ -6,7 +6,7 @@ alphabet = ([chr(i) for i in range(65, 73)] + [chr(i) for i in range(74, 79)] +
 			[chr(i) for i in range(80, 83)] + [chr(i) for i in range(84, 91)]) #I, O, S
 numlist = [chr(i) for i in range(48, 58)]
 flist = numlist + alphabet
-psbhd = ['T', 'U', 'V']
+psbhd = ['T', 'U', 'V', 'W']
 ans = list()
 
 def title(partno):
@@ -57,19 +57,15 @@ while True:
 				sys.stdout.flush()
 			else:
 				productTitle = title(ans[a])
-				if not "DELETE" in productTitle:
-					uOut = "New Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans)) + "\n"
-					print "\n" + uOut; upb += uOut
-					picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
-					"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=png")
-					outPlus += ans[a] + ", "
-					os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
-					+ productTitle + "，产品部件号：" + ans[a] + "。&value2=" + picURL + "&value3=" + url 
-					+ "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey[0])
-					os.system("rm -f " + masterKey[0] + "*")
-				else:
-					print runnot + ans[a] + " 320 [" + str(a + 1) + "/" + str(len(ans)) + "]\r",
-					sys.stdout.flush()
+				uOut = "New Product Found: " + ans[a] + " at " + str(a + 1) + "/" + str(len(ans)) + "\n"
+				print "\n" + uOut; upb += uOut
+				picURL = ("https://as-images.apple.com/is/image/AppleInc/aos/published/images" + 
+				"/M/" + ans[a][:2] + "/" + ans[a] + "/" + ans[a] + "?fmt=png")
+				outPlus += ans[a] + ", "
+				os.system("wget -t 100 -T 5 --no-check-certificate --post-data 'value1=Apple Online Store 更新了新产品：" 
+				+ productTitle + "，产品部件号：" + ans[a] + "。&value2=" + picURL + "&value3=" + url 
+				+ "' https://maker.ifttt.com/trigger/linkraw/with/key/" + masterKey[0])
+				os.system("rm -f " + masterKey[0] + "*")
 	if outPlus != "":
 		mWrite = open(os.path.expanduser('~') + "/savedProduct", "w")
 		mWrite.write(mRead + outPlus); mWrite.close()
